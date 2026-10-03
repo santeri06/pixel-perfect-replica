@@ -1,0 +1,9 @@
+  ok   badges 12/12 visible
+canvas {"w":746,"h":740,"gl":true}
+  ok   Panel 01 badge exists
+  ok   click opens the relay panel
+  ok   Overdue filter keeps only: 1. SWG-B / Panel 01 · REF615, Seen from 8 scan points · 95%, Maintenance overdue. Open details
+  ok   2D view still available
+  ok   mobile: no horizontal scroll (scrollWidth 390)
+page errors: none
+RESULT: PASS
