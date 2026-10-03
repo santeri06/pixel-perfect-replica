@@ -5,12 +5,12 @@ every physical relay on it (`public/floorplan/floorplan.png` + `src/data/floorpl
 The full task description for the Claude Code session is in [PROMPT.md](PROMPT.md).
 
 ## Setup (Windows, PowerShell)
-Run `setup_floorplan.ps1` once (clones the repo to `C:\Users\arttu\dev\autotag-floorplan`,
+Run `setup_floorplan.ps1` once (clones the repo to `$HOME\dev\autotag-floorplan`,
 switches to `feat/floorplan`, copies `cloud_0.e57` to `cv\data\raw\` (git-ignored) and creates
 the Python venv). Then:
 
 ```powershell
-cd C:\Users\arttu\dev\autotag-floorplan\cv\floorplan
+cd $HOME\dev\autotag-floorplan\cv\floorplan
 .\.venv\Scripts\Activate.ps1
 python build_floorplan.py --e57 ..\data\raw\cloud_0.e57
 ```

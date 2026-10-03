@@ -8,7 +8,7 @@ Vastaa minulle suomeksi. Kaikki käyttöliittymätekstit englanniksi. Perustele 
 # YMPÄRISTÖ JA RAJAT (lue ensin)
 - Olen Windowsilla. Käytä PowerShellissä toimivia komentoja.
 - Repo: `https://github.com/santeri06/pixel-perfect-replica`. Main on synkronoitu Lovableen. **Älä pushaa mainiin, älä mergeä mainiin, älä force-pushaa.** Tarkistan aamulla.
-- Työkansio on `C:\Users\arttu\dev\autotag-floorplan` (luotu skriptillä `setup_floorplan.ps1`), haara `feat/floorplan` on jo olemassa ja seuraa `origin/feat/floorplan`:ia. Kirjaa todellinen HEAD ja mainin HEAD.
+- Työkansio on `$HOME\dev\autotag-floorplan` (luotu skriptillä `setup_floorplan.ps1`), haara `feat/floorplan` on jo olemassa ja seuraa `origin/feat/floorplan`:ia. Kirjaa todellinen HEAD ja mainin HEAD.
 - Toinen Claude Code -istunto työskentelee kansiossa `C:\Users\arttu\dev\pixel-perfect-replica` (CV-putki). **Älä koske siihen kansioon lainkaan.** Pistepilvi on kopioitu omaan työkansioosi (alla).
 - Riippuvuudet: `bun install --frozen-lockfile`. **`npm install` kaatuu tässä repossa npm-bugiin** (`Cannot read properties of null (reading 'edgesOut')`, johtuu `package.json`:n `overrides`-kentästä). Bunin asennuksen jälkeen `npm run build` ja `npm test` toimivat normaalisti.
 - Pythonille oma venv: `cv/floorplan/.venv` (Python 3.12, kuten `cv/README.md`). Älä käytä toisen kloonin venviä.
@@ -16,7 +16,7 @@ Vastaa minulle suomeksi. Kaikki käyttöliittymätekstit englanniksi. Perustele 
 # LÄHTÖDATA (vain luku)
 | Data | Polku | Huom. |
 |---|---|---|
-| Pistepilvi | `C:\Users\arttu\dev\autotag-floorplan\cv\data\raw\cloud_0.e57` | 2,2 Gt, 18 skannausta ja niiden poosit. `cv/.gitignore` sulkee `data/raw/`-kansion pois gitistä. Varmista `git check-ignore -v cv/data/raw/cloud_0.e57`. **Älä koskaan committaa sitä.** |
+| Pistepilvi | `$HOME\dev\autotag-floorplan\cv\data\raw\cloud_0.e57` | 2,2 Gt, 18 skannausta ja niiden poosit. `cv/.gitignore` sulkee `data/raw/`-kansion pois gitistä. Varmista `git check-ignore -v cv/data/raw/cloud_0.e57`. **Älä koskaan committaa sitä.** |
 | Skannauspisteet | `src/data/panoramas.json` | `scanPointId`, `position` = kameran keskipiste maailmakoordinaateissa (z ylös, metrit, z ≈ 1,45). `public/panoramas/index.json`:ia ei ole repossa; se on gitignoroidussa `cv/outputs/panoramas/`-kansiossa. |
 | Panoraamat | `public/panoramas/scan-XX/equirect.jpg` | 4096×2048, kohdistettu samaan ilmansuuntaan, joten northOffsetia ei tarvita. |
 | Tunnistukset | `src/data/detections.json` | Kentät: `id, scanPointId, image, assetTypeId, ocrText, confidence, bbox, pitch, yaw, documents`. **Tiedostossa ei ole `status`-kenttää.** Status lasketaan kuten `src/data/detections.ts`: `confidence >= 0.75` → `"auto"`, muuten `"review"`. Selaimessa tulevat lisäksi tilat `"confirmed"` ja `"rejected"`. |
@@ -96,7 +96,7 @@ Odotettu rakenne: **7 relettä, joilla on automaattitunnistus** (5 releen rivi 1
 7. **Committaa jokaisen vaiheen jälkeen erikseen.** Ennen pushia: `git fetch` + `git merge origin/main` (EI rebase). Jos tulee konflikteja, säilytä Santerin muutokset (myös englanninkieliset tekstit) ja lisää omasi niiden päälle.
 
 # VAIHE 0 – LÄHTÖTILANNE
-1. `cd C:\Users\arttu\dev\autotag-floorplan; git switch feat/floorplan; git pull`, kirjaa HEAD. Aja `bun install --frozen-lockfile; bun run build; bun run test` ja kirjaa tulos lähtötasoksi.
+1. `cd $HOME\dev\autotag-floorplan; git switch feat/floorplan; git pull`, kirjaa HEAD. Aja `bun install --frozen-lockfile; bun run build; bun run test` ja kirjaa tulos lähtötasoksi.
 2. Avaa `cloud_0.e57` pye57:llä ja tulosta seuraavat. Älä vielä lue pisteitä.
    - skannausten määrä
    - jokaisen skannauksen pisteiden määrä
@@ -115,7 +115,7 @@ Saat importata funktioita olemassa olevasta `cv/geometry.py`:stä, mutta älä m
 
 ## A1. Ajettavuus
 ```powershell
-cd C:\Users\arttu\dev\autotag-floorplan\cv\floorplan
+cd $HOME\dev\autotag-floorplan\cv\floorplan
 py -3.12 -m venv .venv; .\.venv\Scripts\Activate.ps1
 pip install -r ..\requirements.txt -r requirements.txt
 python build_floorplan.py --e57 ..\data\raw\cloud_0.e57

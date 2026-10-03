@@ -1,8 +1,8 @@
 # One-time setup for the floor plan work. Run in PowerShell:
 #   powershell -ExecutionPolicy Bypass -File setup_floorplan.ps1
-# Does NOT touch C:\Users\arttu\dev\pixel-perfect-replica (the CV session's folder).
+# Creates $HOME\dev\autotag-floorplan. Does NOT touch any other clone (e.g. the CV session folder).
 $ErrorActionPreference = "Stop"
-$root = "C:\Users\arttu\dev\autotag-floorplan"
+$root = Join-Path $HOME "dev\autotag-floorplan"
 $repo = "https://github.com/santeri06/pixel-perfect-replica"
 
 # 1. Clone + branch
