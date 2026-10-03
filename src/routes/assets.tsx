@@ -34,17 +34,31 @@ function AssetsPage() {
     <>
       <PageHeader title="Asset Library" subtitle="Reference identifiers the OCR output is fuzzy-matched against." />
       <Card className="mb-6">
-        <CardContent className="flex flex-wrap items-center gap-4 p-4">
+        <CardContent className="flex min-w-0 flex-wrap items-center gap-4 p-4">
           <div className="text-sm font-medium text-secondary-foreground">Try the matcher:</div>
-          <Input className="w-48 font-mono" value={ocr} onChange={(e) => setOcr(e.target.value)} placeholder="OCR text" />
-          <div className="text-sm">{m ? <>→ <b className="text-secondary-foreground">{m.asset.name}</b> via “{m.identifier}” ({Math.round(m.score * 100)}%)</> : "No match"}</div>
+          <Input className="w-full font-mono sm:w-48" value={ocr} onChange={(e) => setOcr(e.target.value)} placeholder="OCR text" />
+          <div className="min-w-0 break-words text-sm">{m ? <>→ <b className="text-secondary-foreground">{m.asset.name}</b> via “{m.identifier}” ({Math.round(m.score * 100)}%)</> : "No match"}</div>
         </CardContent>
       </Card>
       <div className="relative mb-4 max-w-sm">
         <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input className="bg-card pl-9" placeholder="Search asset types…" value={q} onChange={(e) => setQ(e.target.value)} />
       </div>
-      <Card className="p-0">
+      <div className="space-y-3 md:hidden">
+        {rows.map((a) => (
+          <Card key={a.id} className="min-w-0 gap-3 p-4">
+            <div className="flex min-w-0 items-start justify-between gap-2">
+              <div className="min-w-0"><h2 className="break-words font-semibold text-secondary-foreground">{a.name}</h2><p className="text-sm text-muted-foreground">{a.category}</p></div>
+              <Badge variant="outline" className="shrink-0 text-sm">{a.lifecycle}</Badge>
+            </div>
+            <div className="flex flex-wrap gap-2">{a.identifiers.map((i) => <Badge key={i} variant="secondary" className="font-mono text-sm">{i}</Badge>)}</div>
+            <div className="text-sm text-muted-foreground">{a.siteCount} sites</div>
+            <div className="flex flex-col">{a.documents.map((d) => <a key={d.id} href={d.url} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 break-words text-sm text-primary"><FileText className="h-4 w-4 shrink-0" />{d.title}</a>)}</div>
+          </Card>
+        ))}
+        {rows.length === 0 && <p className="py-10 text-center text-sm text-muted-foreground">No matching assets.</p>}
+      </div>
+      <Card className="hidden p-0 md:block">
         <Table>
           <TableHeader><TableRow><TableHead>Asset type</TableHead><TableHead>Identifiers</TableHead><TableHead>Documents</TableHead><TableHead>Lifecycle</TableHead><TableHead className="text-right">Sites</TableHead></TableRow></TableHeader>
           <TableBody>
