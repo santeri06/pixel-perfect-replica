@@ -39,7 +39,7 @@ export type LibraryAssetType = (typeof library.assetTypes)[number];
 export type LibraryInstance = (typeof library.instances)[number];
 
 /** Resolve a detection's assetTypeId + instanceId against asset_library.json. */
-export function lookupLibrary(assetTypeId: string, instanceId?: string): { type?: LibraryAssetType; instance?: LibraryInstance } {
+export function lookupLibrary(assetTypeId: string, instanceId?: string): { type: LibraryAssetType | undefined; instance: LibraryInstance | undefined } {
   return {
     type: library.assetTypes.find((t) => t.assetTypeId === assetTypeId),
     instance: instanceId ? library.instances.find((i) => i.instanceId === instanceId) : undefined,
