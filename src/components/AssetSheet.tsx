@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { FileText, CheckCircle2, Pencil, LifeBuoy } from "lucide-react";
+import { FileText, CheckCircle2, Pencil, LifeBuoy, ExternalLink, AlertTriangle } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import type { Detection } from "@/data/detections";
-import { maintenanceHistory } from "@/data/detections";
-import { getAssetById, matchAsset } from "@/lib/api";
+import { getAssetById, lookupLibrary, matchAsset } from "@/lib/api";
 import { confidenceLevel, useStore } from "@/lib/store";
 
 const barColor = { high: "bg-success", mid: "bg-warning", low: "bg-destructive" } as const;
@@ -43,6 +42,8 @@ export function AssetSheet({ detection, onClose }: { detection: Detection | null
 
   if (!live) return <Sheet open={false} />;
   const asset = getAssetById(live.assetTypeId);
+  const { type, instance } = lookupLibrary(live.assetTypeId, live.instanceId);
+  const name = type?.name ?? asset?.name ?? live.assetTypeId;
   const level = confidenceLevel(live.confidence);
 
   const saveEdit = () => {
@@ -52,16 +53,23 @@ export function AssetSheet({ detection, onClose }: { detection: Detection | null
     toast.success(m ? `Matched to ${m.asset.name}` : "Label updated");
   };
 
+  const docLink = (d: { title: string; url: string }, i: number) => (
+    <a key={`${d.title}-${i}`} href={d.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-accent">
+      <FileText className="h-4 w-4 text-primary" /> <span className="flex-1">{d.title}</span>
+      <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
+    </a>
+  );
+
   return (
     <Sheet open onOpenChange={(o) => !o && onClose()}>
       <SheetContent className="w-full overflow-y-auto sm:max-w-lg">
         <SheetHeader>
           <div className="flex items-center gap-2">
-            <Badge variant="outline">{asset?.lifecycle} lifecycle</Badge>
-            {live.status === "confirmed" && <Badge className="bg-primary">Confirmed</Badge>}
+            {live.status === "confirmed" && <Badge className="bg-primary">Vahvistettu</Badge>}
+            {instance && <Badge variant="outline" className="font-mono">{instance.instanceId}</Badge>}
           </div>
-          <SheetTitle className="text-xl">{asset?.name}</SheetTitle>
-          <SheetDescription>{live.position} · {asset?.manufacturer}</SheetDescription>
+          <SheetTitle className="text-xl">{name}</SheetTitle>
+          <SheetDescription>{type?.manufacturer ?? asset?.manufacturer}</SheetDescription>
         </SheetHeader>
 
         <div className="space-y-6 px-4 pb-6">
@@ -71,7 +79,7 @@ export function AssetSheet({ detection, onClose }: { detection: Detection | null
               {editing ? (
                 <div className="mt-1 flex gap-1"><Input value={text} onChange={(e) => setText(e.target.value)} /><Button size="sm" onClick={saveEdit}>Save</Button></div>
               ) : (
-                <div className="mt-1 font-mono text-lg font-semibold text-secondary-foreground">{live.label}</div>
+                <div className="mt-1 font-mono text-lg font-semibold text-secondary-foreground">{live.label || name}</div>
               )}
               <div className="mt-3 text-xs uppercase text-muted-foreground">Confidence</div>
               <div className="mt-1 h-2 w-full rounded-full bg-muted">
@@ -84,50 +92,69 @@ export function AssetSheet({ detection, onClose }: { detection: Detection | null
             </div>
           </div>
 
-          <section>
-            <h4 className="mb-2 text-sm font-semibold text-secondary-foreground">Documents</h4>
-            <div className="divide-y rounded-md border">
-              {asset?.documents.map((doc) => (
-                <a key={doc.id} href={doc.url} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-accent">
-                  <FileText className="h-4 w-4 text-primary" /> <span className="flex-1">{doc.title}</span>
-                  <span className="text-xs text-muted-foreground">PDF</span>
-                </a>
-              ))}
+          {instance ? (
+            <section className="space-y-5 rounded-lg border p-4">
+              <h3 className="text-base font-semibold text-secondary-foreground">Laitteen tiedot</h3>
+              <dl className="grid grid-cols-2 gap-3 text-sm">
+                <div><dt className="text-xs text-muted-foreground">Sijainti</dt><dd className="font-medium text-secondary-foreground">{instance.location}</dd></div>
+                <div><dt className="text-xs text-muted-foreground">Sarjanumero</dt><dd className="font-mono text-secondary-foreground">{instance.serialNumber}</dd></div>
+                <div><dt className="text-xs text-muted-foreground">Elinkaaren tila</dt><dd><Badge variant="outline">{instance.lifecycleStatus}</Badge></dd></div>
+                <div><dt className="text-xs text-muted-foreground">Asennettu</dt><dd className="text-secondary-foreground">{instance.installDate}</dd></div>
+              </dl>
+
+              <div>
+                <h4 className="mb-2 text-sm font-semibold text-secondary-foreground">Huoltohistoria</h4>
+                <ol className="space-y-3 border-l-2 border-primary/30 pl-4">
+                  {instance.maintenanceHistory.map((m) => (
+                    <li key={m.date + m.title} className="relative">
+                      <span className="absolute -left-[22px] top-1 h-3 w-3 rounded-full bg-primary" />
+                      <div className="text-xs text-muted-foreground">{m.date}</div>
+                      <div className="text-sm font-medium text-secondary-foreground">{m.title}</div>
+                      <div className="text-sm">{m.note}</div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <div>
+                <h4 className="mb-2 text-sm font-semibold text-secondary-foreground">Varaosat</h4>
+                <Table>
+                  <TableHeader><TableRow><TableHead>Osanro</TableHead><TableHead>Kuvaus</TableHead><TableHead className="text-right">Varasto</TableHead></TableRow></TableHeader>
+                  <TableBody>
+                    {instance.spareParts.map((p) => (
+                      <TableRow key={p.partNo}>
+                        <TableCell className="font-mono text-xs">{p.partNo}</TableCell>
+                        <TableCell>{p.description}</TableCell>
+                        <TableCell className={`text-right ${p.stock === 0 ? "text-destructive" : ""}`}>{p.stock}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+
+              <div>
+                <h4 className="mb-2 text-sm font-semibold text-secondary-foreground">Laitekohtaiset dokumentit</h4>
+                <div className="divide-y rounded-md border">{instance.documents.map(docLink)}</div>
+              </div>
+            </section>
+          ) : (
+            <div className="flex items-start gap-3 rounded-lg border border-warning bg-warning/10 p-4 text-sm">
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
+              <span className="font-medium text-secondary-foreground">Laitetta ei yksilöity – vahvista tagi</span>
             </div>
-          </section>
+          )}
 
-          <section>
-            <h4 className="mb-2 text-sm font-semibold text-secondary-foreground">Maintenance history</h4>
-            <ol className="space-y-3 border-l-2 border-primary/30 pl-4">
-              {maintenanceHistory.map((m) => (
-                <li key={m.date} className="relative">
-                  <span className="absolute -left-[22px] top-1 h-3 w-3 rounded-full bg-primary" />
-                  <div className="text-xs text-muted-foreground">{m.date}</div>
-                  <div className="text-sm font-medium text-secondary-foreground">{m.title}</div>
-                  <div className="text-sm">{m.note}</div>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          <section>
-            <h4 className="mb-2 text-sm font-semibold text-secondary-foreground">Spare parts</h4>
-            <Table>
-              <TableHeader><TableRow><TableHead>Part no.</TableHead><TableHead>Description</TableHead><TableHead className="text-right">Stock</TableHead></TableRow></TableHeader>
-              <TableBody>
-                {asset?.spareParts.map((p) => (
-                  <TableRow key={p.partNo}>
-                    <TableCell className="font-mono text-xs">{p.partNo}</TableCell>
-                    <TableCell>{p.description}</TableCell>
-                    <TableCell className={`text-right ${p.stock === 0 ? "text-destructive" : ""}`}>{p.stock}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+          <section className="space-y-3 rounded-lg border p-4">
+            <h3 className="text-base font-semibold text-secondary-foreground">Valmistajan dokumentaatio</h3>
+            {type?.manufacturerDocs.length ? (
+              <div className="divide-y rounded-md border">{type.manufacturerDocs.map(docLink)}</div>
+            ) : (
+              <p className="text-sm text-muted-foreground">Ei dokumentteja.</p>
+            )}
           </section>
 
           <div className="flex flex-wrap gap-2">
-            <Button onClick={() => { update(live.id, { status: "confirmed" }); toast.success("Tag confirmed"); }} disabled={live.status === "confirmed"}>
+            <Button onClick={() => { update(live.id, { status: "confirmed" }); toast.success("Tagi vahvistettu"); }} disabled={live.status === "confirmed"}>
               <CheckCircle2 className="mr-1 h-4 w-4" /> Confirm tag
             </Button>
             <Button variant="outline" onClick={() => setEditing(true)}><Pencil className="mr-1 h-4 w-4" /> Edit</Button>
