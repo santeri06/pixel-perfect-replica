@@ -13,6 +13,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Overview of automatic asset tagging in your industrial digital twin." },
       { property: "og:title", content: "Dashboard — VEO360 AutoTag" },
       { property: "og:description", content: "Overview of automatic asset tagging in your industrial digital twin." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Dashboard,
@@ -31,18 +33,18 @@ function Dashboard() {
       <PageHeader
         title="Helsinki Substation 01"
         subtitle="Automatic product & label recognition for the Matterport digital twin"
-        actions={<Button size="lg" onClick={startDemo}><PlayCircle className="mr-2 h-5 w-5" /> Start demo</Button>}
+        actions={<Button size="lg" className="w-full md:w-auto" onClick={startDemo}><PlayCircle className="mr-2 h-5 w-5" /> Start demo</Button>}
       />
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 max-[359px]:grid-cols-1 md:grid-cols-4 md:gap-4">
         {[
           { icon: Tag, label: "Auto-tagged assets", value: tagged },
           { icon: AlertTriangle, label: "Need review", value: review },
           { icon: Zap, label: "Detection mAP", value: "0.91" },
           { icon: Clock, label: "Time saved / site", value: "7.6 h" },
         ].map((s) => (
-          <Card key={s.label}><CardContent className="flex items-center gap-4 p-5">
-            <div className="grid h-10 w-10 place-items-center rounded-md bg-accent text-accent-foreground"><s.icon className="h-5 w-5" /></div>
-            <div><div className="text-2xl font-semibold text-secondary-foreground">{s.value}</div><div className="text-xs text-muted-foreground">{s.label}</div></div>
+          <Card key={s.label}><CardContent className="flex min-w-0 flex-col gap-2 p-3 min-[430px]:flex-row min-[430px]:items-center md:gap-4 md:p-5">
+            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-accent text-accent-foreground"><s.icon className="h-5 w-5" /></div>
+            <div className="min-w-0"><div className="text-2xl font-semibold text-secondary-foreground">{s.value}</div><div className="text-sm leading-tight text-muted-foreground md:text-xs">{s.label}</div></div>
           </CardContent></Card>
         ))}
       </div>

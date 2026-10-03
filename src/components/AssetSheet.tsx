@@ -68,7 +68,7 @@ export function AssetSheet({ detection, onClose, backToReview = false }: { detec
   };
 
   const docLink = (d: Doc, i: number) => (
-    <a key={`${d.title}-${i}`} href={d.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-accent">
+    <a key={`${d.title}-${i}`} href={d.url} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-3 px-3 py-2 text-sm hover:bg-accent">
       <FileText className="h-4 w-4 text-primary" /> <span className="flex-1">{d.title}</span>
       <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
     </a>
@@ -76,7 +76,7 @@ export function AssetSheet({ detection, onClose, backToReview = false }: { detec
 
   return (
     <Sheet open onOpenChange={(o) => !o && onClose()}>
-      <SheetContent className="w-full overflow-y-auto sm:max-w-lg">
+      <SheetContent side="bottom" className="max-h-[85dvh] w-full overflow-x-hidden overflow-y-auto p-4 sm:inset-x-auto sm:inset-y-0 sm:right-0 sm:h-full sm:max-h-none sm:max-w-lg sm:border-l sm:border-t-0 sm:p-6 sm:data-[state=closed]:slide-out-to-right sm:data-[state=open]:slide-in-from-right">
         <SheetHeader>
           {backToReview && (
             <Button variant="ghost" size="sm" className="-ml-2 w-fit text-primary" onClick={backToQueue}>
@@ -97,12 +97,12 @@ export function AssetSheet({ detection, onClose, backToReview = false }: { detec
           </div>
         </SheetHeader>
 
-        <div className="space-y-6 px-4 pb-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
+        <div className="space-y-6 px-0 pb-6 sm:px-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="min-w-0">
               <div className="text-xs uppercase text-muted-foreground">OCR type code</div>
               {editing ? (
-                <div className="mt-1 flex gap-1"><Input value={text} onChange={(e) => setText(e.target.value)} /><Button size="sm" onClick={saveEdit}>Save</Button></div>
+                <div className="mt-1 flex flex-wrap gap-1"><Input className="min-w-0 flex-1" value={text} onChange={(e) => setText(e.target.value)} /><Button size="sm" className="min-h-11" onClick={saveEdit}>Save</Button></div>
               ) : (
                 <div className="mt-1 font-mono text-lg font-semibold text-secondary-foreground">{live.label || <span className="font-sans text-base font-normal text-muted-foreground">Not readable</span>}</div>
               )}

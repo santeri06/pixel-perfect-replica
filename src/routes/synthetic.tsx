@@ -19,6 +19,8 @@ export const Route = createFileRoute("/synthetic")({
       { name: "description", content: "Generate labelled augmented training images from one reference photo." },
       { property: "og:title", content: "Synthetic Data Generator — VEO360 AutoTag" },
       { property: "og:description", content: "Generate labelled augmented training images from one reference photo." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: SyntheticPage,
@@ -82,8 +84,8 @@ function SyntheticPage() {
           <Button onClick={() => downloadZip(variants, fileName)}><Download className="mr-2 h-4 w-4" /> Download ZIP ({variants.length} + labels.json)</Button>
         )}
       </div>
-      <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
-        <div className="space-y-6">
+      <div className="grid min-w-0 gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
+        <div className="min-w-0 space-y-6">
           <Card>
             <CardContent className="p-4">
               <div
@@ -120,12 +122,12 @@ function SyntheticPage() {
           </Card>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <div className="mb-3 text-sm"><span className="font-semibold text-secondary-foreground">{busy ? progress : variants.length}</span> / {s.count} images generated</div>
           {variants.length === 0 ? (
             <Card><CardContent className="grid min-h-80 place-items-center text-sm text-muted-foreground">Upload a reference image and press Generate.</CardContent></Card>
           ) : (
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3 min-[430px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
               {variants.map((v) => (
                 <Card key={v.name} className="overflow-hidden">
                   <div className="relative">
