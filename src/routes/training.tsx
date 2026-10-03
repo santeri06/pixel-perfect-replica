@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/AppShell";
+import { TrainingShowcase } from "@/components/PipelineShowcase";
 import { trainingStats, trainingCurve, examplePredictions } from "@/data/training";
 
 export const Route = createFileRoute("/training")({
@@ -25,7 +26,8 @@ function TrainingPage() {
   ];
   return (
     <>
-      <PageHeader title="Training" subtitle="YOLO-style label detector + OCR head, trained on synthetic + real scans." />
+      <PageHeader title="Training" subtitle="Label detector + OCR check, trained on synthetic data only." />
+      <TrainingShowcase />
       <div className="grid gap-4 md:grid-cols-4">
         {stats.map((s) => (
           <Card key={s.label}><CardContent className="p-5"><div className="text-xs text-muted-foreground">{s.label}</div><div className="mt-1 text-2xl font-semibold text-secondary-foreground">{s.value}</div></CardContent></Card>

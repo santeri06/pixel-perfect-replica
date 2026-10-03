@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { LayoutDashboard, Images, BrainCircuit, Box, ListChecks, Library, X, ArrowRight } from "lucide-react";
+import { LayoutDashboard, Images, BrainCircuit, Box, ListChecks, Library, X, ArrowRight, BarChart3 } from "lucide-react";
 import { useStore, needsReview } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 
@@ -11,12 +11,15 @@ const nav = [
   { to: "/twin", label: "Digital Twin", icon: Box },
   { to: "/review", label: "Review Queue", icon: ListChecks },
   { to: "/assets", label: "Asset Library", icon: Library },
+  { to: "/results", label: "Results", icon: BarChart3 },
 ] as const;
 
 export const demoSteps = [
-  { to: "/synthetic", title: "1. Generate synthetic training data", text: "One reference photo becomes hundreds of labelled variants with lighting, wear and occlusion — bounding boxes tracked automatically." },
-  { to: "/training", title: "2. Train detection + OCR", text: "The model learns to locate labels and read type codes. mAP 0.91, OCR accuracy 94.7%." },
-  { to: "/twin", title: "3. Auto-tag the digital twin", text: "Detections appear as pins in the 360° scan. Click any pin to open manuals, wiring diagrams and spare parts." },
+  { to: "/synthetic", title: "1. Synthetic data", text: "One reference image becomes hundreds of labelled training images with varied lighting, angle, wear and background." },
+  { to: "/training", title: "2. Training", text: "A detector and OCR check are trained on synthetic data only, then tested on real scan images." },
+  { to: "/twin", title: "3. Digital Twin", text: "Detected devices appear as clickable tags in the 360° scan, linked to their documentation." },
+  { to: "/review", title: "4. Review Queue", text: "Uncertain detections go to a human, and every decision can become new training data." },
+  { to: "/results", title: "5. Results", text: "High-confidence, OCR-confirmed tags were correct every time; the rest were safely routed to review." },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
