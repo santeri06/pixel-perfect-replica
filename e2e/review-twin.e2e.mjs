@@ -68,7 +68,7 @@ try {
     const sheetText = await sheet.innerText();
     check(sheetText.includes(r.conf), `side panel opened automatically and shows ${r.conf}`);
     check(sheetText.includes("Back to review queue"), "side panel has 'Back to review queue'");
-    const selectText = await page.getByRole("combobox").first().innerText();
+    const selectText = await page.$eval('[role="combobox"]', (el) => el.textContent ?? ""); // the open panel aria-hides the page
     check(selectText.includes(`Scan point ${r.scan.replace("scan-", "")}`), `scan point selected: "${selectText.trim()}"`);
     await page.waitForSelector(".veo-pin.veo-focus", { timeout: 15000 });
     const geo = await page.evaluate(() => {
