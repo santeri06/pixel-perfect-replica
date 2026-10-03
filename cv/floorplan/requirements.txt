@@ -3,3 +3,4 @@ pye57>=0.4
 numpy
 scipy>=1.11
 pillow>=10
+psutil  # optional: peak memory in report.json
