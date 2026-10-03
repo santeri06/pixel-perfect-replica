@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ClientOnly } from "@tanstack/react-router";
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Upload } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,15 @@ import type { Detection } from "@/data/detections";
 
 const PanoramaViewer = lazy(() => import("@/components/PanoramaViewer"));
 
+/** Deep link, e.g. /twin?scan=scan-06&detection=d14&from=review (all optional). */
+type TwinSearch = { scan?: string; detection?: string; from?: "review" };
+
 export const Route = createFileRoute("/twin")({
+  validateSearch: (s: Record<string, unknown>): TwinSearch => ({
+    ...(typeof s["scan"] === "string" ? { scan: s["scan"] } : {}),
+    ...(typeof s["detection"] === "string" ? { detection: s["detection"] } : {}),
+    ...(s["from"] === "review" ? { from: "review" as const } : {}),
+  }),
   head: () => ({
     meta: [
       { title: "Digital Twin Viewer — VEO360 AutoTag" },
@@ -31,7 +39,25 @@ function TwinPage() {
   const { detections, panorama, setPanorama, scanPointId, setScanPoint, loading } = useStore();
   const [show, setShow] = useState(true);
   const [selected, setSelected] = useState<Detection | null>(null);
+  const [focus, setFocus] = useState<{ id: string; yaw: number; pitch: number; key: number } | null>(null);
   const input = useRef<HTMLInputElement>(null);
+  const search = Route.useSearch();
+  const applied = useRef<string | null>(null);
+
+  // Deep link from the Review Queue: select the scan point, turn to the tag, highlight it and open its panel.
+  useEffect(() => {
+    if (loading || (!search.scan && !search.detection)) return;
+    const key = `${search.scan ?? ""}|${search.detection ?? ""}`;
+    if (applied.current === key) return;
+    applied.current = key;
+    const d = search.detection ? detections.find((x) => x.id === search.detection) : undefined;
+    const scan = d?.scanPointId ?? search.scan;
+    if (scan) setScanPoint(scan);
+    if (d) {
+      setSelected(d);
+      setFocus({ id: d.id, yaw: d.yaw, pitch: d.pitch, key: Date.now() });
+    }
+  }, [loading, search.scan, search.detection, detections]); // eslint-disable-line react-hooks/exhaustive-deps
   const active = detections.filter((d) => d.status !== "rejected");
   const visible = active.filter((d) => d.scanPointId === scanPointId);
   const review = visible.filter(needsReview).length;
@@ -69,11 +95,11 @@ function TwinPage() {
       <Card className="h-[calc(100vh-220px)] min-h-[480px] overflow-hidden p-0">
         <ClientOnly fallback={<div className="h-full animate-pulse bg-muted" />}>
           <Suspense fallback={<div className="h-full animate-pulse bg-muted" />}>
-            <PanoramaViewer image={panorama} detections={show ? visible : []} onSelect={setSelected} />
+            <PanoramaViewer image={panorama} detections={show ? visible : []} onSelect={setSelected} focus={focus} />
           </Suspense>
         </ClientOnly>
       </Card>
-      <AssetSheet detection={selected} onClose={() => setSelected(null)} />
+      <AssetSheet detection={selected} onClose={() => setSelected(null)} backToReview={search.from === "review"} />
     </>
   );
 }

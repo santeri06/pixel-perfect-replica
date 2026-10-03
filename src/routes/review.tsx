@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Check, Pencil, X } from "lucide-react";
+import { Check, MapPin, Pencil, X } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -54,7 +54,20 @@ function ReviewPage() {
                   </TableCell>
                   <TableCell>{getAssetById(d.assetTypeId)?.name}</TableCell>
                   <TableCell className="text-xs text-muted-foreground">{m ? `${m.identifier} (${Math.round(m.score * 100)}%)` : "—"}</TableCell>
-                  <TableCell className="text-sm">{d.position}</TableCell>
+                  <TableCell className="text-sm">
+                    {d.scanPointId ? (
+                      <Link
+                        to="/twin"
+                        search={{ scan: d.scanPointId, detection: d.id, from: "review" }}
+                        className="inline-flex items-center gap-1 text-primary hover:underline"
+                        title="Show this tag in the digital twin"
+                      >
+                        <MapPin className="h-3.5 w-3.5" /> {d.position}
+                      </Link>
+                    ) : (
+                      d.position || "—"
+                    )}
+                  </TableCell>
                   <TableCell><span className={`rounded-full px-2 py-0.5 text-xs font-semibold bg-warning/20 text-secondary-foreground`}>{Math.round(d.confidence * 100)}%</span></TableCell>
                   <TableCell className="space-x-1 text-right">
                     {edit?.id === d.id ? (

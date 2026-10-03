@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { FileText, CheckCircle2, Pencil, LifeBuoy, ExternalLink, AlertTriangle } from "lucide-react";
+import { FileText, CheckCircle2, Pencil, LifeBuoy, ExternalLink, AlertTriangle, ArrowLeft } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -35,7 +36,11 @@ function useCrop(src: string, d: Detection | null) {
   return url;
 }
 
-export function AssetSheet({ detection, onClose }: { detection: Detection | null; onClose: () => void }) {
+export function AssetSheet({ detection, onClose, backToReview = false }: { detection: Detection | null; onClose: () => void; backToReview?: boolean | undefined }) {
+  const router = useRouter();
+  const navigate = useNavigate();
+  // came here from the Review Queue: go back in history (keeps the browser back button consistent)
+  const backToQueue = () => (window.history.length > 1 ? router.history.back() : navigate({ to: "/review" }));
   const { update, panorama, detections } = useStore();
   const live = detection ? detections.find((x) => x.id === detection.id) ?? detection : null;
   const [editing, setEditing] = useState(false);
@@ -73,6 +78,11 @@ export function AssetSheet({ detection, onClose }: { detection: Detection | null
     <Sheet open onOpenChange={(o) => !o && onClose()}>
       <SheetContent className="w-full overflow-y-auto sm:max-w-lg">
         <SheetHeader>
+          {backToReview && (
+            <Button variant="ghost" size="sm" className="-ml-2 w-fit text-primary" onClick={backToQueue}>
+              <ArrowLeft className="mr-1 h-4 w-4" /> Back to review queue
+            </Button>
+          )}
           <div className="flex items-center gap-2">
             {live.status === "confirmed" && <Badge className="bg-primary">Confirmed</Badge>}
             {instance && <Badge variant="outline" className="font-mono">{instance.id}</Badge>}

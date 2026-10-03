@@ -111,3 +111,16 @@
   0%, 100% { box-shadow: 0 0 0 4px oklch(0.6 0.21 25 / 0.35); }
   50% { box-shadow: 0 0 0 10px oklch(0.6 0.21 25 / 0); }
 }
+/* Tag opened from the Review Queue: bigger pin with a pulsing ring for ~3 s */
+.pnlm-hotspot-base.veo-pin.veo-focus {
+  width: 32px;
+  height: 32px;
+  z-index: 5;
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+  animation: veo-focus 0.9s ease-out 3;
+}
+@keyframes veo-focus {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--primary) 70%, transparent); }
+  100% { box-shadow: 0 0 0 26px color-mix(in oklch, var(--primary) 0%, transparent); }
+}
