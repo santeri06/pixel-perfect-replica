@@ -1,19 +1,19 @@
 [
   {
     "id": "d1",
-    "scanPointId": "scan-00",
-    "image": "cloud_0_001.jpg",
+    "scanPointId": "scan-01",
+    "image": "scan-01_f45_s1_y-120_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.355,
+    "confidence": 0.732,
     "bbox": [
-      267,
-      1831,
-      198,
-      132
+      71,
+      1029,
+      80,
+      66
     ],
-    "pitch": 3.73,
-    "yaw": -129.15,
+    "pitch": 4.48,
+    "yaw": -138.35,
     "documents": [
       {
         "id": "relay-man",
@@ -55,19 +55,19 @@
   },
   {
     "id": "d2",
-    "scanPointId": "scan-00",
-    "image": "cloud_0_002.jpg",
+    "scanPointId": "scan-01",
+    "image": "scan-01_f45_s2_y-124_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.268,
+    "confidence": 0.933,
     "bbox": [
-      2034,
-      1816,
-      199,
-      215
+      263,
+      1010,
+      151,
+      74
     ],
-    "pitch": 4.39,
-    "yaw": 2.84,
+    "pitch": 5.22,
+    "yaw": -129.41,
     "documents": [
       {
         "id": "relay-man",
@@ -110,18 +110,18 @@
   {
     "id": "d3",
     "scanPointId": "scan-01",
-    "image": "cloud_0_007.jpg",
+    "image": "scan-01_f45_s1_y-120_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.438,
+    "confidence": 0.895,
     "bbox": [
-      1674,
-      2363,
-      313,
-      239
+      670,
+      984,
+      104,
+      84
     ],
-    "pitch": -11.69,
-    "yaw": -85.74,
+    "pitch": 5.96,
+    "yaw": -117.03,
     "documents": [
       {
         "id": "relay-man",
@@ -163,19 +163,19 @@
   },
   {
     "id": "d4",
-    "scanPointId": "scan-01",
-    "image": "cloud_0_007.jpg",
+    "scanPointId": "scan-02",
+    "image": "scan-02_f45_s2_y-152_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.274,
+    "confidence": 0.914,
     "bbox": [
-      3891,
-      2894,
-      204,
-      231
+      788,
+      463,
+      93,
+      70
     ],
-    "pitch": -17.8,
-    "yaw": -36.21,
+    "pitch": 5.25,
+    "yaw": -148.39,
     "documents": [
       {
         "id": "relay-man",
@@ -218,18 +218,18 @@
   {
     "id": "d5",
     "scanPointId": "scan-02",
-    "image": "cloud_0_013.jpg",
+    "image": "scan-02_f45_s2_y-138_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.379,
+    "confidence": 0.904,
     "bbox": [
-      1710,
-      2361,
-      342,
-      249
+      477,
+      425,
+      142,
+      87
     ],
-    "pitch": -11.28,
-    "yaw": -72.31,
+    "pitch": 6.33,
+    "yaw": -139.7,
     "documents": [
       {
         "id": "relay-man",
@@ -271,19 +271,19 @@
   },
   {
     "id": "d6",
-    "scanPointId": "scan-03",
-    "image": "cloud_0_019.jpg",
+    "scanPointId": "scan-02",
+    "image": "scan-02_f45_s1_y-120_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.444,
+    "confidence": 0.88,
     "bbox": [
-      2391,
-      2411,
-      337,
-      269
+      412,
+      371,
+      121,
+      107
     ],
-    "pitch": -12.45,
-    "yaw": -68.4,
+    "pitch": 7.91,
+    "yaw": -126.18,
     "documents": [
       {
         "id": "relay-man",
@@ -326,18 +326,18 @@
   {
     "id": "d7",
     "scanPointId": "scan-03",
-    "image": "cloud_0_019.jpg",
+    "image": "scan-03_f45_s2_y-138_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.404,
+    "confidence": 0.86,
     "bbox": [
-      651,
-      1592,
-      269,
-      163
+      319,
+      437,
+      125,
+      82
     ],
-    "pitch": 8.72,
-    "yaw": -114.48,
+    "pitch": 5.97,
+    "yaw": -142.78,
     "documents": [
       {
         "id": "relay-man",
@@ -380,18 +380,18 @@
   {
     "id": "d8",
     "scanPointId": "scan-03",
-    "image": "cloud_0_019.jpg",
+    "image": "scan-03_f45_s1_y-150_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.34,
+    "confidence": 0.849,
     "bbox": [
-      1625,
-      1634,
-      232,
-      158
+      1109,
+      919,
+      132,
+      116
     ],
-    "pitch": 9.57,
-    "yaw": -91.37,
+    "pitch": 7.27,
+    "yaw": -131.15,
     "documents": [
       {
         "id": "relay-man",
@@ -434,18 +434,18 @@
   {
     "id": "d9",
     "scanPointId": "scan-03",
-    "image": "cloud_0_021.jpg",
+    "image": "scan-03_f45_s1_y-120_p+20.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "Gkoioi",
-    "confidence": 0.438,
+    "ocrText": "",
+    "confidence": 0.94,
     "bbox": [
-      2668,
-      269,
-      170,
-      121
+      721,
+      883,
+      145,
+      123
     ],
-    "pitch": 37.51,
-    "yaw": 117.04,
+    "pitch": 8.83,
+    "yaw": -114.37,
     "documents": [
       {
         "id": "relay-man",
@@ -488,18 +488,18 @@
   {
     "id": "d10",
     "scanPointId": "scan-03",
-    "image": "cloud_0_022.jpg",
+    "image": "scan-03_f45_s1_y-090_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.318,
+    "confidence": 0.923,
     "bbox": [
-      3741,
-      1572,
-      260,
-      200
+      517,
+      321,
+      172,
+      118
     ],
-    "pitch": 7.34,
-    "yaw": -131.12,
+    "pitch": 9.55,
+    "yaw": -91.38,
     "documents": [
       {
         "id": "relay-man",
@@ -541,19 +541,19 @@
   },
   {
     "id": "d11",
-    "scanPointId": "scan-03",
-    "image": "cloud_0_023.jpg",
+    "scanPointId": "scan-04",
+    "image": "scan-04_f45_s2_y-138_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.414,
+    "confidence": 0.921,
     "bbox": [
-      374,
-      3706,
-      835,
-      390
+      476,
+      977,
+      142,
+      86
     ],
-    "pitch": -43.56,
-    "yaw": 130.92,
+    "pitch": 6.19,
+    "yaw": -139.69,
     "documents": [
       {
         "id": "relay-man",
@@ -596,18 +596,18 @@
   {
     "id": "d12",
     "scanPointId": "scan-04",
-    "image": "cloud_0_025.jpg",
+    "image": "scan-04_f45_s1_y-120_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.465,
+    "confidence": 0.904,
     "bbox": [
-      385,
-      1560,
-      321,
-      186
+      427,
+      379,
+      115,
+      103
     ],
-    "pitch": 8.97,
-    "yaw": -106.88,
+    "pitch": 7.68,
+    "yaw": -125.75,
     "documents": [
       {
         "id": "relay-man",
@@ -650,18 +650,18 @@
   {
     "id": "d13",
     "scanPointId": "scan-04",
-    "image": "cloud_0_025.jpg",
+    "image": "scan-04_f45_s1_y-120_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.364,
+    "confidence": 0.873,
     "bbox": [
-      1456,
-      1652,
-      229,
-      160
+      917,
+      872,
+      176,
+      125
     ],
-    "pitch": 9.15,
-    "yaw": -83.72,
+    "pitch": 8.95,
+    "yaw": -106.76,
     "documents": [
       {
         "id": "relay-man",
@@ -704,18 +704,18 @@
   {
     "id": "d14",
     "scanPointId": "scan-04",
-    "image": "cloud_0_025.jpg",
+    "image": "scan-04_f45_s1_y-090_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.34,
+    "confidence": 0.922,
     "bbox": [
-      2248,
-      1712,
-      193,
-      140
+      729,
+      879,
+      173,
+      113
     ],
-    "pitch": 8.25,
-    "yaw": -62.3,
+    "pitch": 9.14,
+    "yaw": -83.57,
     "documents": [
       {
         "id": "relay-man",
@@ -757,19 +757,19 @@
   },
   {
     "id": "d15",
-    "scanPointId": "scan-05",
-    "image": "cloud_0_033.jpg",
+    "scanPointId": "scan-04",
+    "image": "scan-04_f45_s1_y-060_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.405,
+    "confidence": 0.943,
     "bbox": [
-      363,
-      1615,
-      232,
-      153
+      510,
+      367,
+      138,
+      108
     ],
-    "pitch": 7.76,
-    "yaw": -126.0,
+    "pitch": 8.08,
+    "yaw": -62.26,
     "documents": [
       {
         "id": "relay-man",
@@ -811,19 +811,19 @@
   },
   {
     "id": "d16",
-    "scanPointId": "scan-05",
-    "image": "cloud_0_034.jpg",
+    "scanPointId": "scan-04",
+    "image": "scan-04_f45_s2_y+156_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.281,
+    "confidence": 0.473,
     "bbox": [
-      2,
-      1390,
-      312,
-      601
+      486,
+      1000,
+      143,
+      114
     ],
-    "pitch": 8.79,
-    "yaw": -41.08,
+    "pitch": 4.87,
+    "yaw": 154.52,
     "documents": [
       {
         "id": "relay-man",
@@ -865,19 +865,19 @@
   },
   {
     "id": "d17",
-    "scanPointId": "scan-06",
-    "image": "cloud_0_038.jpg",
+    "scanPointId": "scan-04",
+    "image": "scan-04_f45_s2_y+170_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.311,
+    "confidence": 0.406,
     "bbox": [
-      1215,
-      3374,
-      2045,
-      722
+      438,
+      966,
+      173,
+      123
     ],
-    "pitch": -40.5,
-    "yaw": -177.25,
+    "pitch": 5.92,
+    "yaw": 167.91,
     "documents": [
       {
         "id": "relay-man",
@@ -919,19 +919,19 @@
   },
   {
     "id": "d18",
-    "scanPointId": "scan-06",
-    "image": "cloud_0_039.jpg",
+    "scanPointId": "scan-05",
+    "image": "scan-05_f45_s2_y-124_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.439,
+    "confidence": 0.945,
     "bbox": [
-      3093,
-      1681,
-      237,
-      149
+      419,
+      380,
+      217,
+      101
     ],
-    "pitch": 8.32,
-    "yaw": -63.76,
+    "pitch": 7.71,
+    "yaw": -126.08,
     "documents": [
       {
         "id": "relay-man",
@@ -973,19 +973,19 @@
   },
   {
     "id": "d19",
-    "scanPointId": "scan-06",
-    "image": "cloud_0_040.jpg",
+    "scanPointId": "scan-05",
+    "image": "scan-05_f45_s1_y-090_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.332,
+    "confidence": 0.908,
     "bbox": [
-      3819,
-      1524,
-      277,
-      340
+      127,
+      330,
+      170,
+      112
     ],
-    "pitch": 7.6,
-    "yaw": 39.91,
+    "pitch": 9.01,
+    "yaw": -105.48,
     "documents": [
       {
         "id": "relay-man",
@@ -1027,19 +1027,19 @@
   },
   {
     "id": "d20",
-    "scanPointId": "scan-06",
-    "image": "cloud_0_040.jpg",
+    "scanPointId": "scan-05",
+    "image": "scan-05_f90_s1_y-045_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.324,
+    "confidence": 0.916,
     "bbox": [
-      3426,
-      1754,
-      230,
-      157
+      100,
+      473,
+      105,
+      65
     ],
-    "pitch": 5.41,
-    "yaw": 32.95,
+    "pitch": 9.5,
+    "yaw": -82.27,
     "documents": [
       {
         "id": "relay-man",
@@ -1081,19 +1081,19 @@
   },
   {
     "id": "d21",
-    "scanPointId": "scan-07",
-    "image": "cloud_0_043.jpg",
+    "scanPointId": "scan-05",
+    "image": "scan-05_f45_s1_y-060_p+00.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "615 ABB STn Aad Fiur",
-    "confidence": 0.959,
+    "ocrText": "",
+    "confidence": 0.899,
     "bbox": [
-      1978,
-      1758,
-      654,
-      644
+      538,
+      365,
+      135,
+      107
     ],
-    "pitch": -1.8,
-    "yaw": 97.52,
+    "pitch": 8.14,
+    "yaw": -61.28,
     "documents": [
       {
         "id": "relay-man",
@@ -1135,19 +1135,19 @@
   },
   {
     "id": "d22",
-    "scanPointId": "scan-07",
-    "image": "cloud_0_043.jpg",
+    "scanPointId": "scan-05",
+    "image": "scan-05_f45_s1_y-030_p+20.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "615 Mai AbE DADT PiCeUR",
-    "confidence": 0.952,
+    "ocrText": "",
+    "confidence": 0.89,
     "bbox": [
-      1793,
-      624,
-      982,
-      654
+      135,
+      945,
+      98,
+      102
     ],
-    "pitch": 27.1,
-    "yaw": 97.65,
+    "pitch": 6.76,
+    "yaw": -46.14,
     "documents": [
       {
         "id": "relay-man",
@@ -1189,19 +1189,19 @@
   },
   {
     "id": "d23",
-    "scanPointId": "scan-07",
-    "image": "cloud_0_045.jpg",
+    "scanPointId": "scan-05",
+    "image": "scan-05_f45_s2_y+156_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.463,
+    "confidence": 0.687,
     "bbox": [
-      2832,
-      1685,
-      220,
-      149
+      162,
+      952,
+      242,
+      152
     ],
-    "pitch": 8.59,
-    "yaw": -66.13,
+    "pitch": 5.86,
+    "yaw": 149.58,
     "documents": [
       {
         "id": "relay-man",
@@ -1243,19 +1243,19 @@
   },
   {
     "id": "d24",
-    "scanPointId": "scan-07",
-    "image": "cloud_0_045.jpg",
+    "scanPointId": "scan-05",
+    "image": "scan-05_f45_s3.5_y+164_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.289,
+    "confidence": 0.793,
     "bbox": [
-      1922,
-      1659,
-      217,
-      156
+      371,
+      579,
+      279,
+      155
     ],
-    "pitch": 9.38,
-    "yaw": -90.29,
+    "pitch": -0.59,
+    "yaw": 162.63,
     "documents": [
       {
         "id": "relay-man",
@@ -1297,19 +1297,19 @@
   },
   {
     "id": "d25",
-    "scanPointId": "scan-07",
-    "image": "cloud_0_046.jpg",
+    "scanPointId": "scan-05",
+    "image": "scan-05_f45_s3.5_y+164_p+20.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "cc",
-    "confidence": 0.352,
+    "ocrText": "",
+    "confidence": 0.696,
     "bbox": [
-      3492,
-      1596,
-      380,
-      308
+      457,
+      864,
+      215,
+      174
     ],
-    "pitch": 7.06,
-    "yaw": 39.17,
+    "pitch": 8.59,
+    "yaw": 163.21,
     "documents": [
       {
         "id": "relay-man",
@@ -1351,19 +1351,19 @@
   },
   {
     "id": "d26",
-    "scanPointId": "scan-08",
-    "image": "cloud_0_049.jpg",
+    "scanPointId": "scan-06",
+    "image": "scan-06_f45_s1_y-120_p+00.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "A#",
-    "confidence": 0.446,
+    "ocrText": "",
+    "confidence": 0.942,
     "bbox": [
-      1,
-      789,
-      260,
-      683
+      838,
+      335,
+      153,
+      120
     ],
-    "pitch": 18.55,
-    "yaw": 39.8,
+    "pitch": 8.87,
+    "yaw": -109.93,
     "documents": [
       {
         "id": "relay-man",
@@ -1405,19 +1405,19 @@
   },
   {
     "id": "d27",
-    "scanPointId": "scan-08",
-    "image": "cloud_0_049.jpg",
+    "scanPointId": "scan-06",
+    "image": "scan-06_f90_s1_y-045_p+00.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "4",
-    "confidence": 0.28,
+    "ocrText": "",
+    "confidence": 0.961,
     "bbox": [
-      1,
-      1810,
-      254,
-      648
+      34,
+      464,
+      118,
+      72
     ],
-    "pitch": -1.31,
-    "yaw": 39.2,
+    "pitch": 9.45,
+    "yaw": -85.51,
     "documents": [
       {
         "id": "relay-man",
@@ -1459,19 +1459,19 @@
   },
   {
     "id": "d28",
-    "scanPointId": "scan-08",
-    "image": "cloud_0_052.jpg",
+    "scanPointId": "scan-06",
+    "image": "scan-06_f45_s1_y-060_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.429,
+    "confidence": 0.852,
     "bbox": [
-      3811,
-      1747,
-      285,
-      753
+      473,
+      358,
+      134,
+      108
     ],
-    "pitch": -0.99,
-    "yaw": 35.29,
+    "pitch": 8.37,
+    "yaw": -63.72,
     "documents": [
       {
         "id": "relay-man",
@@ -1513,19 +1513,19 @@
   },
   {
     "id": "d29",
-    "scanPointId": "scan-08",
-    "image": "cloud_0_052.jpg",
+    "scanPointId": "scan-06",
+    "image": "scan-06_f45_s1_y-060_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.336,
+    "confidence": 0.93,
     "bbox": [
-      0,
-      1653,
-      144,
-      179
+      925,
+      401,
+      93,
+      93
     ],
-    "pitch": 7.64,
-    "yaw": -51.63,
+    "pitch": 6.95,
+    "yaw": -47.89,
     "documents": [
       {
         "id": "relay-man",
@@ -1567,19 +1567,19 @@
   },
   {
     "id": "d30",
-    "scanPointId": "scan-08",
-    "image": "cloud_0_052.jpg",
+    "scanPointId": "scan-06",
+    "image": "scan-06_f45_s2_y-040_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.318,
+    "confidence": 0.844,
     "bbox": [
-      655,
-      1783,
-      147,
-      126
+      700,
+      1000,
+      153,
+      75
     ],
-    "pitch": 6.32,
-    "yaw": -40.42,
+    "pitch": 5.55,
+    "yaw": -37.53,
     "documents": [
       {
         "id": "relay-man",
@@ -1621,19 +1621,19 @@
   },
   {
     "id": "d31",
-    "scanPointId": "scan-09",
-    "image": "cloud_0_055.jpg",
+    "scanPointId": "scan-06",
+    "image": "scan-06_f45_s2_y+156_p+20.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "015",
-    "confidence": 0.765,
+    "ocrText": "",
+    "confidence": 0.271,
     "bbox": [
-      3716,
-      573,
-      380,
-      514
+      154,
+      615,
+      370,
+      330
     ],
-    "pitch": 22.64,
-    "yaw": -44.63,
+    "pitch": 14.75,
+    "yaw": 150.26,
     "documents": [
       {
         "id": "relay-man",
@@ -1675,19 +1675,19 @@
   },
   {
     "id": "d32",
-    "scanPointId": "scan-09",
-    "image": "cloud_0_056.jpg",
+    "scanPointId": "scan-06",
+    "image": "scan-06_f45_s3.5_y+148_p+00.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "ELCON",
-    "confidence": 0.298,
+    "ocrText": "",
+    "confidence": 0.87,
     "bbox": [
-      2831,
-      1041,
-      1261,
-      1839
+      672,
+      520,
+      424,
+      284
     ],
-    "pitch": 1.8,
-    "yaw": 37.71,
+    "pitch": -0.8,
+    "yaw": 150.59,
     "documents": [
       {
         "id": "relay-man",
@@ -1729,19 +1729,19 @@
   },
   {
     "id": "d33",
-    "scanPointId": "scan-09",
-    "image": "cloud_0_057.jpg",
+    "scanPointId": "scan-07",
+    "image": "scan-07_f45_s1_y-090_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.438,
+    "confidence": 0.916,
     "bbox": [
-      1245,
-      2010,
-      177,
-      165
+      547,
+      874,
+      172,
+      113
     ],
-    "pitch": -0.69,
-    "yaw": 73.91,
+    "pitch": 9.37,
+    "yaw": -90.26,
     "documents": [
       {
         "id": "relay-man",
@@ -1783,19 +1783,19 @@
   },
   {
     "id": "d34",
-    "scanPointId": "scan-10",
-    "image": "cloud_0_061.jpg",
+    "scanPointId": "scan-07",
+    "image": "scan-07_f45_s1_y-060_p+00.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "615 AB nt",
-    "confidence": 0.95,
+    "ocrText": "",
+    "confidence": 0.855,
     "bbox": [
-      680,
-      514,
-      832,
-      533
+      399,
+      351,
+      144,
+      110
     ],
-    "pitch": 29.0,
-    "yaw": -113.67,
+    "pitch": 8.58,
+    "yaw": -66.24,
     "documents": [
       {
         "id": "relay-man",
@@ -1837,19 +1837,19 @@
   },
   {
     "id": "d35",
-    "scanPointId": "scan-11",
-    "image": "cloud_0_067.jpg",
+    "scanPointId": "scan-07",
+    "image": "scan-07_f45_s2_y-040_p+20.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "045 ABu",
-    "confidence": 0.477,
+    "ocrText": "",
+    "confidence": 0.953,
     "bbox": [
-      618,
-      551,
-      828,
-      525
+      16,
+      943,
+      209,
+      101
     ],
-    "pitch": 28.03,
-    "yaw": -112.95,
+    "pitch": 7.0,
+    "yaw": -49.38,
     "documents": [
       {
         "id": "relay-man",
@@ -1891,19 +1891,19 @@
   },
   {
     "id": "d36",
-    "scanPointId": "scan-11",
-    "image": "cloud_0_067.jpg",
+    "scanPointId": "scan-07",
+    "image": "scan-07_f45_s2_y-040_p+20.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "G15",
-    "confidence": 0.792,
+    "ocrText": "",
+    "confidence": 0.842,
     "bbox": [
-      3615,
-      595,
-      481,
-      485
+      628,
+      994,
+      174,
+      81
     ],
-    "pitch": 22.41,
-    "yaw": -45.82,
+    "pitch": 5.67,
+    "yaw": -38.64,
     "documents": [
       {
         "id": "relay-man",
@@ -1945,19 +1945,19 @@
   },
   {
     "id": "d37",
-    "scanPointId": "scan-11",
-    "image": "cloud_0_069.jpg",
+    "scanPointId": "scan-07",
+    "image": "scan-07_f45_s2_y+030_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.358,
+    "confidence": 0.465,
     "bbox": [
-      3124,
-      1781,
-      213,
-      144
+      84,
+      481,
+      105,
+      90
     ],
-    "pitch": 6.11,
-    "yaw": 122.6,
+    "pitch": 4.15,
+    "yaw": 20.74,
     "documents": [
       {
         "id": "relay-man",
@@ -1999,19 +1999,19 @@
   },
   {
     "id": "d38",
-    "scanPointId": "scan-12",
-    "image": "cloud_0_073.jpg",
+    "scanPointId": "scan-07",
+    "image": "scan-07_f90_s1_y+090_p+00.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "615 AB# ELnI Fetid",
-    "confidence": 0.96,
+    "ocrText": "615",
+    "confidence": 0.947,
     "bbox": [
+      622,
       560,
-      517,
-      836,
-      536
+      205,
+      201
     ],
-    "pitch": 28.3,
-    "yaw": -113.94,
+    "pitch": -1.85,
+    "yaw": 97.56,
     "documents": [
       {
         "id": "relay-man",
@@ -2053,19 +2053,19 @@
   },
   {
     "id": "d39",
-    "scanPointId": "scan-12",
-    "image": "cloud_0_073.jpg",
+    "scanPointId": "scan-07",
+    "image": "scan-07_f90_s1_y+090_p+00.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "615",
-    "confidence": 0.951,
+    "confidence": 0.959,
     "bbox": [
-      3609,
-      564,
-      487,
-      516
+      576,
+      209,
+      300,
+      200
     ],
-    "pitch": 22.48,
-    "yaw": -45.77,
+    "pitch": 27.14,
+    "yaw": 97.66,
     "documents": [
       {
         "id": "relay-man",
@@ -2107,19 +2107,19 @@
   },
   {
     "id": "d40",
-    "scanPointId": "scan-13",
-    "image": "cloud_0_079.jpg",
+    "scanPointId": "scan-08",
+    "image": "scan-08_f45_s1_y-060_p+20.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "ABB 615",
-    "confidence": 0.957,
+    "ocrText": "",
+    "confidence": 0.881,
     "bbox": [
-      768,
-      559,
-      781,
-      549
+      229,
+      874,
+      161,
+      121
     ],
-    "pitch": 28.11,
-    "yaw": -114.71,
+    "pitch": 9.02,
+    "yaw": -72.0,
     "documents": [
       {
         "id": "relay-man",
@@ -2161,19 +2161,19 @@
   },
   {
     "id": "d41",
-    "scanPointId": "scan-13",
-    "image": "cloud_0_079.jpg",
+    "scanPointId": "scan-08",
+    "image": "scan-08_f45_s2_y-054_p+00.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "615",
-    "confidence": 0.895,
+    "ocrText": "",
+    "confidence": 0.876,
     "bbox": [
-      3852,
-      452,
-      243,
-      616
+      612,
+      389,
+      207,
+      95
     ],
-    "pitch": 23.14,
-    "yaw": -48.69,
+    "pitch": 7.51,
+    "yaw": -52.59,
     "documents": [
       {
         "id": "relay-man",
@@ -2215,19 +2215,19 @@
   },
   {
     "id": "d42",
-    "scanPointId": "scan-14",
-    "image": "cloud_0_085.jpg",
+    "scanPointId": "scan-08",
+    "image": "scan-08_f45_s1_y-060_p+20.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "AbB 615",
-    "confidence": 0.954,
+    "ocrText": "",
+    "confidence": 0.903,
     "bbox": [
-      877,
-      672,
-      714,
-      503
+      1159,
+      968,
+      90,
+      87
     ],
-    "pitch": 26.23,
-    "yaw": -112.45,
+    "pitch": 6.09,
+    "yaw": -40.34,
     "documents": [
       {
         "id": "relay-man",
@@ -2269,19 +2269,19 @@
   },
   {
     "id": "d43",
-    "scanPointId": "scan-14",
-    "image": "cloud_0_085.jpg",
+    "scanPointId": "scan-08",
+    "image": "scan-08_f45_s2_y+030_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.372,
+    "confidence": 0.471,
     "bbox": [
-      3156,
-      2901,
-      940,
-      766
+      39,
+      1024,
+      130,
+      100
     ],
-    "pitch": -27.14,
-    "yaw": -53.87,
+    "pitch": 4.26,
+    "yaw": 20.49,
     "documents": [
       {
         "id": "relay-man",
@@ -2323,19 +2323,19 @@
   },
   {
     "id": "d44",
-    "scanPointId": "scan-15",
-    "image": "cloud_0_091.jpg",
+    "scanPointId": "scan-08",
+    "image": "scan-08_f45_s2_y+030_p+00.jpg",
     "assetTypeId": "relay-615",
-    "ocrText": "",
-    "confidence": 0.462,
+    "ocrText": "015",
+    "confidence": 0.895,
     "bbox": [
-      2132,
-      2593,
-      496,
-      377
+      800,
+      514,
+      358,
+      317
     ],
-    "pitch": -20.69,
-    "yaw": -83.27,
+    "pitch": -1.21,
+    "yaw": 36.27,
     "documents": [
       {
         "id": "relay-man",
@@ -2377,19 +2377,1585 @@
   },
   {
     "id": "d45",
-    "scanPointId": "scan-17",
-    "image": "cloud_0_104.jpg",
+    "scanPointId": "scan-09",
+    "image": "scan-09_f45_s1_y-060_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "65",
+    "confidence": 0.745,
+    "bbox": [
+      933,
+      408,
+      336,
+      323
+    ],
+    "pitch": 21.61,
+    "yaw": -42.08,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d46",
+    "scanPointId": "scan-09",
+    "image": "scan-09_f45_s3.5_y-020_p+20.jpg",
     "assetTypeId": "relay-615",
     "ocrText": "",
-    "confidence": 0.354,
+    "confidence": 0.671,
     "bbox": [
-      1251,
-      3797,
-      1414,
-      299
+      336,
+      770,
+      371,
+      186
     ],
-    "pitch": -44.0,
-    "yaw": 0.94,
+    "pitch": 11.81,
+    "yaw": -21.27,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d47",
+    "scanPointId": "scan-09",
+    "image": "scan-09_f45_s1_y+060_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.959,
+    "bbox": [
+      933,
+      390,
+      174,
+      129
+    ],
+    "pitch": 6.66,
+    "yaw": 73.81,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d48",
+    "scanPointId": "scan-09",
+    "image": "scan-09_f45_s1_y+090_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.78,
+    "bbox": [
+      130,
+      595,
+      126,
+      123
+    ],
+    "pitch": -0.57,
+    "yaw": 73.86,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d49",
+    "scanPointId": "scan-10",
+    "image": "scan-10_f90_s1_y-090_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "AIE",
+    "confidence": 0.93,
+    "bbox": [
+      236,
+      172,
+      251,
+      161
+    ],
+    "pitch": 29.0,
+    "yaw": -113.57,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d50",
+    "scanPointId": "scan-10",
+    "image": "scan-10_f45_s3.5_y-020_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.844,
+    "bbox": [
+      434,
+      226,
+      258,
+      181
+    ],
+    "pitch": 11.81,
+    "yaw": -20.82,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d51",
+    "scanPointId": "scan-10",
+    "image": "scan-10_f45_s1_y-030_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.464,
+    "bbox": [
+      939,
+      1220,
+      49,
+      50
+    ],
+    "pitch": -1.36,
+    "yaw": -18.96,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d52",
+    "scanPointId": "scan-10",
+    "image": "scan-10_f45_s2_y+100_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.821,
+    "bbox": [
+      470,
+      592,
+      238,
+      124
+    ],
+    "pitch": -0.54,
+    "yaw": 99.06,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d53",
+    "scanPointId": "scan-10",
+    "image": "scan-10_f90_s1_y+135_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.846,
+    "bbox": [
+      122,
+      510,
+      110,
+      67
+    ],
+    "pitch": 6.92,
+    "yaw": 99.07,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d54",
+    "scanPointId": "scan-11",
+    "image": "scan-11_f45_s3.5_y-156_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.752,
+    "bbox": [
+      684,
+      669,
+      397,
+      226
+    ],
+    "pitch": 14.71,
+    "yaw": -153.35,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d55",
+    "scanPointId": "scan-11",
+    "image": "scan-11_f90_s1_y-090_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615",
+    "confidence": 0.954,
+    "bbox": [
+      249,
+      190,
+      245,
+      160
+    ],
+    "pitch": 28.07,
+    "yaw": -112.78,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d56",
+    "scanPointId": "scan-11",
+    "image": "scan-11_f45_s1_y-060_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.846,
+    "bbox": [
+      880,
+      412,
+      314,
+      313
+    ],
+    "pitch": 21.9,
+    "yaw": -44.46,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d57",
+    "scanPointId": "scan-11",
+    "image": "scan-11_f45_s3.5_y-020_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.831,
+    "bbox": [
+      279,
+      757,
+      285,
+      184
+    ],
+    "pitch": 12.26,
+    "yaw": -22.35,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d58",
+    "scanPointId": "scan-11",
+    "image": "scan-11_f45_s1_y+120_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.89,
+    "bbox": [
+      640,
+      970,
+      132,
+      111
+    ],
+    "pitch": 5.99,
+    "yaw": 122.4,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d59",
+    "scanPointId": "scan-11",
+    "image": "scan-11_f45_s2_y+128_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.811,
+    "bbox": [
+      254,
+      590,
+      168,
+      111
+    ],
+    "pitch": -0.22,
+    "yaw": 122.42,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d60",
+    "scanPointId": "scan-12",
+    "image": "scan-12_f45_s3.5_y-148_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.704,
+    "bbox": [
+      10,
+      648,
+      440,
+      233
+    ],
+    "pitch": 15.32,
+    "yaw": -152.48,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d61",
+    "scanPointId": "scan-12",
+    "image": "scan-12_f90_s1_y-090_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "Al",
+    "confidence": 0.931,
+    "bbox": [
+      238,
+      183,
+      245,
+      163
+    ],
+    "pitch": 28.3,
+    "yaw": -113.6,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d62",
+    "scanPointId": "scan-12",
+    "image": "scan-12_f45_s1_y-060_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615",
+    "confidence": 0.886,
+    "bbox": [
+      881,
+      405,
+      368,
+      331
+    ],
+    "pitch": 21.72,
+    "yaw": -43.42,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d63",
+    "scanPointId": "scan-12",
+    "image": "scan-12_f45_s3.5_y-020_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.907,
+    "bbox": [
+      302,
+      760,
+      288,
+      181
+    ],
+    "pitch": 12.25,
+    "yaw": -22.08,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d64",
+    "scanPointId": "scan-12",
+    "image": "scan-12_f45_s2_y+128_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.855,
+    "bbox": [
+      1104,
+      1164,
+      121,
+      96
+    ],
+    "pitch": -0.31,
+    "yaw": 137.05,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d65",
+    "scanPointId": "scan-12",
+    "image": "scan-12_f45_s2_y+128_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.903,
+    "bbox": [
+      1066,
+      1011,
+      170,
+      93
+    ],
+    "pitch": 4.83,
+    "yaw": 137.09,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d66",
+    "scanPointId": "scan-13",
+    "image": "scan-13_f45_s3.5_y-164_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.751,
+    "bbox": [
+      591,
+      309,
+      164,
+      139
+    ],
+    "pitch": 9.58,
+    "yaw": -163.65,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d67",
+    "scanPointId": "scan-13",
+    "image": "scan-13_f45_s3.5_y-156_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.775,
+    "bbox": [
+      749,
+      651,
+      430,
+      237
+    ],
+    "pitch": 15.2,
+    "yaw": -152.46,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d68",
+    "scanPointId": "scan-13",
+    "image": "scan-13_f90_s1_y-090_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615",
+    "confidence": 0.955,
+    "bbox": [
+      219,
+      182,
+      248,
+      164
+    ],
+    "pitch": 28.05,
+    "yaw": -114.9,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d69",
+    "scanPointId": "scan-13",
+    "image": "scan-13_f45_s1_y-060_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "015",
+    "confidence": 0.826,
+    "bbox": [
+      867,
+      395,
+      370,
+      340
+    ],
+    "pitch": 21.97,
+    "yaw": -43.89,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d70",
+    "scanPointId": "scan-13",
+    "image": "scan-13_f45_s2_y+142_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.905,
+    "bbox": [
+      850,
+      1168,
+      104,
+      84
+    ],
+    "pitch": -0.24,
+    "yaw": 146.55,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d71",
+    "scanPointId": "scan-13",
+    "image": "scan-13_f45_s2_y+142_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.787,
+    "bbox": [
+      852,
+      1049,
+      113,
+      73
+    ],
+    "pitch": 3.91,
+    "yaw": 146.78,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d72",
+    "scanPointId": "scan-14",
+    "image": "scan-14_f45_s2_y-152_p+20.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.762,
+    "bbox": [
+      596,
+      669,
+      260,
+      232
+    ],
+    "pitch": 14.64,
+    "yaw": -150.36,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d73",
+    "scanPointId": "scan-14",
+    "image": "scan-14_f90_s1_y-090_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615",
+    "confidence": 0.955,
+    "bbox": [
+      266,
+      225,
+      220,
+      149
+    ],
+    "pitch": 26.2,
+    "yaw": -112.43,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d74",
+    "scanPointId": "scan-15",
+    "image": "scan-15_f45_s3.5_y-156_p+00.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.857,
+    "bbox": [
+      278,
+      204,
+      286,
+      194
+    ],
+    "pitch": 12.38,
+    "yaw": -158.31,
     "documents": [
       {
         "id": "relay-man",

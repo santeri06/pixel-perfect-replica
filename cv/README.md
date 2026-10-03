@@ -92,23 +92,26 @@ scan point and no `northOffset` is needed.
 
 ## 4. Inference on the test scans
 
-Screenshots can also be dropped in `data/test_scans/` by hand (then `scanPointId`, `pitch` and
-`yaw` are `null`). Then:
+With `poses.json` present, `infer.py` searches every scan point as a panorama. Plain screenshots
+can also be dropped in `data/test_scans/` and processed one by one with `--plain` (then
+`scanPointId`, `pitch` and `yaw` are `null`).
 
 ```powershell
 python infer.py
-python infer.py --conf 0.15 --imgsz 1600   # more sensitive, for small/far devices
+python infer.py --scans scan-09 scan-12    # only some scan points
+python infer.py --plain                    # every image on its own, no panorama search
 ```
 
 Output: `outputs/detections.json` and annotated images in `outputs/annotated/`.
 
 ```json
-[{ "id": "d1", "scanPointId": "scan-09", "image": "cloud_0_056.jpg", "assetTypeId": "relay-615",
+[{ "id": "d1", "scanPointId": "scan-09", "image": "scan-09_f45_s1_y+060_p+00.jpg", "assetTypeId": "relay-615",
    "ocrText": "615", "confidence": 0.87, "bbox": [x, y, w, h], "pitch": 12.3, "yaw": -48.1,
    "documents": [ ... ] }]
 ```
 
-- `bbox` is the device box in pixels of `image`, `[x, y, w, h]`.
+- `image` is the rendered view the box was taken from (saved in `outputs/views/`, git-ignored);
+  `bbox` is the device box in its pixels, `[x, y, w, h]`.
 - `confidence` = detector confidence × (0.5 + 0.5 × OCR match score). A device with unreadable
   text keeps `assetTypeId: "relay-615"` (the only type the detector knows) at half confidence.
 - `scanPointId` is the panorama the tag belongs to (folder name in `outputs/panoramas/`).
@@ -116,16 +119,31 @@ Output: `outputs/detections.json` and annotated images in `outputs/annotated/`.
   pitch positive up), computed from the box centre and the camera pose. Use them directly as a
   Pannellum hot spot: `{ pitch, yaw }`.
 
-Detections are filtered before they are written: only `device` boxes with a plausible shape and
-|pitch| ≤ 45° are kept, and a box that OCR cannot confirm needs a label region inside it and a
-detector confidence ≥ 0.5. OCR-confirmed hits end up at ≥ 0.75; unconfirmed ones stay below 0.5
-and are meant for the frontend's review queue (on the test scan about half of them are wrong).
+How a scan point is searched (`pipeline.py`, `detect_scan`):
+
+1. **Overlapping views.** 174 views are rendered from the skybox images: 8 wide (90°), 24 zoomed
+   (45°), and 142 zoomed views stretched horizontally 2× / 3.5×. Zooming finds small, far devices;
+   stretching makes a panel seen at a steep angle look frontal, which the detector needs because
+   the synthetic data only contains mild perspective. Views overlap, so nothing is cut at a seam.
+2. **Shape filters.** Only `device` boxes with a plausible aspect ratio and |pitch| ≤ 45° are kept.
+3. **Merging.** Hits on the same object from different views are merged by direction.
+4. **Visual check.** Each candidate is compared with the reference photo using ImageNet features
+   (ResNet18, no training). Stools, door handles and signs are rejected here.
+5. **OCR.** The label is read from a full-resolution close-up and fuzzy-matched to the asset type.
+
+`confidence` is the detector confidence scaled by the stronger of the OCR match and the visual
+similarity. Candidates that only roughly resemble the reference are kept at half confidence for
+manual review. On the 18 test scan points this gives 74 detections: 62 at ≥ 0.75 (all correct)
+and 12 below (7 correct). The visual-check thresholds were tuned by eye on these same scan
+points, so expect to re-tune them on another site. A full run takes about 2.5 min per scan
+point on CPU.
 
 Presentation images (`outputs/detections_overview.jpg`, `tag_check_<scan>.jpg`,
-`demo_strong_vs_review.jpg`):
+`demo_strong_vs_review.jpg`) and a before/after comparison of two runs:
 
 ```powershell
-python make_demo_images.py --review-id d3
+python make_demo_images.py --strong-id d39 --review-id d16 --scan scan-12
+python compare_runs.py runs/detections_before.json outputs/detections.json
 ```
 
 ## 5. API

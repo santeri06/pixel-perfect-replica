@@ -9,6 +9,7 @@ Conventions
 import json
 from pathlib import Path
 
+import cv2
 import numpy as np
 
 from common import TEST_SCANS_DIR
@@ -23,6 +24,11 @@ def quat_to_matrix(q) -> np.ndarray:
         [2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w)],
         [2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y)],
     ])
+
+
+def rotation_matrix(info: dict) -> np.ndarray:
+    """Camera -> world rotation of a poses.json entry or of a rendered view (make_view)."""
+    return info["R"] if "R" in info else quat_to_matrix(info["rotation"])
 
 
 def load_poses(path: Path = POSES_FILE) -> dict:
@@ -44,13 +50,13 @@ def pixel_to_world_dir(info: dict, u: float, v: float) -> np.ndarray:
     """Unit world direction of pixel (u, v) of an image described by a poses.json entry."""
     x = (u - info["principalPointX"]) * info["pixelWidth"]
     y = -(v - info["principalPointY"]) * info["pixelHeight"]
-    d = quat_to_matrix(info["rotation"]) @ np.array([x, y, -info["focalLength"]])
+    d = rotation_matrix(info) @ np.array([x, y, -info["focalLength"]])
     return d / np.linalg.norm(d)
 
 
 def world_dirs_to_pixels(info: dict, dirs: np.ndarray):
     """dirs (..., 3) -> (u, v, cos) arrays; cos <= 0 means the direction is behind the camera."""
-    cam = dirs @ quat_to_matrix(info["rotation"])  # R^T d for every direction
+    cam = dirs @ rotation_matrix(info)  # R^T d for every direction
     depth = -cam[..., 2]
     safe = np.where(depth > 1e-6, depth, 1e-6)
     u = info["principalPointX"] + cam[..., 0] / safe * info["focalLength"] / info["pixelWidth"]
@@ -71,3 +77,53 @@ def yaw_pitch_to_dirs(yaw_deg: np.ndarray, pitch_deg: np.ndarray) -> np.ndarray:
 
 def pixel_to_yaw_pitch(info: dict, u: float, v: float) -> tuple[float, float]:
     return dir_to_yaw_pitch(pixel_to_world_dir(info, u, v))
+
+
+# ----------------------------------------------------------------------------
+# Rendering: resample the skybox images of one scan point into any direction
+# ----------------------------------------------------------------------------
+def sample(sources: list[tuple[dict, np.ndarray]], dirs: np.ndarray) -> np.ndarray:
+    """Colour for every direction, taken from the source image that sees it most centrally."""
+    out = np.zeros(dirs.shape[:2] + (3,), np.uint8)
+    best = np.full(dirs.shape[:2], -1.0)
+    for info, img in sources:
+        u, v, cos = world_dirs_to_pixels(info, dirs)
+        if cos.max() <= 0:
+            continue  # this source looks the other way
+        s = img.shape[1] / info["imageWidth"]  # sources may be pre-shrunk
+        mx = ((u + 0.5) * s - 0.5).astype(np.float32)
+        my = ((v + 0.5) * s - 0.5).astype(np.float32)
+        warped = cv2.remap(img, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+        take = cos > best
+        out[take] = warped[take]
+        best = np.where(take, cos, best)
+    return out
+
+
+def make_view(yaw_deg: float, pitch_deg: float, fov_deg: float, size: int, stretch: float = 1.0) -> dict:
+    """Pose of a virtual pinhole camera looking at (yaw, pitch); same keys as a poses.json entry.
+
+    fov_deg is the vertical field of view. stretch > 1 widens every pixel horizontally (the
+    horizontal field of view shrinks), which makes a panel seen at a steep angle look frontal.
+    """
+    yaw, pitch = np.radians(yaw_deg), np.radians(pitch_deg)
+    fwd = np.array([np.sin(yaw) * np.cos(pitch), np.cos(yaw) * np.cos(pitch), np.sin(pitch)])
+    right = np.array([np.cos(yaw), -np.sin(yaw), 0.0])
+    up = np.cross(right, fwd)
+    return {
+        "imageWidth": size, "imageHeight": size, "pixelWidth": 1.0 / stretch, "pixelHeight": 1.0,
+        "principalPointX": size / 2, "principalPointY": size / 2,
+        "focalLength": (size / 2) / np.tan(np.radians(fov_deg) / 2),
+        "R": np.stack([right, up, -fwd], axis=1),
+        "yaw": yaw_deg, "pitch": pitch_deg, "fov": fov_deg, "stretch": stretch,
+    }
+
+
+def render_view(sources: list[tuple[dict, np.ndarray]], view: dict) -> np.ndarray:
+    size = view["imageWidth"]
+    px = np.arange(size) + 0.5
+    u, v = np.meshgrid(px, px)
+    cam = np.stack([(u - view["principalPointX"]) * view["pixelWidth"],
+                    -(v - view["principalPointY"]) * view["pixelHeight"],
+                    np.full_like(u, -view["focalLength"])], axis=-1)
+    return sample(sources, cam @ view["R"].T)
