@@ -7,7 +7,14 @@ The full task description is in [PROMPT.md](PROMPT.md).
 ## Setup (Windows, PowerShell)
 Run `setup_floorplan.ps1` once (clones the repo to `$HOME\dev\autotag-floorplan`,
 switches to `feat/floorplan`, copies `cloud_0.e57` to `cv\data\raw\` (git-ignored) and creates
-the Python venv). Then:
+the Python venv). Then either one command that does everything (selftest, run, tests, commit +
+push of the data, or of the gate report only if a gate fails):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File $HOME\dev\autotag-floorplan\cv\floorplan\run_floorplan.ps1
+```
+
+or step by step:
 
 ```powershell
 cd $HOME\dev\autotag-floorplan\cv\floorplan
