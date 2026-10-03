@@ -1,0 +1,20 @@
+# TEMPORARY - adds three.js to package.json/bun.lock (no npm registry in the Claude sandbox). Branch is deleted afterwards.
+name: three-dep
+on:
+  push:
+    branches: [ci/three-dep]
+permissions:
+  contents: write
+jobs:
+  add:
+    if: "!contains(github.event.head_commit.message, 'add three')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun add three && bun add -d @types/three
+      - run: |
+          grep -n '"three"\|"@types/three"' package.json
+          git config user.name ci && git config user.email ci@users.noreply.github.com
+          git add package.json bun.lock && git commit -qm "deps: add three" && git push -q origin HEAD:ci/three-dep
