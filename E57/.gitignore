@@ -1,0 +1,3 @@
+# Raw scan exports are large (often hundreds of MB); keep them local only.
+*.e57
+*.E57

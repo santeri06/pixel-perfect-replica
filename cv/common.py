@@ -6,6 +6,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
+E57_DIR = ROOT.parent / "E57"
 REFERENCE_DIR = DATA / "reference"
 REGIONS_FILE = REFERENCE_DIR / "regions.json"
 BACKGROUNDS_DIR = DATA / "backgrounds"

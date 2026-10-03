@@ -14,7 +14,8 @@ reference photo ─► generate_synthetic.py ─► train.py (YOLOv8n) ─► in
 |---|---|---|
 | `data/reference/` | reference image(s) + `regions.json` (device / label boxes) | yes |
 | `data/backgrounds/` | background images (procedural textures are generated if empty) | no |
-| `data/raw/` | raw scan exports (`.e57`) | no |
+| `../E57/` | raw scan exports (`.e57`), read first | no |
+| `data/raw/` | raw scan exports (`.e57`), fallback | no |
 | `data/test_scans/` | Matterport images (real target domain) + `poses.json` | no |
 | `outputs/panoramas/` | web-sized panoramas per scan point (~27 MB); the frontend copy is in `public/panoramas/` | no |
 | `data/synthetic/` | generated YOLO dataset | no |
@@ -72,7 +73,7 @@ Output: `models/best.pt`, `outputs/metrics.png`, `outputs/sample_predictions.jpg
 
 ## 3. Test scans and panoramas from a Matterport E57 export
 
-Put the `.e57` file in `data/raw/` (git-ignored), then:
+Put the `.e57` file in the repo-root `E57/` folder (git-ignored; `data/raw/` also works), then:
 
 ```powershell
 python extract_e57.py          # embedded skybox images -> data/test_scans/ + poses.json

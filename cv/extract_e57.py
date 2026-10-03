@@ -1,8 +1,8 @@
 """Extract the embedded 2D images of an E57 scan export into data/test_scans.
 
 Usage (PowerShell, from the cv folder):
-    python extract_e57.py                         # first .e57 in data/raw
-    python extract_e57.py data/raw/cloud_0.e57
+    python extract_e57.py                         # first .e57 in ../E57 (or data/raw)
+    python extract_e57.py ../E57/cloud_0.e57
 """
 import json
 import sys
@@ -11,9 +11,9 @@ from pathlib import Path
 import numpy as np
 import pye57
 
-from common import DATA, TEST_SCANS_DIR
+from common import DATA, E57_DIR, TEST_SCANS_DIR
 
-RAW_DIR = DATA / "raw"
+RAW_DIRS = (E57_DIR, DATA / "raw")
 
 
 def read_blob(blob) -> bytes:
@@ -27,9 +27,9 @@ def main() -> None:
     if len(sys.argv) > 1:
         path = Path(sys.argv[1])
     else:
-        files = sorted(RAW_DIR.glob("*.e57"))
+        files = [f for d in RAW_DIRS for f in sorted(d.glob("*.[eE]57"))]
         if not files:
-            raise SystemExit(f"No .e57 file in {RAW_DIR}")
+            raise SystemExit(f"No .e57 file in {' or '.join(map(str, RAW_DIRS))}")
         path = files[0]
 
     e57 = pye57.E57(str(path))
