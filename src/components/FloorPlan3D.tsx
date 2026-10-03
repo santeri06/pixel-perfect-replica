@@ -1,6 +1,8 @@
 /**
  * 3D floor plan: the room measured from the point cloud (floor, walls, cabinets with their real
- * heights) seen from above. The camera can tilt and turn only a little (top view ... ~55 degrees,
+ * heights) seen from above. The geometry is a clean CAD-like model (build_layout3d.py): straight
+ * walls cut at WALL_CUT like a section drawing, switchgear rows as panels with plinth, doors and
+ * handles, other objects as boxes. The camera can tilt and turn only a little (top view ... ~55 degrees,
  * +-35 degrees around), so the view gives depth without getting lost.
  *
  * Relays are numbered badges in an HTML overlay (positioned every frame from their 3D anchor), so
@@ -12,7 +14,15 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Box, Minus, Plus, ScanEye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { groupStacked, type FloorPlan } from "@/lib/floorplan";
-import { badgeAnchor, floorExtent, type Layout3D, type Poly } from "@/lib/floorplan3d";
+import {
+  asRect,
+  badgeAnchor,
+  cabinetParts,
+  floorExtent,
+  type Layout3D,
+  type Poly,
+  type Rect,
+} from "@/lib/floorplan3d";
 import {
   markerLines,
   matchesFilter,
@@ -172,7 +182,10 @@ export default function FloorPlan3D({
     }
     anchors.current = m;
     relayAt.current = new Map(
-      devices.map((d) => [d.device.id, toV(d.device.x, d.device.y, d.device.z - layout.floorZ)]),
+      devices.map((d) => [
+        d.device.id,
+        relayPosition(d.device, layout.devices[d.device.id], layout.floorZ, toV),
+      ]),
     );
     const s = new Map<string, THREE.Vector3>();
     for (const p of plan.scanPoints) s.set(p.id, toV(p.x, p.y, 0.02));
@@ -263,31 +276,87 @@ export default function FloorPlan3D({
       scene.add(m);
     }
 
-    // room geometry
-    const mats = {
-      wall: keep(new THREE.MeshLambertMaterial({ color: "#d3d7de" })),
-      equipment: keep(new THREE.MeshLambertMaterial({ color: "#454b55" })),
-      low: keep(new THREE.MeshLambertMaterial({ color: "#8d949f" })),
+    // room geometry: walls are a section (dark cut on top), cabinets and objects are boxes
+    const lambert = (color: string) => keep(new THREE.MeshLambertMaterial({ color }));
+    const lines = (color: string, opacity: number) =>
+      keep(new THREE.LineBasicMaterial({ color, transparent: true, opacity }));
+    const mat = {
+      wallCut: lambert("#7d8590"),
+      wallSide: lambert("#e3e6ea"),
+      plinth: lambert("#2c3138"),
+      body: lambert("#5d6672"),
+      door: lambert("#6f7986"),
+      handle: lambert("#c9ced6"),
+      equipment: lambert("#8b939f"),
+      low: lambert("#aeb4bd"),
     };
-    const edgeMats = {
-      wall: keep(
-        new THREE.LineBasicMaterial({ color: "#8f97a3", transparent: true, opacity: 0.8 }),
-      ),
-      equipment: keep(
-        new THREE.LineBasicMaterial({ color: "#1d2127", transparent: true, opacity: 0.9 }),
-      ),
-      low: keep(new THREE.LineBasicMaterial({ color: "#5d646e", transparent: true, opacity: 0.8 })),
+    const edge = {
+      wall: lines("#6c737e", 0.9),
+      cabinet: lines("#1f242b", 0.75),
+      door: lines("#3b424c", 0.85),
+      equipment: lines("#4b525c", 0.8),
+      low: lines("#6b727c", 0.7),
     };
+    const addEdges = (g: THREE.BufferGeometry, m: THREE.LineBasicMaterial) =>
+      scene.add(new THREE.LineSegments(keep(new THREE.EdgesGeometry(g, 20)), m));
+    const boxGeo = keep(new THREE.BoxGeometry(1, 1, 1));
+    const boxEdges = keep(new THREE.EdgesGeometry(boxGeo));
+    /** world box (x/y footprint, z0..z1 above the floor) as a mesh + outline */
+    const addBox = (
+      r: Rect,
+      z0: number,
+      z1: number,
+      m: THREE.Material,
+      e: THREE.LineBasicMaterial | null,
+      shadow = true,
+    ) => {
+      const size = new THREE.Vector3(r.xb - r.xa, z1 - z0, r.yb - r.ya);
+      const at = toV((r.xa + r.xb) / 2, (r.ya + r.yb) / 2, (z0 + z1) / 2);
+      const mesh = new THREE.Mesh(boxGeo, m);
+      mesh.scale.copy(size);
+      mesh.position.copy(at);
+      mesh.castShadow = shadow;
+      mesh.receiveShadow = true;
+      scene.add(mesh);
+      if (e) {
+        const l = new THREE.LineSegments(boxEdges, e);
+        l.scale.copy(size);
+        l.position.copy(at);
+        scene.add(l);
+      }
+    };
+    const partMat = { plinth: mat.plinth, body: mat.body, door: mat.door, handle: mat.handle };
     for (const s of layout.solids) {
-      const g = extrude(
-        s,
-        Math.max(s.kind === "wall" ? Math.min(s.height, WALL_CUT) : s.height, 0.05),
-      );
-      const m = new THREE.Mesh(g, mats[s.kind]);
-      m.castShadow = true;
-      m.receiveShadow = true;
-      scene.add(m);
-      scene.add(new THREE.LineSegments(keep(new THREE.EdgesGeometry(g, 25)), edgeMats[s.kind]));
+      const r = asRect(s.outer);
+      if (s.kind === "cabinet" && r) {
+        for (const p of cabinetParts(s)) {
+          const e = p.kind === "body" ? edge.cabinet : p.kind === "door" ? edge.door : null;
+          addBox(p, p.z0, p.z1, partMat[p.kind], e, p.kind === "body");
+        }
+        continue;
+      }
+      if (s.kind === "wall") {
+        const g = extrude(s, Math.min(s.height, WALL_CUT));
+        // ExtrudeGeometry groups: 0 = caps (top / bottom), 1 = sides
+        const m = new THREE.Mesh(g, [mat.wallCut, mat.wallSide]);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        scene.add(m);
+        addEdges(g, edge.wall);
+        continue;
+      }
+      const kind = s.kind === "low" ? "low" : "equipment";
+      const h = Math.max(s.height, 0.05);
+      if (r) {
+        addBox(r, 0, h, mat[kind], edge[kind]);
+      } else {
+        const g = extrude(s, h);
+        const m = new THREE.Mesh(g, mat[kind]);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        scene.add(m);
+        addEdges(g, edge[kind]);
+      }
     }
 
     // scan points: small discs and the walk path between them
@@ -558,7 +627,7 @@ export default function FloorPlan3D({
       const info = layout.devices[d.device.id];
       return {
         status: d.status,
-        at: toV(d.device.x, d.device.y, d.device.z - layout.floorZ),
+        at: relayPosition(d.device, info, layout.floorZ, toV),
         badge: anchors.current.get(d.device.id) ?? toV(d.device.x, d.device.y, 2.4),
         facing: info?.facing ?? [0, 1],
         dim: !matchesFilter(d, filter),
@@ -711,6 +780,19 @@ export default function FloorPlan3D({
       </p>
     </div>
   );
+}
+
+/** Relay box centre: on the cabinet door when the panel face is known, else at the measured point. */
+function relayPosition(
+  d: { x: number; y: number; z: number },
+  info: Layout3D["devices"][string] | undefined,
+  floorZ: number,
+  toV: (x: number, y: number, h: number) => THREE.Vector3,
+) {
+  if (!info?.front) return toV(d.x, d.y, d.z - floorZ);
+  const [fx, fy] = info.facing;
+  const out = 0.012 + 0.035; // door leaf + half the relay depth
+  return toV(info.front[0] + fx * out, info.front[1] + fy * out, d.z - floorZ);
 }
 
 interface RelayDraw {
