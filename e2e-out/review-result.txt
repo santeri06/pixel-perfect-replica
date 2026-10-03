@@ -1,0 +1,30 @@
+Review Queue rows: 12, with twin link: 12
+  ok   position link has an icon, colour oklch(0.68 0.15 236)
+  ok   picked rows from scan points scan-06, scan-04, scan-10
+Row 1: Scan point 06 · 27% · OCR "Not readable" -> /twin?scan=scan-06&detection=d31&from=review
+  ok   URL /twin?scan=scan-06&detection=d31&from=review
+  ok   side panel opened automatically and shows 27%
+  ok   side panel has 'Back to review queue'
+  ok   scan point selected: "Scan point 06 · 7 tags"
+  ok   view turned to the tag: offset from centre 0px, 0px; highlighted pin 38px
+  ok   highlight removed after ~3 s
+  ok   browser back returns to the Review Queue
+Row 2: Scan point 04 · 41% · OCR "Not readable" -> /twin?scan=scan-04&detection=d17&from=review
+  ok   URL /twin?scan=scan-04&detection=d17&from=review
+  ok   side panel opened automatically and shows 41%
+  ok   side panel has 'Back to review queue'
+  ok   scan point selected: "Scan point 04 · 7 tags"
+  ok   view turned to the tag: offset from centre 0px, 0px; highlighted pin 38px
+  ok   highlight removed after ~3 s
+  ok   'Back to review queue' returns to the Review Queue
+Row 3: Scan point 10 · 46% · OCR "Not readable" -> /twin?scan=scan-10&detection=d51&from=review
+  ok   URL /twin?scan=scan-10&detection=d51&from=review
+  ok   side panel opened automatically and shows 46%
+  ok   side panel has 'Back to review queue'
+  ok   scan point selected: "Scan point 10 · 5 tags"
+  ok   view turned to the tag: offset from centre 0px, 0px; highlighted pin 38px
+  ok   highlight removed after ~3 s
+  ok   'Back to review queue' returns to the Review Queue
+  ok   reject after viewing in twin: rows 12 -> 11
+page errors: none
+RESULT: PASS
