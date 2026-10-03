@@ -35,11 +35,14 @@ interface Props {
 }
 
 // camera limits: polar 0 = straight down
-const POLAR_DEFAULT = 0.68;
+const POLAR_DEFAULT = 0.6;
 const POLAR_MAX = 0.98;
 const AZIMUTH_DEFAULT = -0.32;
 const AZIMUTH_LIMIT = 0.62;
 const FOV = 34;
+/** Walls are cut at this height (like a section drawing) so they do not hide the room. */
+export const WALL_CUT = 2.0;
+const BADGE_GAP = 34; // px between badge centres after decluttering
 
 const STATUS_VAR = { auto: "--success", review: "--warning", confirmed: "--primary" } as const;
 
@@ -137,6 +140,7 @@ export default function FloorPlan3D({
     setRelays: (list: RelayDraw[]) => void;
   } | null>(null);
   const anchors = useRef<Map<string, THREE.Vector3>>(new Map());
+  const relayAt = useRef<Map<string, THREE.Vector3>>(new Map());
   const scanAnchors = useRef<Map<string, THREE.Vector3>>(new Map());
   const [tip, setTip] = useState<{ id: string; lines: string[] } | null>(null);
   const [failed, setFailed] = useState(false);
@@ -167,6 +171,9 @@ export default function FloorPlan3D({
       });
     }
     anchors.current = m;
+    relayAt.current = new Map(
+      devices.map((d) => [d.device.id, toV(d.device.x, d.device.y, d.device.z - layout.floorZ)]),
+    );
     const s = new Map<string, THREE.Vector3>();
     for (const p of plan.scanPoints) s.set(p.id, toV(p.x, p.y, 0.02));
     scanAnchors.current = s;
@@ -272,7 +279,10 @@ export default function FloorPlan3D({
       low: keep(new THREE.LineBasicMaterial({ color: "#5d646e", transparent: true, opacity: 0.8 })),
     };
     for (const s of layout.solids) {
-      const g = extrude(s, Math.max(s.height, 0.05));
+      const g = extrude(
+        s,
+        Math.max(s.kind === "wall" ? Math.min(s.height, WALL_CUT) : s.height, 0.05),
+      );
       const m = new THREE.Mesh(g, mats[s.kind]);
       m.castShadow = true;
       m.receiveShadow = true;
@@ -305,7 +315,6 @@ export default function FloorPlan3D({
     scene.add(relayGroup);
     const relayGeo = keep(new THREE.BoxGeometry(0.22, 0.27, 0.07));
     const relayMats = new Map<string, THREE.MeshLambertMaterial>();
-    const lineMats = new Map<string, THREE.LineBasicMaterial>();
     const colorOf = (status: keyof typeof STATUS_VAR) =>
       cssVar(
         STATUS_VAR[status],
@@ -325,11 +334,6 @@ export default function FloorPlan3D({
           );
           relayMats.set(r.status, rm);
         }
-        let lm = lineMats.get(r.status);
-        if (!lm) {
-          lm = keep(new THREE.LineBasicMaterial({ color: colorOf(r.status) }));
-          lineMats.set(r.status, lm);
-        }
         const box = new THREE.Mesh(relayGeo, rm);
         box.position.copy(r.at);
         // box front (+z) -> facing; world (fx, fy) is three (fx, 0, -fy)
@@ -337,9 +341,6 @@ export default function FloorPlan3D({
         box.castShadow = true;
         box.visible = !r.dim;
         relayGroup.add(box);
-        const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([r.at, r.badge]), lm);
-        line.visible = !r.dim;
-        relayGroup.add(line);
       }
     };
 
@@ -361,7 +362,7 @@ export default function FloorPlan3D({
       const aspect = camera.aspect || 1;
       const vfov = (FOV * Math.PI) / 180;
       const hfov = 2 * Math.atan(Math.tan(vfov / 2) * aspect);
-      return Math.max(d / 2 / Math.tan(vfov / 2), w / 2 / Math.tan(hfov / 2)) * 1.12 + 2;
+      return Math.max(d / 2 / Math.tan(vfov / 2), w / 2 / Math.tan(hfov / 2)) * 0.98 + 0.5;
     };
     const place = (polar: number, azimuth: number, dist: number) => {
       const t = controls.target;
@@ -466,10 +467,56 @@ export default function FloorPlan3D({
       renderer.render(scene, camera);
       const W = el.clientWidth;
       const H = el.clientHeight;
-      ov.querySelectorAll<HTMLElement>("[data-anchor]").forEach((n) => {
-        const p = anchors.current.get(n.dataset["anchor"]!);
-        if (p) place2d(n, p, W, H);
+      const nodes = [...ov.querySelectorAll<HTMLElement>("[data-anchor]")];
+      const pts = nodes.map((n) => {
+        const id = n.dataset["anchor"]!;
+        const a = anchors.current.get(id);
+        const r = relayAt.current.get(id);
+        if (!a || !r) return null;
+        v.copy(a).project(camera);
+        const ok = v.z < 1 && Math.abs(v.x) < 1.2 && Math.abs(v.y) < 1.2;
+        const x = ((v.x + 1) / 2) * W;
+        const y = ((1 - v.y) / 2) * H;
+        v.copy(r).project(camera);
+        return { id, n, x, y, rx: ((v.x + 1) / 2) * W, ry: ((1 - v.y) / 2) * H, ok };
       });
+      // spread overlapping badges (deterministic, recomputed from the projection every frame)
+      const live = pts.filter((q): q is NonNullable<typeof q> => !!q && q.ok);
+      for (let it = 0; it < 10; it++) {
+        for (let i = 0; i < live.length; i++) {
+          for (let j = i + 1; j < live.length; j++) {
+            const a = live[i]!;
+            const b = live[j]!;
+            let dx = b.x - a.x;
+            let dy = b.y - a.y;
+            let dd = Math.hypot(dx, dy);
+            if (dd >= BADGE_GAP) continue;
+            if (dd < 0.01) {
+              dx = 1;
+              dy = 0;
+              dd = 1;
+            }
+            const push = (BADGE_GAP - dd) / 2;
+            a.x -= (dx / dd) * push;
+            a.y -= (dy / dd) * push;
+            b.x += (dx / dd) * push;
+            b.y += (dy / dd) * push;
+          }
+        }
+      }
+      for (const q of pts) {
+        if (!q) continue;
+        q.n.style.transform = `translate(${q.x}px, ${q.y}px)`;
+        q.n.style.visibility = q.ok ? "visible" : "hidden";
+        const line = ov.querySelector<SVGLineElement>(`[data-leader="${q.id}"]`);
+        if (line) {
+          line.setAttribute("x1", String(q.rx));
+          line.setAttribute("y1", String(q.ry));
+          line.setAttribute("x2", String(q.x));
+          line.setAttribute("y2", String(q.y));
+          line.style.visibility = q.ok ? "visible" : "hidden";
+        }
+      }
       ov.querySelectorAll<HTMLElement>("[data-scan]").forEach((n) => {
         const p = scanAnchors.current.get(n.dataset["scan"]!);
         if (p) place2d(n, p, W, H);
@@ -513,6 +560,20 @@ export default function FloorPlan3D({
     <div className="relative h-full w-full overflow-hidden rounded-md">
       <div ref={host} className="absolute inset-0 touch-none" />
       <div ref={overlay} className="pointer-events-none absolute inset-0">
+        <svg className="absolute inset-0 h-full w-full overflow-visible" aria-hidden>
+          {devices.map((d) => (
+            <line
+              key={d.device.id}
+              data-leader={d.device.id}
+              style={{
+                stroke: `var(${STATUS_VAR[d.status]})`,
+                strokeWidth: 2,
+                opacity: matchesFilter(d, filter) ? 0.95 : 0.15,
+                visibility: "hidden",
+              }}
+            />
+          ))}
+        </svg>
         {plan.scanPoints.map((p) => (
           <button
             key={p.id}
@@ -626,7 +687,7 @@ export default function FloorPlan3D({
         </div>
       </div>
       <p className="pointer-events-none absolute bottom-2 left-3 rounded bg-card/80 px-2 py-1 text-[11px] text-muted-foreground">
-        Drag to tilt · right-drag to move · scroll to zoom
+        Drag to tilt · right-drag to move · scroll to zoom · walls cut at {WALL_CUT} m
       </p>
     </div>
   );
