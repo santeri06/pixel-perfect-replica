@@ -30,6 +30,8 @@ export const Route = createFileRoute("/twin")({
       { name: "description", content: "360° switchgear room with automatically placed, clickable asset tags." },
       { property: "og:title", content: "Digital Twin Viewer — VEO360 AutoTag" },
       { property: "og:description", content: "360° switchgear room with automatically placed, clickable asset tags." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: TwinPage,

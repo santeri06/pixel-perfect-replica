@@ -11,6 +11,8 @@ export const Route = createFileRoute("/results")({
       { name: "description", content: "Pipeline results: images analysed, auto-tag accuracy and human review outcomes." },
       { property: "og:title", content: "Results — VEO360 AutoTag" },
       { property: "og:description", content: "Pipeline results: images analysed, auto-tag accuracy and human review outcomes." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ResultsPage,

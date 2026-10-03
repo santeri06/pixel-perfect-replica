@@ -12,6 +12,8 @@ export const Route = createFileRoute("/training")({
       { name: "description", content: "Detection and OCR model training metrics and example predictions." },
       { property: "og:title", content: "Model Training — VEO360 AutoTag" },
       { property: "og:description", content: "Detection and OCR model training metrics and example predictions." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: TrainingPage,

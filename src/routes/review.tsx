@@ -17,6 +17,8 @@ export const Route = createFileRoute("/review")({
       { name: "description", content: "Approve, edit or reject low-confidence automatic tags." },
       { property: "og:title", content: "Review Queue — VEO360 AutoTag" },
       { property: "og:description", content: "Approve, edit or reject low-confidence automatic tags." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ReviewPage,

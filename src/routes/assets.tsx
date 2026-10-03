@@ -16,6 +16,8 @@ export const Route = createFileRoute("/assets")({
       { name: "description", content: "Asset types, identifiers and linked documentation used for OCR matching." },
       { property: "og:title", content: "Asset Library — VEO360 AutoTag" },
       { property: "og:description", content: "Asset types, identifiers and linked documentation used for OCR matching." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: AssetsPage,

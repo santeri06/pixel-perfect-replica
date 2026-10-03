@@ -13,6 +13,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Overview of automatic asset tagging in your industrial digital twin." },
       { property: "og:title", content: "Dashboard — VEO360 AutoTag" },
       { property: "og:description", content: "Overview of automatic asset tagging in your industrial digital twin." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Dashboard,

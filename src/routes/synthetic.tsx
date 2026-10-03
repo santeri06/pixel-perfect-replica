@@ -19,6 +19,8 @@ export const Route = createFileRoute("/synthetic")({
       { name: "description", content: "Generate labelled augmented training images from one reference photo." },
       { property: "og:title", content: "Synthetic Data Generator — VEO360 AutoTag" },
       { property: "og:description", content: "Generate labelled augmented training images from one reference photo." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: SyntheticPage,
