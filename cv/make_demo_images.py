@@ -22,7 +22,8 @@ FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 
 def crop_around(d: dict, size: int, margin: float, draw_box: bool = False) -> np.ndarray:
-    img = imread(TEST_SCANS_DIR / d["image"])
+    view = OUTPUTS_DIR / "views" / d["image"]  # rendered view (scan mode) or the original image
+    img = imread(view if view.exists() else TEST_SCANS_DIR / d["image"])
     x, y, w, h = d["bbox"]
     if draw_box:
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 200, 0), max(3, w // 60))
@@ -51,7 +52,7 @@ def tag_check(dets: list[dict], scan_id: str) -> None:
     for d in (d for d in dets if d["scanPointId"] == scan_id):
         x = int((d["yaw"] / 360 + 0.5) * W)
         y = int((0.5 - d["pitch"] / 180) * H)
-        col = (0, 170, 0) if d["confidence"] >= 0.8 else (0, 165, 255) if d["confidence"] >= 0.5 else (0, 0, 230)
+        col = (0, 170, 0) if d["confidence"] >= 0.75 else (0, 165, 255)  # auto-tagged / needs review
         cv2.circle(pano, (x, y), 26, (255, 255, 255), 10)
         cv2.circle(pano, (x, y), 26, col, 6)
         cv2.drawMarker(pano, (x, y), col, cv2.MARKER_CROSS, 70, 4)

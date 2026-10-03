@@ -17,3 +17,4 @@ outputs/uploads/
 
 # Panoramas are generated; the frontend copy lives in public/panoramas
 outputs/panoramas/
+outputs/views/
