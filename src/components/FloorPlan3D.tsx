@@ -216,8 +216,9 @@ export default function FloorPlan3D({
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color("#e4e7ec");
-    const w = ext.xMax - ext.xMin;
-    const d = ext.yMax - ext.yMin;
+    const wallT = layout.wallThickness ?? 0; // walls stand outside the measured floor
+    const w = ext.xMax - ext.xMin + 2 * wallT;
+    const d = ext.yMax - ext.yMin + 2 * wallT;
     const span = Math.max(w, d);
 
     // lights: soft sky + one sun with soft shadows (gives the cabinets depth)
@@ -284,8 +285,8 @@ export default function FloorPlan3D({
       wallCut: lambert("#7d8590"),
       wallSide: lambert("#e3e6ea"),
       plinth: lambert("#2c3138"),
-      body: lambert("#5d6672"),
-      door: lambert("#6f7986"),
+      body: lambert("#66707d"),
+      door: lambert("#7b8592"),
       handle: lambert("#c9ced6"),
       equipment: lambert("#8b939f"),
       low: lambert("#aeb4bd"),
@@ -306,7 +307,7 @@ export default function FloorPlan3D({
       r: Rect,
       z0: number,
       z1: number,
-      m: THREE.Material,
+      m: THREE.Material | THREE.Material[],
       e: THREE.LineBasicMaterial | null,
       shadow = true,
     ) => {
@@ -346,12 +347,16 @@ export default function FloorPlan3D({
         continue;
       }
       const kind = s.kind === "low" ? "low" : "equipment";
-      const h = Math.max(s.height, 0.05);
+      // objects taller than the section plane are cut like the walls (dark cut face on top)
+      const cut = s.height > WALL_CUT;
+      const h = Math.max(Math.min(s.height, WALL_CUT), 0.05);
+      const side = mat[kind];
       if (r) {
-        addBox(r, 0, h, mat[kind], edge[kind]);
+        // BoxGeometry faces: +x, -x, +y (top), -y, +z, -z
+        addBox(r, 0, h, cut ? [side, side, mat.wallCut, side, side, side] : side, edge[kind]);
       } else {
         const g = extrude(s, h);
-        const m = new THREE.Mesh(g, mat[kind]);
+        const m = new THREE.Mesh(g, cut ? [mat.wallCut, side] : side);
         m.castShadow = true;
         m.receiveShadow = true;
         scene.add(m);
@@ -436,7 +441,9 @@ export default function FloorPlan3D({
       const sn = Math.abs(Math.sin(azimuth));
       const wr = w * c + d * sn;
       const dr = d * c + w * sn * 0.6; // the tilt foreshortens depth
-      return Math.max(dr / 2 / Math.tan(vfov / 2), wr / 2 / Math.tan(hfov / 2)) * 0.9 + 0.5;
+      // narrow (portrait) screens get a little more margin: the badges stand out of the room
+      const k = aspect < 0.8 ? 1.0 : 0.9;
+      return Math.max(dr / 2 / Math.tan(vfov / 2), wr / 2 / Math.tan(hfov / 2)) * k + 0.6;
     };
     const place = (polar: number, azimuth: number, dist: number) => {
       const t = controls.target;
