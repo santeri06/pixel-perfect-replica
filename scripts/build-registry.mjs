@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Builds the DEMO device registry (component list) from the CV pipeline output.
  *
