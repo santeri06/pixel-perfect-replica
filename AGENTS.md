@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Mock data lives in src/data and all data access goes through src/lib/api.ts, so a real detection API can replace the mocks in one place.
+- Shared detection/demo state lives in src/lib/store.tsx (React context) so the Review Queue and Digital Twin stay in sync.
