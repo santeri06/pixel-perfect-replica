@@ -1,76 +1,17 @@
-# TEMPORARY - verifies feat/maintenance-log builds; this branch is deleted after the run.
-# Results are written as annotations (readable through the API) and compared with main.
+# TEMPORARY - demo e2e against the production build; branch ci/build-check is deleted afterwards.
 name: build-check
 on:
   push:
     branches: [ci/build-check]
+permissions:
+  contents: write
 jobs:
-  bun:
-    strategy:
-      fail-fast: false
-      matrix:
-        ref: [ci/build-check, main]
+  demo-e2e:
+    if: "!contains(github.event.head_commit.message, 'e2e results')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ matrix.ref }}
       - uses: oven-sh/setup-bun@v2
-      - name: report helper
-        run: |
-          cat > /tmp/report.sh <<'EOS'
-          #!/usr/bin/env bash
-          # usage: report.sh <notice|error> <title> <logfile> [lines]
-          msg=$(tail -n "${4:-40}" "$3" | sed -e 's/%/%25/g' -e 's/\r//g' | sed ':a;N;$!ba;s/\n/%0A/g')
-          echo "::$1 title=$2::${msg}"
-          EOS
-          chmod +x /tmp/report.sh
-      - name: bun install
-        run: bun install --frozen-lockfile > install.log 2>&1 || { /tmp/report.sh error "bun install [${{ matrix.ref }}]" install.log; exit 1; }
-      - name: bun run build
-        run: |
-          if bun run build > build.log 2>&1; then /tmp/report.sh notice "bun run build OK [${{ matrix.ref }}]" build.log 6
-          else /tmp/report.sh error "bun run build FAILED [${{ matrix.ref }}]" build.log 60; exit 1; fi
-      - name: bun run test
-        run: |
-          if bun run test > test.log 2>&1; then /tmp/report.sh notice "bun run test OK [${{ matrix.ref }}]" test.log 12
-          else /tmp/report.sh error "bun run test FAILED [${{ matrix.ref }}]" test.log 80; exit 1; fi
-      - name: npm run build + npm test (deps from bun.lock)
-        run: |
-          if npm run build > npmbuild.log 2>&1; then /tmp/report.sh notice "npm run build OK [${{ matrix.ref }}]" npmbuild.log 3
-          else /tmp/report.sh error "npm run build FAILED [${{ matrix.ref }}]" npmbuild.log 60; exit 1; fi
-          if npm test > npmtest.log 2>&1; then /tmp/report.sh notice "npm test OK [${{ matrix.ref }}]" npmtest.log 6
-          else /tmp/report.sh error "npm test FAILED [${{ matrix.ref }}]" npmtest.log 60; exit 1; fi
-      - name: typecheck (informational)
-        continue-on-error: true
-        run: |
-          set +e
-          npx tsc --noEmit -p tsconfig.json > tsc.log 2>&1; code=$?
-          { grep -E "error TS" tsc.log | sed -E 's/\(.*//' | sort | uniq -c | sort -rn; echo "exit $code, $(grep -c 'error TS' tsc.log) errors"; } > tsc-files.log
-          /tmp/report.sh notice "tsc [${{ matrix.ref }}]" tsc-files.log 40
-          grep -E "error TS" tsc.log | grep -E "aintenance|registry|resolveInstance|AssetSheet|store\.tsx|routes/index|test/" > tsc-mine.log || echo "none" > tsc-mine.log
-          /tmp/report.sh notice "tsc errors in maintenance-related files [${{ matrix.ref }}]" tsc-mine.log 40
-      - name: lint (informational)
-        continue-on-error: true
-        run: |
-          set +e
-          bun run lint > lint.log 2>&1; code=$?
-          npx eslint src/components/MaintenanceLog.tsx src/components/MaintenanceForm.tsx src/components/MaintenanceSummary.tsx src/lib/maintenanceLocal.ts src/lib/useMaintenance.ts src/lib/resolveInstance.ts src/data/maintenance.ts src/data/maintenance.schema.ts src/data/registry.ts src/test/fixtures.ts src/test/maintenance.schema.test.ts src/test/maintenanceLocal.test.ts src/test/registry.test.ts src/test/resolveInstance.test.ts > lint-new.log 2>&1 || true
-          tail -n 25 lint-new.log > lint-new-tail.log; echo "(new maintenance files only)" >> lint-new-tail.log
-          if [ -s lint-new.log ]; then /tmp/report.sh notice "lint new files [${{ matrix.ref }}]" lint-new-tail.log 30; else echo "::notice title=lint new files [${{ matrix.ref }}]::clean"; fi
-          { grep -E "^/" lint.log | sed "s#$PWD/##"; tail -n 2 lint.log; echo "exit $code"; } > lint-files.log
-          /tmp/report.sh notice "lint [${{ matrix.ref }}]" lint-files.log 45
-
-  npm:
-    strategy:
-      fail-fast: false
-      matrix:
-        ref: [ci/build-check, main]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ matrix.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -82,15 +23,29 @@ jobs:
           echo "::$1 title=$2::${msg}"
           EOS
           chmod +x /tmp/report.sh
-      - name: npm install
-        run: |
-          if npm install --no-audit --no-fund > install.log 2>&1; then /tmp/report.sh notice "npm install OK [${{ matrix.ref }}]" install.log 4
-          else /tmp/report.sh error "npm install FAILED [${{ matrix.ref }}]" install.log 45; exit 1; fi
+      - run: bun install --frozen-lockfile
       - name: npm run build
+        run: npm run build > build.log 2>&1 || { /tmp/report.sh error "build" build.log 60; exit 1; }
+      - name: playwright
         run: |
-          if npm run build > build.log 2>&1; then /tmp/report.sh notice "npm run build OK [${{ matrix.ref }}]" build.log 6
-          else /tmp/report.sh error "npm run build FAILED [${{ matrix.ref }}]" build.log 60; exit 1; fi
-      - name: npm test
+          mkdir -p /tmp/pw && cd /tmp/pw && npm init -y >/dev/null && npm i --no-audit --no-fund playwright@1.56.1 >/dev/null
+          npx playwright install --with-deps chromium > /tmp/pw/install.log 2>&1 || { /tmp/report.sh error "playwright install" /tmp/pw/install.log 30; exit 1; }
+      - name: start preview server
         run: |
-          if npm test > test.log 2>&1; then /tmp/report.sh notice "npm test OK [${{ matrix.ref }}]" test.log 12
-          else /tmp/report.sh error "npm test FAILED [${{ matrix.ref }}]" test.log 80; exit 1; fi
+          nohup npx vite preview --port 4173 --strictPort > preview.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf http://localhost:4173/ >/dev/null && break; sleep 1; done
+          curl -s -o /dev/null -w "root %{http_code}\n" http://localhost:4173/ > probe.log
+          curl -s -o /dev/null -w "twin %{http_code}\n" http://localhost:4173/twin >> probe.log
+          curl -s -o /dev/null -w "field %{http_code}\n" http://localhost:4173/field/index.html >> probe.log
+          curl -s -o /dev/null -w "field-dir %{http_code}\n" http://localhost:4173/field/ >> probe.log
+          curl -s -o /dev/null -w "registry %{http_code}\n" http://localhost:4173/field/registry.json >> probe.log
+          /tmp/report.sh notice "preview probe" probe.log 10
+      - name: demo e2e
+        run: |
+          set +e
+          PW=/tmp/pw/node_modules/playwright/index.mjs BASE=http://localhost:4173 node e2e/demo.e2e.mjs > e2e.log 2>&1; code=$?
+          /tmp/report.sh notice "demo e2e (exit $code)" e2e.log 30
+          tail -n 30 preview.log > e2e-out/preview-tail.log 2>/dev/null || true
+          git config user.name "ci" && git config user.email "ci@users.noreply.github.com"
+          git add -f e2e-out && git commit -qm "TEMP: e2e results" && git push -q origin HEAD:ci/build-check
+          exit $code
