@@ -35,9 +35,16 @@ jobs:
         run: |
           if bun run test > test.log 2>&1; then /tmp/report.sh notice "bun run test OK [${{ matrix.ref }}]" test.log 12
           else /tmp/report.sh error "bun run test FAILED [${{ matrix.ref }}]" test.log 80; exit 1; fi
+      - name: npm run build + npm test (deps from bun.lock)
+        run: |
+          if npm run build > npmbuild.log 2>&1; then /tmp/report.sh notice "npm run build OK [${{ matrix.ref }}]" npmbuild.log 3
+          else /tmp/report.sh error "npm run build FAILED [${{ matrix.ref }}]" npmbuild.log 60; exit 1; fi
+          if npm test > npmtest.log 2>&1; then /tmp/report.sh notice "npm test OK [${{ matrix.ref }}]" npmtest.log 6
+          else /tmp/report.sh error "npm test FAILED [${{ matrix.ref }}]" npmtest.log 60; exit 1; fi
       - name: typecheck (informational)
         continue-on-error: true
         run: |
+          set +e
           npx tsc --noEmit -p tsconfig.json > tsc.log 2>&1; code=$?
           { grep -E "error TS" tsc.log | sed -E 's/\(.*//' | sort | uniq -c | sort -rn; echo "exit $code, $(grep -c 'error TS' tsc.log) errors"; } > tsc-files.log
           /tmp/report.sh notice "tsc [${{ matrix.ref }}]" tsc-files.log 40
@@ -46,7 +53,11 @@ jobs:
       - name: lint (informational)
         continue-on-error: true
         run: |
+          set +e
           bun run lint > lint.log 2>&1; code=$?
+          npx eslint src/components/MaintenanceLog.tsx src/components/MaintenanceForm.tsx src/components/MaintenanceSummary.tsx src/lib/maintenanceLocal.ts src/lib/useMaintenance.ts src/lib/resolveInstance.ts src/data/maintenance.ts src/data/maintenance.schema.ts src/data/registry.ts src/test/fixtures.ts src/test/maintenance.schema.test.ts src/test/maintenanceLocal.test.ts src/test/registry.test.ts src/test/resolveInstance.test.ts > lint-new.log 2>&1 || true
+          tail -n 25 lint-new.log > lint-new-tail.log; echo "(new maintenance files only)" >> lint-new-tail.log
+          if [ -s lint-new.log ]; then /tmp/report.sh notice "lint new files [${{ matrix.ref }}]" lint-new-tail.log 30; else echo "::notice title=lint new files [${{ matrix.ref }}]::clean"; fi
           { grep -E "^/" lint.log | sed "s#$PWD/##"; tail -n 2 lint.log; echo "exit $code"; } > lint-files.log
           /tmp/report.sh notice "lint [${{ matrix.ref }}]" lint-files.log 45
 
