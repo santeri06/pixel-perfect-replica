@@ -142,7 +142,8 @@ export function FloorPlanMap({
       }),
     );
   }
-  const raised = [hoveredId, selectedId].flatMap((id) =>
+  // hovering the selected marker must not raise it twice (duplicate React key)
+  const raised = [...new Set([hoveredId, selectedId])].flatMap((id) =>
     devices.filter((d) => d.device.id === id && id !== null),
   );
 
