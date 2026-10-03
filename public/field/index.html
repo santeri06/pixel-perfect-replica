@@ -57,6 +57,8 @@
   #toast { position:fixed; left:50%; bottom:90px; transform:translateX(-50%); background:var(--fg); color:#fff; padding:10px 16px; border-radius:10px; font-size:14px; display:none; max-width:90vw; z-index:10; }
   #toast a { color:#93c5fd; margin-left:8px; }
   .hidden { display:none !important; }
+  #banner { background:#fef3c7; color:#92400e; font-size:13px; text-align:center; padding:6px 12px; }
+  #banner b { color:var(--bad); }
 </style>
 </head>
 <body>
@@ -64,6 +66,7 @@
   <h1 id="hdr">VEO360 Field</h1>
   <button id="settingsBtn" type="button" aria-label="Settings">Settings</button>
 </header>
+<div id="banner">Demo mode – data stored in this browser</div>
 <main id="app"><p class="muted">Loading device register...</p></main>
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -79,6 +82,18 @@
   const RESULT_CLS = { ok: "b-ok", remarks: "b-warn", fault: "b-bad" };
 
   let REG = null; // { instances, seedEntries, seedVersion }
+
+  // localStorage if the browser allows it, otherwise memory (entries are then lost on reload)
+  const LS = (() => {
+    try {
+      localStorage.setItem("veo.probe", "1"); localStorage.removeItem("veo.probe");
+      return { ok: true, get: (k) => localStorage.getItem(k), set: (k, v) => localStorage.setItem(k, v) };
+    } catch {
+      const m = new Map();
+      return { ok: false, get: (k) => (m.has(k) ? m.get(k) : null), set: (k, v) => void m.set(k, String(v)) };
+    }
+  })();
+  if (!LS.ok) document.getElementById("banner").innerHTML = "Demo mode – <b>browser storage is blocked: entries are lost when this page is closed</b>";
   const app = document.getElementById("app");
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const today = () => { const d = new Date(), p = (n) => String(n).padStart(2, "0"); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`; };
@@ -93,17 +108,17 @@
   const store = {
     read() {
       let f = null;
-      try { const raw = localStorage.getItem(KEY); f = raw ? JSON.parse(raw) : null; } catch { f = null; }
+      try { const raw = LS.get(KEY); f = raw ? JSON.parse(raw) : null; } catch { f = null; }
       if (!f || f.schema !== 1 || !Array.isArray(f.entries)) {
         f = { schema: 1, seedVersion: REG.seedVersion, entries: REG.seedEntries.slice() };
-        localStorage.setItem(KEY, JSON.stringify(f));
+        LS.set(KEY, JSON.stringify(f));
       } else if (f.seedVersion !== REG.seedVersion) {
         const ids = new Set(REG.instances.map((i) => i.id));
         // keep recorded and edited entries (an edited demo entry has version > 1)
-        const own = f.entries.filter((e) => (e.source !== "import" || e.version > 1) && ids.has(e.instanceId));
+        const own = f.entries.filter((e) => (e.source !== "seed" || e.version > 1) && ids.has(e.instanceId));
         const ownIds = new Set(own.map((e) => e.id));
         f = { schema: 1, seedVersion: REG.seedVersion, entries: REG.seedEntries.filter((e) => !ownIds.has(e.id)).concat(own) };
-        localStorage.setItem(KEY, JSON.stringify(f));
+        LS.set(KEY, JSON.stringify(f));
       }
       return f;
     },
@@ -121,15 +136,15 @@
         if (cur.version !== existing.version) { const err = new Error("conflict"); err.conflict = cur; throw err; }
         const next = { ...cur, ...input, instanceId: cur.instanceId, version: cur.version + 1, updatedAt: now };
         f.entries = f.entries.map((e) => (e.id === cur.id ? next : e));
-        localStorage.setItem(KEY, JSON.stringify(f));
+        LS.set(KEY, JSON.stringify(f));
         return next;
       }
       const entry = { ...input, id: uuid(), version: 1, createdAt: now, updatedAt: now };
       f.entries.push(entry);
-      localStorage.setItem(KEY, JSON.stringify(f));
+      LS.set(KEY, JSON.stringify(f));
       return entry;
     },
-    reset() { localStorage.setItem(KEY, JSON.stringify({ schema: 1, seedVersion: REG.seedVersion, entries: REG.seedEntries.slice() })); },
+    reset() { LS.set(KEY, JSON.stringify({ schema: 1, seedVersion: REG.seedVersion, entries: REG.seedEntries.slice() })); },
   };
 
   function status(inst) {
@@ -195,7 +210,7 @@
       .filter(({ i }) => !q || [i.id, i.functionalLocation, i.variant, i.serialNo].join(" ").toLowerCase().includes(q));
     const chip = (k, label) => `<button type="button" class="chip" data-filter="${k}" aria-pressed="${state.filter === k}">${label}</button>`;
     app.innerHTML = `
-      <p><span class="pill">Local demo mode</span> <span class="pill demo">Example data</span></p>
+      <p><span class="pill demo">Example data</span></p>
       <input id="q" type="search" placeholder="Search location, variant or serial number" value="${esc(state.q)}" aria-label="Search devices" />
       <div class="chips">${chip("all", "All")}${chip("overdue", "Overdue")}${chip("open", "Open notices")}</div>
       ${rows.length ? "" : `<p class="muted">No devices match.</p>`}
@@ -252,7 +267,7 @@
   function blankForm(preset) {
     const kind = preset === "fault" ? "fault" : "inspection";
     const status = preset === "fault" ? "open" : "done";
-    return { kind, status, title: kind === "fault" ? "" : KINDS[kind], performedAt: status === "done" ? today() : "", performedBy: localStorage.getItem(NAME_KEY) || "", company: "", findings: "", actions: "", result: "", nextDueAt: "", workPermitRef: "", firmwareBefore: "", firmwareAfter: "" };
+    return { kind, status, title: kind === "fault" ? "" : KINDS[kind], performedAt: status === "done" ? today() : "", performedBy: LS.get(NAME_KEY) || "", company: "", findings: "", actions: "", result: "", nextDueAt: "", workPermitRef: "", firmwareBefore: "", firmwareAfter: "" };
   }
 
   function renderForm(inst) {
@@ -337,7 +352,7 @@
     app.querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => {
       const e = store.entries(inst.id).find((x) => x.id === b.dataset.edit);
       const s = (x) => x ?? "";
-      state.form = { existing: e, values: { kind: e.kind, status: e.status === "open" ? "done" : e.status, title: e.title, performedAt: e.performedAt || today(), performedBy: localStorage.getItem(NAME_KEY) || e.performedBy, company: s(e.company), findings: e.findings, actions: e.actions, result: s(e.result), nextDueAt: s(e.nextDueAt), workPermitRef: s(e.workPermitRef), firmwareBefore: s(e.firmwareBefore), firmwareAfter: s(e.firmwareAfter) } };
+      state.form = { existing: e, values: { kind: e.kind, status: e.status === "open" ? "done" : e.status, title: e.title, performedAt: e.performedAt || today(), performedBy: LS.get(NAME_KEY) || e.performedBy, company: s(e.company), findings: e.findings, actions: e.actions, result: s(e.result), nextDueAt: s(e.nextDueAt), workPermitRef: s(e.workPermitRef), firmwareBefore: s(e.firmwareBefore), firmwareAfter: s(e.firmwareAfter) } };
       renderForm(inst); window.scrollTo(0, 0);
     }));
     app.querySelectorAll("[data-cancel]").forEach((b) => b.addEventListener("click", () => { state.form = null; render(); }));
@@ -346,10 +361,10 @@
       const f = state.form;
       try {
         store.save(toInput(inst, f.values, f.existing), f.existing);
-        localStorage.setItem(NAME_KEY, f.values.performedBy.trim());
+        LS.set(NAME_KEY, f.values.performedBy.trim());
         state.form = null;
         render();
-        toast(`Saved to ${esc(inst.functionalLocation)}. <a href="/twin">Open digital twin</a>`);
+        toast(`Saved to ${esc(inst.functionalLocation)}. <a href="/twin">Open in digital twin</a>`);
       } catch (err) {
         if (err.conflict) {
           state.form = { existing: err.conflict, values: { ...f.values }, errors: { form: "" } };
@@ -363,7 +378,7 @@
   }
 
   document.getElementById("settingsBtn").addEventListener("click", () => {
-    if (confirm("Local demo mode: data is stored in this browser and shared with AutoTag on the same address.\n\nAPI mode (other devices) is not available in this build.\n\nReset the demo maintenance data?")) {
+    if (confirm("Demo mode: data is stored in this browser and shared with AutoTag on the same address.\n\nAPI mode (other devices) is not available in this build.\n\nReset the demo maintenance data?")) {
       store.reset(); state.form = null; render(); toast("Demo data reset.");
     }
   });

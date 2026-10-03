@@ -21,7 +21,7 @@ function memoryStorage(initial: Record<string, string> = {}) {
 }
 
 const seedEntry: MaintenanceEntry = {
-  ...validInput({ source: "import", performedAt: "2025-06-10", nextDueAt: "2026-06-10" }),
+  ...validInput({ source: "seed", performedAt: "2025-06-10", nextDueAt: "2026-06-10" }),
   id: "seed-1",
   version: 1,
   createdAt: "2025-06-10T08:00:00.000Z",
@@ -145,6 +145,19 @@ describe("local maintenance repository", () => {
     const entries = second.repo.listEntries("DEV-1");
     expect(entries).toHaveLength(1);
     expect(entries[0]?.actions).toBe("Edited on site");
+  });
+
+  it("still shows the demo history when storage refuses writes", () => {
+    const refusing = {
+      getItem: () => null,
+      setItem: () => {
+        throw new Error("QuotaExceededError");
+      },
+      data: new Map<string, string>(),
+    };
+    const { repo } = setup(refusing);
+    expect(repo.listEntries("DEV-1")).toHaveLength(1);
+    expect(() => repo.createEntry(validInput())).toThrow(Error);
   });
 
   it("recovers from a corrupted value by reseeding", () => {

@@ -335,7 +335,7 @@ function seedFor(inst) {
     firmwareAfter: null,
     workPermitRef: null,
     attachments: [],
-    source: "import",
+    source: "seed",
     version: 1,
   };
   const e = (i, x) => ({

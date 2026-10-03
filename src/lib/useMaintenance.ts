@@ -5,17 +5,41 @@ import {
   CHANGE_EVENT,
   STORAGE_KEY,
   createLocalRepo,
+  memoryStorage,
   type MaintenanceRepo,
   type StoreFile,
 } from "@/lib/maintenanceLocal";
 
+type KV = Pick<Storage, "getItem" | "setItem">;
+let backend: { storage: KV; persistent: boolean } | null = null;
 let repo: MaintenanceRepo | null = null;
+
+/** localStorage if it works, otherwise an in-memory store (entries then last until reload). */
+function getBackend() {
+  if (!backend) {
+    try {
+      const ls = window.localStorage;
+      const probe = "veo.probe";
+      ls.setItem(probe, "1");
+      ls.removeItem(probe);
+      backend = { storage: ls, persistent: true };
+    } catch {
+      backend = { storage: memoryStorage(), persistent: false };
+    }
+  }
+  return backend;
+}
+
+/** False when the browser blocks localStorage: show a warning, data is lost on reload. */
+export function isStoragePersistent(): boolean {
+  return typeof window === "undefined" ? true : getBackend().persistent;
+}
 
 /** Browser-only singleton. */
 export function getMaintenanceRepo(): MaintenanceRepo {
   if (!repo) {
     repo = createLocalRepo({
-      storage: window.localStorage,
+      storage: getBackend().storage,
       seed: { seedVersion: registry.seedVersion, entries: registry.seedEntries },
       instances,
       notify: () => window.dispatchEvent(new Event(CHANGE_EVENT)),
@@ -39,17 +63,26 @@ function subscribe(cb: () => void) {
   };
 }
 
+function readRaw(): string | null {
+  try {
+    return getBackend().storage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
 /** Same object until the stored value changes (required by useSyncExternalStore). */
 function getSnapshot(): StoreFile {
-  const raw = window.localStorage.getItem(STORAGE_KEY);
+  const raw = readRaw();
   if (raw === cache.raw && raw !== null) return cache.file;
   const file = getMaintenanceRepo().read(); // seeds on first use
-  cache = { raw: window.localStorage.getItem(STORAGE_KEY), file };
+  cache = { raw: readRaw(), file };
   return file;
 }
 
 const getServerSnapshot = () => EMPTY;
 
+/** The whole log; `seedVersion === ""` means "not loaded yet" (server render). */
 export function useMaintenanceFile(): StoreFile {
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

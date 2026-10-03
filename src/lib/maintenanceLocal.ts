@@ -53,6 +53,15 @@ interface Options {
   notify?: () => void;
 }
 
+/** In-memory Storage stand-in for when localStorage is blocked (e.g. strict privacy settings). */
+export function memoryStorage(): Pick<Storage, "getItem" | "setItem"> {
+  const data = new Map<string, string>();
+  return {
+    getItem: (k) => data.get(k) ?? null,
+    setItem: (k, v) => void data.set(k, v),
+  };
+}
+
 export function newId(): string {
   const c = globalThis.crypto;
   if (c && typeof c.randomUUID === "function") return c.randomUUID();
@@ -74,8 +83,21 @@ export function createLocalRepo(opts: Options): MaintenanceRepo {
   });
 
   const write = (file: StoreFile) => {
-    opts.storage.setItem(STORAGE_KEY, JSON.stringify(file));
+    try {
+      opts.storage.setItem(STORAGE_KEY, JSON.stringify(file));
+    } catch {
+      throw new Error("Could not save: browser storage is full or blocked.");
+    }
     opts.notify?.();
+  };
+
+  /** Seeding is best-effort: if storage refuses the write, the seed is still returned for display. */
+  const persist = (file: StoreFile) => {
+    try {
+      opts.storage.setItem(STORAGE_KEY, JSON.stringify(file));
+    } catch {
+      /* shown from memory; useMaintenance reports storage problems to the user */
+    }
   };
 
   /** Reads the store; seeds it on first use and refreshes the demo seed when the registry changes. */
@@ -90,12 +112,12 @@ export function createLocalRepo(opts: Options): MaintenanceRepo {
     }
     if (!file) {
       file = seeded();
-      opts.storage.setItem(STORAGE_KEY, JSON.stringify(file));
+      persist(file);
     } else if (file.seedVersion !== opts.seed.seedVersion) {
       // new registry: replace untouched demo entries, keep everything people recorded or edited
       // (an edited demo entry, e.g. a closed fault notice, has version > 1) for devices that still exist
       const own = file.entries.filter(
-        (e) => (e.source !== "import" || e.version > 1) && ids.has(e.instanceId),
+        (e) => (e.source !== "seed" || e.version > 1) && ids.has(e.instanceId),
       );
       const ownIds = new Set(own.map((e) => e.id));
       file = {
@@ -103,7 +125,7 @@ export function createLocalRepo(opts: Options): MaintenanceRepo {
         seedVersion: opts.seed.seedVersion,
         entries: [...opts.seed.entries.filter((e) => !ownIds.has(e.id)), ...own],
       };
-      opts.storage.setItem(STORAGE_KEY, JSON.stringify(file));
+      persist(file);
     }
     return file;
   };

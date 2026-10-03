@@ -18,7 +18,7 @@ export const MAINTENANCE_KINDS = [
 ] as const;
 export const ENTRY_STATUS = ["open", "in_progress", "done"] as const;
 export const ENTRY_RESULT = ["ok", "remarks", "fault"] as const;
-export const ENTRY_SOURCES = ["autotag", "field-app", "import"] as const;
+export const ENTRY_SOURCES = ["autotag", "field-app", "seed"] as const;
 
 export type MaintenanceKind = (typeof MAINTENANCE_KINDS)[number];
 export type EntryStatus = (typeof ENTRY_STATUS)[number];
