@@ -1,6 +1,7 @@
 import Fuse from "fuse.js";
 import { assetLibrary, type AssetType } from "@/data/assets";
 import { mockDetections, type Detection } from "@/data/detections";
+import library from "@/data/asset_library.json";
 
 /**
  * Fetch detections for a site.
@@ -32,4 +33,15 @@ export function matchAsset(ocrText: string): { asset: AssetType; score: number; 
 
 export function getAssetById(id: string) {
   return assetLibrary.find((a) => a.id === id);
+}
+
+export type LibraryAssetType = (typeof library.assetTypes)[number];
+export type LibraryInstance = (typeof library.instances)[number];
+
+/** Resolve a detection's assetTypeId + instanceId against asset_library.json. */
+export function lookupLibrary(assetTypeId: string, instanceId?: string): { type?: LibraryAssetType; instance?: LibraryInstance } {
+  return {
+    type: library.assetTypes.find((t) => t.assetTypeId === assetTypeId),
+    instance: instanceId ? library.instances.find((i) => i.instanceId === instanceId) : undefined,
+  };
 }
