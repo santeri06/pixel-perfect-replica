@@ -106,7 +106,6 @@
 }
 .veo-pin.veo-high { background: var(--success); }
 .veo-pin.veo-mid { background: var(--warning); }
-.veo-pin.veo-low { background: var(--destructive); animation: veo-pulse 1.6s infinite; }
 .veo-pin.veo-confirmed { background: var(--primary); }
 @keyframes veo-pulse {
   0%, 100% { box-shadow: 0 0 0 4px oklch(0.6 0.21 25 / 0.35); }

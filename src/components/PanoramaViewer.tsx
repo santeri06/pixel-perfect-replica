@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import type { Detection } from "@/data/detections";
-import { confidenceLevel } from "@/lib/store";
 
 interface Props {
   image: string;
@@ -31,14 +30,14 @@ export default function PanoramaViewer({ image, detections, onSelect }: Props) {
     ids.current.forEach((id) => v.removeHotSpot(id));
     ids.current = [];
     detRef.current.forEach((d) => {
-      const cls = d.status === "confirmed" ? "veo-confirmed" : `veo-${confidenceLevel(d.confidence)}`;
+      const cls = d.status === "confirmed" ? "veo-confirmed" : d.status === "review" ? "veo-mid" : "veo-high";
       v.addHotSpot({
         id: d.id,
         pitch: d.pitch,
         yaw: d.yaw,
         cssClass: `veo-pin ${cls}`,
         createTooltipFunc: (div: HTMLElement) => {
-          div.title = `${d.label} · ${Math.round(d.confidence * 100)}%`;
+          div.title = `${d.label || "Not readable"} ·${Math.round(d.confidence * 100)}%`;
         },
         clickHandlerFunc: () => selectRef.current(d),
       });

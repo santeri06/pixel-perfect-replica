@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import type { Detection } from "@/data/detections";
+import { AUTO_TAG_CONFIDENCE, type Detection } from "@/data/detections";
 import { getDetections, scanPoints } from "@/lib/api";
 
 interface Store {
@@ -56,5 +56,6 @@ export function useStore() {
   return s;
 }
 
-export const confidenceLevel = (c: number) => (c >= 0.8 ? "high" : c >= 0.5 ? "mid" : "low");
+/** "high" = auto-tagged (green), "mid" = needs review (orange); same threshold as the status. */
+export const confidenceLevel = (c: number) => (c >= AUTO_TAG_CONFIDENCE ? "high" : "mid");
 export const needsReview = (d: Detection) => d.status === "review";

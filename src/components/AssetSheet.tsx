@@ -10,7 +10,7 @@ import type { Detection } from "@/data/detections";
 import { getAssetById, lookupLibrary, matchAsset } from "@/lib/api";
 import { confidenceLevel, useStore } from "@/lib/store";
 
-const barColor = { high: "bg-success", mid: "bg-warning", low: "bg-destructive" } as const;
+const barColor = { high: "bg-success", mid: "bg-warning" } as const;
 
 function useCrop(src: string, d: Detection | null) {
   const [url, setUrl] = useState<string | null>(null);
@@ -79,7 +79,7 @@ export function AssetSheet({ detection, onClose }: { detection: Detection | null
               {editing ? (
                 <div className="mt-1 flex gap-1"><Input value={text} onChange={(e) => setText(e.target.value)} /><Button size="sm" onClick={saveEdit}>Save</Button></div>
               ) : (
-                <div className="mt-1 font-mono text-lg font-semibold text-secondary-foreground">{live.label || name}</div>
+                <div className="mt-1 font-mono text-lg font-semibold text-secondary-foreground">{live.label || <span className="font-sans text-base font-normal text-muted-foreground">Not readable</span>}</div>
               )}
               <div className="mt-3 text-xs uppercase text-muted-foreground">Confidence</div>
               <div className="mt-1 h-2 w-full rounded-full bg-muted">
@@ -158,7 +158,7 @@ export function AssetSheet({ detection, onClose }: { detection: Detection | null
               <CheckCircle2 className="mr-1 h-4 w-4" /> Confirm tag
             </Button>
             <Button variant="outline" onClick={() => setEditing(true)}><Pencil className="mr-1 h-4 w-4" /> Edit</Button>
-            <Button variant="outline" onClick={() => toast.success(`Support ticket created for ${live.label}`)}><LifeBuoy className="mr-1 h-4 w-4" /> Create support ticket</Button>
+            <Button variant="outline" onClick={() => toast.success(`Support ticket created for ${live.label || name}`)}><LifeBuoy className="mr-1 h-4 w-4" /> Create support ticket</Button>
           </div>
         </div>
       </SheetContent>

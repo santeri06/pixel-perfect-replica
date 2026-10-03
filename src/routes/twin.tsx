@@ -64,7 +64,7 @@ function TwinPage() {
         <span className="rounded-md bg-card px-3 py-2 shadow-sm">
           {loading ? "Running detection…" : <><b className="text-secondary-foreground">{auto}</b> assets tagged automatically, <b className="text-secondary-foreground">{review}</b> need review</>}
         </span>
-        <Legend cls="bg-success" label="≥ 80%" /><Legend cls="bg-warning" label="50–80%" /><Legend cls="bg-destructive" label="< 50%" /><Legend cls="bg-primary" label="Confirmed" />
+        <Legend cls="bg-success" label="Auto-tagged (≥ 75%)" /><Legend cls="bg-warning" label="Needs review (< 75%)" /><Legend cls="bg-primary" label="Confirmed" />
       </div>
       <Card className="h-[calc(100vh-220px)] min-h-[480px] overflow-hidden p-0">
         <ClientOnly fallback={<div className="h-full animate-pulse bg-muted" />}>
