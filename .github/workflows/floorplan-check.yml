@@ -1,0 +1,36 @@
+# TEMPORARY - verifies feat/floorplan (build + tests + tsc); branch ci/build-check is deleted afterwards.
+name: build-check
+on:
+  push:
+    branches: [ci/floorplan-check]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: report helper
+        run: |
+          cat > /tmp/report.sh <<'EOS'
+          #!/usr/bin/env bash
+          msg=$(tail -n "${4:-40}" "$3" | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/%/%25/g' -e 's/\r//g' | sed ':a;N;$!ba;s/\n/%0A/g')
+          echo "::$1 title=$2::${msg}"
+          EOS
+          chmod +x /tmp/report.sh
+      - run: bun install --frozen-lockfile > install.log 2>&1 || { /tmp/report.sh error install install.log; exit 1; }
+      - name: npm run build
+        run: |
+          if npm run build > build.log 2>&1; then /tmp/report.sh notice "npm run build OK" build.log 3
+          else /tmp/report.sh error "npm run build FAILED" build.log 60; exit 1; fi
+      - name: npm test
+        run: |
+          set +e; npm test > test.log 2>&1; c=$?
+          grep -E "✓|✗|×|skipped|Test Files|Tests " test.log | tail -n 20 > test-sum.log
+          /tmp/report.sh notice "npm test (exit $c)" test-sum.log 20; exit $c
+      - name: tsc
+        run: |
+          set +e; npx tsc --noEmit -p tsconfig.json > tsc.log 2>&1; c=$?
+          echo "exit $c, $(grep -c 'error TS' tsc.log) errors" >> tsc.log
+          /tmp/report.sh notice "tsc" tsc.log 25; exit $c
