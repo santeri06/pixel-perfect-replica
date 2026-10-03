@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { FileText, CheckCircle2, Pencil, LifeBuoy, ExternalLink, AlertTriangle, ArrowLeft } from "lucide-react";
+import { FileText, CheckCircle2, Pencil, LifeBuoy, ExternalLink, AlertTriangle, ArrowLeft, Box } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ import { MaintenanceLog, docsForVariant, type Doc } from "@/components/Maintenan
 import type { Detection } from "@/data/detections";
 import type { MaintenanceEntry } from "@/data/maintenance";
 import { getInstance, instances, scanPositions } from "@/data/registry";
-import { getAssetById, lookupLibrary, matchAsset } from "@/lib/api";
+import { getAssetById, lookupLibrary, matchAsset, scanPoints } from "@/lib/api";
 import { resolveInstance } from "@/lib/resolveInstance";
 import { confidenceLevel, useStore } from "@/lib/store";
 
@@ -36,17 +36,41 @@ function useCrop(src: string, d: Detection | null) {
   return url;
 }
 
-export function AssetSheet({ detection, onClose, backToReview = false }: { detection: Detection | null; onClose: () => void; backToReview?: boolean | undefined }) {
+const BACK = {
+  review: { to: "/review", label: "Back to review queue" },
+  floorplan: { to: "/floorplan", label: "Back to floor plan" },
+} as const;
+
+export function AssetSheet({
+  detection,
+  onClose,
+  backToReview = false,
+  backTo,
+  twinLink,
+}: {
+  detection: Detection | null;
+  onClose: () => void;
+  /** @deprecated use backTo="review" */
+  backToReview?: boolean | undefined;
+  /** Page the user came from; shows a back button. */
+  backTo?: keyof typeof BACK | undefined;
+  /** Shows "Open in digital twin" (deep link that turns the twin to this tag). */
+  twinLink?: { scan: string; detection: string } | undefined;
+}) {
   const router = useRouter();
   const navigate = useNavigate();
-  // came here from the Review Queue: go back in history (keeps the browser back button consistent)
-  const backToQueue = () => (window.history.length > 1 ? router.history.back() : navigate({ to: "/review" }));
+  const back = BACK[backTo ?? (backToReview ? "review" : "floorplan")];
+  const showBack = Boolean(backTo ?? backToReview);
+  // go back in history (keeps the browser back button consistent), or to the page if opened directly
+  const goBack = () => (window.history.length > 1 ? router.history.back() : navigate({ to: back.to }));
   const { update, panorama, detections } = useStore();
   const live = detection ? detections.find((x) => x.id === detection.id) ?? detection : null;
+  // crop from the detection's own scan point: the store panorama is another scan when opened from the floor plan
+  const cropSrc = scanPoints.find((s) => s.id === live?.scanPointId)?.panorama ?? panorama;
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState("");
   const [form, setForm] = useState<{ entry: MaintenanceEntry | null; preset: FormPreset } | null>(null);
-  const crop = useCrop(panorama, live);
+  const crop = useCrop(cropSrc, live);
 
   useEffect(() => { setEditing(false); setText(live?.label ?? ""); setForm(null); }, [live?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -78,14 +102,19 @@ export function AssetSheet({ detection, onClose, backToReview = false }: { detec
     <Sheet open onOpenChange={(o) => !o && onClose()}>
       <SheetContent side="bottom" className="max-h-[85dvh] w-full overflow-x-hidden overflow-y-auto p-4 sm:inset-x-auto sm:inset-y-0 sm:right-0 sm:h-full sm:max-h-none sm:max-w-lg sm:border-l sm:border-t-0 sm:p-6 sm:data-[state=closed]:slide-out-to-right sm:data-[state=open]:slide-in-from-right">
         <SheetHeader>
-          {backToReview && (
-            <Button variant="ghost" size="sm" className="-ml-2 w-fit text-primary" onClick={backToQueue}>
-              <ArrowLeft className="mr-1 h-4 w-4" /> Back to review queue
+          {showBack && (
+            <Button variant="ghost" size="sm" className="-ml-2 w-fit text-primary" onClick={goBack}>
+              <ArrowLeft className="mr-1 h-4 w-4" /> {back.label}
             </Button>
           )}
           <div className="flex items-center gap-2">
             {live.status === "confirmed" && <Badge className="bg-primary">Confirmed</Badge>}
             {instance && <Badge variant="outline" className="font-mono">{instance.id}</Badge>}
+            {twinLink && (
+              <Button variant="outline" size="sm" className="ml-auto mr-8 min-h-11 sm:min-h-0" onClick={() => navigate({ to: "/twin", search: { ...twinLink, from: "floorplan" } })}>
+                <Box className="mr-1 h-4 w-4" /> Open in digital twin
+              </Button>
+            )}
           </div>
           <SheetTitle className="text-xl">{name}</SheetTitle>
           <SheetDescription>{type?.manufacturer ?? asset?.manufacturer}</SheetDescription>

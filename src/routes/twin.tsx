@@ -15,14 +15,14 @@ import type { Detection } from "@/data/detections";
 
 const PanoramaViewer = lazy(() => import("@/components/PanoramaViewer"));
 
-/** Deep link, e.g. /twin?scan=scan-06&detection=d14&from=review (all optional). */
-type TwinSearch = { scan?: string; detection?: string; from?: "review" };
+/** Deep link, e.g. /twin?scan=scan-06&detection=d14&from=review (all optional). from = page the back button returns to. */
+type TwinSearch = { scan?: string; detection?: string; from?: "review" | "floorplan" };
 
 export const Route = createFileRoute("/twin")({
   validateSearch: (s: Record<string, unknown>): TwinSearch => ({
     ...(typeof s["scan"] === "string" ? { scan: s["scan"] } : {}),
     ...(typeof s["detection"] === "string" ? { detection: s["detection"] } : {}),
-    ...(s["from"] === "review" ? { from: "review" as const } : {}),
+    ...(s["from"] === "review" || s["from"] === "floorplan" ? { from: s["from"] } : {}),
   }),
   head: () => ({
     meta: [
@@ -105,7 +105,7 @@ function TwinPage() {
           </Suspense>
         </ClientOnly>
       </Card>
-      <AssetSheet detection={selected} onClose={() => setSelected(null)} backToReview={search.from === "review"} />
+      <AssetSheet detection={selected} onClose={() => setSelected(null)} backTo={search.from} />
     </>
   );
 }
