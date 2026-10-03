@@ -1,0 +1,13 @@
+Review Queue rows: 12, with twin link: 12
+  ok   position link has an icon, colour oklch(0.68 0.15 236)
+  ok   picked rows from scan points scan-06, scan-04, scan-10
+Row 1: Scan point 06 · 27% · OCR "Not readable" -> /twin?scan=scan-06&detection=d31&from=review
+  ok   URL /twin?scan=scan-06&detection=d31&from=review
+  ok   side panel opened automatically and shows 27%
+  ok   side panel has 'Back to review queue'
+FAILED: locator.innerText: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('combobox').first()
+
+page errors: none
+RESULT: FAIL

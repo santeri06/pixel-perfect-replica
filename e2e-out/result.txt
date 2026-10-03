@@ -1,0 +1,9 @@
+0. Dashboard before: Overdue maintenance 1, Open notices 1
+1. Digital Twin scan-04: tag opened DEMO-REL-01; card shows overdue=true, history entries visible=true
+2. Field App: entry saved to DEMO-REL-01 after device confirmation
+3. AutoTag card updated WITHOUT reload after 5 ms; overdue now=false
+4. After page reload the entry is still visible
+5. Other relay DEMO-REL-04: entry not shown (correct)
+6. Dashboard after: Overdue maintenance 0, Open notices 1
+page errors: none
+RESULT: PASS
