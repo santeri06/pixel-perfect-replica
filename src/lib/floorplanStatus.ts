@@ -156,3 +156,15 @@ export function registryDevices(
     ];
   });
 }
+
+/** Tooltip / aria lines of a device marker (same text in the 2D and 3D floor plan). */
+export function markerLines(d: LiveDevice): string[] {
+  const seen = d.device.scanPointIds.length;
+  return [
+    deviceName(d),
+    `Seen from ${seen} scan point${seen === 1 ? "" : "s"} · ${Math.round(d.device.confidenceMax * 100)}%`,
+    ...(d.device.method === "triangulation" ? ["Position: triangulated"] : []),
+    ...(d.overdue ? ["Maintenance overdue"] : []),
+    ...(d.openCount ? [`${d.openCount} open notice${d.openCount === 1 ? "" : "s"}`] : []),
+  ];
+}

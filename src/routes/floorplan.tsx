@@ -1,5 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState, type CSSProperties } from "react";
+import { ClientOnly, createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { lazy, Suspense, useMemo, useState, type CSSProperties } from "react";
 import { MapPin } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +8,7 @@ import { PageHeader } from "@/components/AppShell";
 import { AssetSheet } from "@/components/AssetSheet";
 import { FloorPlanMap } from "@/components/FloorPlanMap";
 import { approximateLayout, floorPlan } from "@/lib/floorplan";
+import { layout3d } from "@/lib/floorplan3d";
 import {
   deviceName,
   liveDevices,
@@ -22,6 +23,8 @@ import { useStore } from "@/lib/store";
 import { useMaintenanceFile } from "@/lib/useMaintenance";
 import { instances } from "@/data/registry";
 import panoramas from "@/data/panoramas.json";
+
+const FloorPlan3D = lazy(() => import("@/components/FloorPlan3D"));
 
 export const Route = createFileRoute("/floorplan")({
   head: () => ({
@@ -58,6 +61,7 @@ function FloorPlanPage() {
   const [filter, setFilter] = useState<FloorFilter>("all");
   const [hovered, setHovered] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  const [mode, setMode] = useState<"3d" | "2d">(floorPlan && layout3d ? "3d" : "2d");
 
   // without floorplan.json: scan points + registered relays on a metre grid, clearly marked approximate
   const plan = floorPlan ?? approximateLayout(panoramas, instances);
@@ -77,6 +81,8 @@ function FloorPlanPage() {
           : (a.status === "review" ? 1 : 0) - (b.status === "review" ? 1 : 0) ||
             a.device.id.localeCompare(b.device.id),
   );
+  // the same number on the map badge and in the list
+  const numbers = new Map(listed.map((d, i) => [d.device.id, i + 1]));
   const sel = devices.find((d) => d.device.id === selected) ?? null;
   const selDetection = sel ? (panelDetection(sel) ?? null) : null;
   const unlocated = (floorPlan?.unlocated ?? []).filter(
@@ -88,7 +94,7 @@ function FloorPlanPage() {
     <>
       <PageHeader
         title="Floor plan"
-        subtitle={`Helsinki Substation 01 · Switchgear room B · ${floorPlan ? "top view from the point cloud" : "approximate layout"}`}
+        subtitle={`Helsinki Substation 01 · Switchgear room B · ${floorPlan ? (layout3d ? "3D model from the point cloud" : "top view from the point cloud") : "approximate layout"}`}
       />
 
       <div className="mb-4 flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-between">
@@ -122,25 +128,45 @@ function FloorPlanPage() {
             Example data
           </Badge>
         </div>
-        <ToggleGroup
-          type="single"
-          value={filter}
-          onValueChange={(v) => v && setFilter(v as FloorFilter)}
-          variant="outline"
-          size="sm"
-          aria-label="Highlight relays"
-          className="justify-start"
-        >
-          <ToggleGroupItem value="all" className="min-h-11 md:min-h-0">
-            All
-          </ToggleGroupItem>
-          <ToggleGroupItem value="review" className="min-h-11 md:min-h-0">
-            Needs review
-          </ToggleGroupItem>
-          <ToggleGroupItem value="overdue" className="min-h-11 md:min-h-0">
-            Overdue
-          </ToggleGroupItem>
-        </ToggleGroup>
+        <div className="flex flex-wrap items-center gap-2">
+          {floorPlan && layout3d && (
+            <ToggleGroup
+              type="single"
+              value={mode}
+              onValueChange={(v) => v && setMode(v as "3d" | "2d")}
+              variant="outline"
+              size="sm"
+              aria-label="Floor plan view"
+              className="justify-start"
+            >
+              <ToggleGroupItem value="3d" className="min-h-11 md:min-h-0">
+                3D
+              </ToggleGroupItem>
+              <ToggleGroupItem value="2d" className="min-h-11 md:min-h-0">
+                2D
+              </ToggleGroupItem>
+            </ToggleGroup>
+          )}
+          <ToggleGroup
+            type="single"
+            value={filter}
+            onValueChange={(v) => v && setFilter(v as FloorFilter)}
+            variant="outline"
+            size="sm"
+            aria-label="Highlight relays"
+            className="justify-start"
+          >
+            <ToggleGroupItem value="all" className="min-h-11 md:min-h-0">
+              All
+            </ToggleGroupItem>
+            <ToggleGroupItem value="review" className="min-h-11 md:min-h-0">
+              Needs review
+            </ToggleGroupItem>
+            <ToggleGroupItem value="overdue" className="min-h-11 md:min-h-0">
+              Overdue
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
       </div>
 
       {!floorPlan && (
@@ -158,7 +184,27 @@ function FloorPlanPage() {
 
       <div className="grid min-w-0 gap-4 lg:grid-cols-[minmax(0,1fr)_340px]">
         <Card className="min-w-0 overflow-hidden p-2 md:p-4">
-          {plan ? (
+          {mode === "3d" && floorPlan && layout3d ? (
+            <div className="h-[calc(100vh-260px)] min-h-[480px]">
+              <ClientOnly fallback={<div className="h-full animate-pulse rounded-md bg-muted" />}>
+                <Suspense fallback={<div className="h-full animate-pulse rounded-md bg-muted" />}>
+                  <FloorPlan3D
+                    plan={floorPlan}
+                    layout={layout3d}
+                    devices={devices}
+                    numbers={numbers}
+                    filter={filter}
+                    selectedId={selected}
+                    hoveredId={hovered}
+                    onHover={setHovered}
+                    onSelect={(d) => setSelected(d.device.id)}
+                    onScan={toScan}
+                    onUnsupported={() => setMode("2d")}
+                  />
+                </Suspense>
+              </ClientOnly>
+            </div>
+          ) : plan ? (
             <FloorPlanMap
               plan={plan}
               devices={devices}
@@ -197,6 +243,7 @@ function FloorPlanPage() {
               <DeviceRow
                 key={d.device.id}
                 d={d}
+                n={numbers.get(d.device.id) ?? 0}
                 active={hovered === d.device.id || selected === d.device.id}
                 dim={!matchesFilter(d, filter)}
                 onHover={setHovered}
@@ -249,12 +296,14 @@ function FloorPlanPage() {
 
 function DeviceRow({
   d,
+  n,
   active,
   dim,
   onHover,
   onOpen,
 }: {
   d: LiveDevice;
+  n: number;
   active: boolean;
   dim: boolean;
   onHover: (id: string | null) => void;
@@ -274,8 +323,19 @@ function DeviceRow({
         onClick={onOpen}
       >
         <span className="flex w-full items-center justify-between gap-2">
-          <span className="truncate text-sm font-medium text-secondary-foreground">
-            {d.instance ? d.instance.functionalLocation : "Unregistered relay"}
+          <span className="flex min-w-0 items-center gap-2">
+            <span
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-white"
+              style={{
+                background: `var(${d.status === "review" ? "--warning" : d.status === "auto" ? "--success" : "--primary"})`,
+              }}
+              aria-hidden
+            >
+              {n}
+            </span>
+            <span className="truncate text-sm font-medium text-secondary-foreground">
+              {d.instance ? d.instance.functionalLocation : "Unregistered relay"}
+            </span>
           </span>
           <Badge className={`shrink-0 ${st.cls}`}>{st.label}</Badge>
         </span>

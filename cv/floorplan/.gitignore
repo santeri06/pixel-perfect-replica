@@ -2,3 +2,4 @@
 cache/
 *.npz
 *.e57
+!room_grid.npz
