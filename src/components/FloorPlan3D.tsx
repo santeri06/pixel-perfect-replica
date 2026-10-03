@@ -420,12 +420,23 @@ export default function FloorPlan3D({
     resize();
     place(POLAR_DEFAULT, AZIMUTH_DEFAULT, fitDistance());
     controls.update();
-    const ro = new ResizeObserver(() => resize());
+    // until the user moves the camera, keep the room framed when the size changes (rotate, resize)
+    let userMoved = false;
+    controls.addEventListener("start", () => (userMoved = true));
+    const ro = new ResizeObserver(() => {
+      resize();
+      if (!userMoved && !anim) {
+        place(POLAR_DEFAULT, AZIMUTH_DEFAULT, fitDistance());
+        controls.update();
+      }
+    });
     ro.observe(el);
 
     api.current = {
       reset: (top = false) =>
-        goTo(top ? 0.0001 : POLAR_DEFAULT, top ? 0 : AZIMUTH_DEFAULT, fitDistance()),
+        top
+          ? goTo(0.0001, 0, fitDistance() * 1.14 + 1.2)
+          : goTo(POLAR_DEFAULT, AZIMUTH_DEFAULT, fitDistance()),
       zoom: (f: number) => {
         const t = controls.target;
         const dir = camera.position.clone().sub(t);
@@ -687,7 +698,11 @@ export default function FloorPlan3D({
         </div>
       </div>
       <p className="pointer-events-none absolute bottom-2 left-3 rounded bg-card/80 px-2 py-1 text-[11px] text-muted-foreground">
-        Drag to tilt · right-drag to move · scroll to zoom · walls cut at {WALL_CUT} m
+        <span className="hidden md:inline">
+          Drag to tilt · right-drag to move · scroll to zoom ·{" "}
+        </span>
+        <span className="md:hidden">Drag to tilt · pinch to zoom · </span>
+        walls cut at {WALL_CUT} m
       </p>
     </div>
   );
