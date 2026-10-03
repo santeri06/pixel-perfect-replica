@@ -30,7 +30,7 @@ function Dashboard() {
       <PageHeader
         title="Helsinki Substation 01"
         subtitle="Automatic product & label recognition for the Matterport digital twin"
-        actions={<Button size="lg" onClick={startDemo}><PlayCircle className="mr-2 h-5 w-5" /> Demo mode</Button>}
+        actions={<Button size="lg" onClick={startDemo}><PlayCircle className="mr-2 h-5 w-5" /> Start demo</Button>}
       />
       <div className="grid gap-4 md:grid-cols-4">
         {[
