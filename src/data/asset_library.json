@@ -1,0 +1,90 @@
+{
+  "assetTypes": [
+    {
+      "assetTypeId": "relay-615",
+      "name": "Protection relay 615 series",
+      "manufacturer": "ABB",
+      "manufacturerDocs": [
+        { "title": "REF615 Technical manual", "url": "/docs/manual.pdf" },
+        { "title": "REF615 Operation manual", "url": "/docs/manual.pdf" },
+        { "title": "615 series Installation manual", "url": "/docs/manual.pdf" }
+      ]
+    },
+    {
+      "assetTypeId": "lv-section",
+      "name": "Low-voltage switchgear section",
+      "manufacturer": "ABB",
+      "manufacturerDocs": [{ "title": "MNS System guide", "url": "/docs/manual.pdf" }]
+    },
+    {
+      "assetTypeId": "breaker-emax",
+      "name": "Air circuit breaker",
+      "manufacturer": "ABB",
+      "manufacturerDocs": [
+        { "title": "Emax 2 Installation, operation and maintenance", "url": "/docs/manual.pdf" },
+        { "title": "Ekip trip unit manual", "url": "/docs/manual.pdf" }
+      ]
+    },
+    {
+      "assetTypeId": "meter-m4m",
+      "name": "Network analyzer / meter",
+      "manufacturer": "ABB",
+      "manufacturerDocs": [{ "title": "M4M 30 User manual", "url": "/docs/manual.pdf" }]
+    }
+  ],
+  "instances": [
+    {
+      "instanceId": "J03-REL-01",
+      "assetTypeId": "relay-615",
+      "location": "Kenno 3 / lähtö J03",
+      "serialNumber": "1VHR9F3A7712",
+      "lifecycleStatus": "Active",
+      "installDate": "2019-04-15",
+      "maintenanceHistory": [
+        { "date": "2026-06-12", "title": "Vuositarkastus", "note": "Lämpökuvaus OK, firmware päivitetty versioon 5.1." },
+        { "date": "2025-11-03", "title": "Laukaisukoe", "note": "Toisiokoestus hyväksytty." },
+        { "date": "2023-02-20", "title": "Asetteluiden päivitys", "note": "Ylivirta-asettelut muutettu verkkomuutoksen jälkeen." },
+        { "date": "2019-04-15", "title": "Käyttöönotto", "note": "Asennettu ja käyttöönotettu." }
+      ],
+      "spareParts": [
+        { "partNo": "1MRS050696", "description": "Power supply module", "stock": 6 },
+        { "partNo": "1MRS050711", "description": "Binary I/O card", "stock": 3 },
+        { "partNo": "1MRS120515", "description": "HMI display unit", "stock": 1 }
+      ],
+      "documents": [
+        { "title": "Kytkentäkaavio J03", "url": "/docs/wiring.pdf" },
+        { "title": "Asetustiedosto J03", "url": "/docs/settings.pdf" },
+        { "title": "Huoltoraportti 2026", "url": "/docs/maintenance.pdf" }
+      ]
+    },
+    {
+      "instanceId": "J03-ACB-01",
+      "assetTypeId": "breaker-emax",
+      "location": "Kenno 3 / lähtö J03",
+      "serialNumber": "E22N-0048813",
+      "lifecycleStatus": "Classic",
+      "installDate": "2019-04-15",
+      "maintenanceHistory": [
+        { "date": "2025-09-10", "title": "Koskettimien tarkastus", "note": "Kuluma normaali." }
+      ],
+      "spareParts": [
+        { "partNo": "1SDA073687", "description": "Shunt opening release", "stock": 4 },
+        { "partNo": "1SDA073999", "description": "Arcing contact kit", "stock": 0 }
+      ],
+      "documents": [{ "title": "Kytkentäkaavio J03", "url": "/docs/wiring.pdf" }]
+    },
+    {
+      "instanceId": "SWG-04",
+      "assetTypeId": "lv-section",
+      "location": "Rivi B",
+      "serialNumber": "MNS-2019-0412",
+      "lifecycleStatus": "Active",
+      "installDate": "2019-03-28",
+      "maintenanceHistory": [
+        { "date": "2025-05-14", "title": "Kiskoston kiristys", "note": "Kaikki liitokset kiristetty momenttiin." }
+      ],
+      "spareParts": [{ "partNo": "1TGE120011", "description": "Busbar support", "stock": 12 }],
+      "documents": [{ "title": "Pääkaavio SWG-04", "url": "/docs/wiring.pdf" }]
+    }
+  ]
+}
