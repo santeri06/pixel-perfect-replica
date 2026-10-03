@@ -5,9 +5,9 @@
       "name": "Protection relay 615 series",
       "manufacturer": "ABB",
       "manufacturerDocs": [
-        { "title": "REF615 Technical manual", "url": "/docs/manual.pdf" },
-        { "title": "REF615 Operation manual", "url": "/docs/manual.pdf" },
-        { "title": "615 series Installation manual", "url": "/docs/manual.pdf" }
+        { "title": "REF615 Product guide", "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf" },
+        { "title": "REF615 Application manual", "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf" },
+        { "title": "615 series Installation manual", "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf" }
       ]
     },
     {

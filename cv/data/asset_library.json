@@ -1,0 +1,56 @@
+[
+  {
+    "id": "relay-615",
+    "name": "Protection relay 615 series",
+    "category": "Protection & control",
+    "manufacturer": "ABB",
+    "identifiers": ["REF615", "RET615", "REM615", "RED615", "REU615", "615 series", "REF615 H", "Relion 615", "615"],
+    "documents": [
+      { "id": "relay-man", "title": "Product manual", "type": "manual", "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf" },
+      { "id": "relay-man-appl", "title": "Application manual", "type": "manual", "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf" },
+      { "id": "relay-man-inst", "title": "Installation manual", "type": "manual", "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf" },
+      { "id": "relay-wir", "title": "Wiring diagram", "type": "wiring", "url": "/docs/wiring.pdf" },
+      { "id": "relay-set", "title": "Settings file", "type": "settings", "url": "/docs/settings.pdf" },
+      { "id": "relay-mnt", "title": "Maintenance report 2025", "type": "maintenance", "url": "/docs/maintenance.pdf" }
+    ]
+  },
+  {
+    "id": "lv-section",
+    "name": "Low-voltage switchgear section",
+    "category": "Switchgear",
+    "manufacturer": "ABB",
+    "identifiers": ["MNS", "SWG-01", "SWG-04", "SWG-06", "LV SECTION"],
+    "documents": [
+      { "id": "lv-man", "title": "Product manual", "type": "manual", "url": "/docs/manual.pdf" },
+      { "id": "lv-wir", "title": "Wiring diagram", "type": "wiring", "url": "/docs/wiring.pdf" },
+      { "id": "lv-set", "title": "Settings file", "type": "settings", "url": "/docs/settings.pdf" },
+      { "id": "lv-mnt", "title": "Maintenance report 2025", "type": "maintenance", "url": "/docs/maintenance.pdf" }
+    ]
+  },
+  {
+    "id": "breaker-emax",
+    "name": "Air circuit breaker",
+    "category": "Breakers",
+    "manufacturer": "ABB",
+    "identifiers": ["EMAX2 E2.2", "E2.2N", "EMAX E1.2", "ACB"],
+    "documents": [
+      { "id": "acb-man", "title": "Product manual", "type": "manual", "url": "/docs/manual.pdf" },
+      { "id": "acb-wir", "title": "Wiring diagram", "type": "wiring", "url": "/docs/wiring.pdf" },
+      { "id": "acb-set", "title": "Settings file", "type": "settings", "url": "/docs/settings.pdf" },
+      { "id": "acb-mnt", "title": "Maintenance report 2025", "type": "maintenance", "url": "/docs/maintenance.pdf" }
+    ]
+  },
+  {
+    "id": "meter-m4m",
+    "name": "Network analyzer / meter",
+    "category": "Metering",
+    "manufacturer": "ABB",
+    "identifiers": ["M4M 30", "M4M30", "M2M", "ANALOG AMP 0-600A"],
+    "documents": [
+      { "id": "meter-man", "title": "Product manual", "type": "manual", "url": "/docs/manual.pdf" },
+      { "id": "meter-wir", "title": "Wiring diagram", "type": "wiring", "url": "/docs/wiring.pdf" },
+      { "id": "meter-set", "title": "Settings file", "type": "settings", "url": "/docs/settings.pdf" },
+      { "id": "meter-mnt", "title": "Maintenance report 2025", "type": "maintenance", "url": "/docs/maintenance.pdf" }
+    ]
+  }
+]

@@ -1,3 +1,5 @@
+import raw from "./detections.json";
+
 export interface Detection {
   id: string;
   assetTypeId: string;
@@ -8,21 +10,33 @@ export interface Detection {
   status: "auto" | "confirmed" | "rejected";
   position: string;
   instanceId?: string;
+  scanPointId?: string;
 }
 
-export const mockDetections: Detection[] = [
-  { id: "d1", assetTypeId: "relay-615", label: "REF615", confidence: 0.94, pitch: 26, yaw: 15, status: "auto", position: "SWG-04 / Panel 1", instanceId: "J03-REL-01" },
-  { id: "d2", assetTypeId: "breaker-emax", label: "EMAX2 E2.2", confidence: 0.88, pitch: -13, yaw: 14, status: "auto", position: "SWG-04 / Panel 1", instanceId: "J03-ACB-01" },
-  { id: "d3", assetTypeId: "meter-m4m", label: "M4M 3O", confidence: 0.72, pitch: 15, yaw: 7, status: "auto", position: "SWG-04 / Panel 1" },
-  { id: "d4", assetTypeId: "lv-section", label: "SWG-04", confidence: 0.91, pitch: 44, yaw: 15, status: "auto", position: "Row B", instanceId: "SWG-04" },
-  { id: "d5", assetTypeId: "relay-615", label: "RE?615", confidence: 0.63, pitch: 30, yaw: -163, status: "auto", position: "SWG-01 / Panel 1" },
-  { id: "d6", assetTypeId: "breaker-emax", label: "E2.2N", confidence: 0.83, pitch: -11, yaw: -164, status: "auto", position: "SWG-01 / Panel 1" },
-  { id: "d7", assetTypeId: "relay-615", label: "REF6l5", confidence: 0.44, pitch: 26, yaw: -125, status: "auto", position: "SWG-01 / Panel 2" },
-  { id: "d8", assetTypeId: "breaker-emax", label: "EMAX", confidence: 0.58, pitch: -11, yaw: -126, status: "auto", position: "SWG-01 / Panel 2" },
-  { id: "d9", assetTypeId: "relay-615", label: "REF615", confidence: 0.86, pitch: 28, yaw: 165, status: "auto", position: "SWG-06 / Panel 1" },
-  { id: "d10", assetTypeId: "breaker-emax", label: "E?.2", confidence: 0.39, pitch: -15, yaw: 165, status: "auto", position: "SWG-06 / Panel 1" },
-  { id: "d11", assetTypeId: "relay-615", label: "RET615", confidence: 0.81, pitch: 28, yaw: 135, status: "auto", position: "SWG-06 / Panel 2" },
-];
+/** Row format of detections.json, written by cv/infer.py. */
+interface CvDetection {
+  id: string;
+  scanPointId: string | null;
+  image: string;
+  assetTypeId: string | null;
+  ocrText: string;
+  confidence: number;
+  bbox: number[];
+  pitch: number | null;
+  yaw: number | null;
+}
+
+export const cvDetections: Detection[] = (raw as CvDetection[]).map((d) => ({
+  id: d.id,
+  assetTypeId: d.assetTypeId ?? "relay-615",
+  label: d.ocrText,
+  confidence: d.confidence,
+  pitch: d.pitch ?? 0,
+  yaw: d.yaw ?? 0,
+  status: "auto",
+  position: d.scanPointId ? `Scan point ${d.scanPointId.replace("scan-", "")}` : "",
+  ...(d.scanPointId ? { scanPointId: d.scanPointId } : {}),
+}));
 
 export const maintenanceHistory = [
   { date: "2026-06-12", title: "Annual inspection", note: "Thermal scan OK, firmware updated to 5.1." },

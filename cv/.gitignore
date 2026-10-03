@@ -1,0 +1,20 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Generated data, model weights and large image folders
+data/synthetic/
+data/backgrounds/
+data/test_scans/
+data/raw/
+runs/
+outputs/annotated/
+outputs/uploads/
+*.pt
+*.onnx
+*.pth
+
+# Panoramas: only equirect.jpg + index.json are committed
+outputs/panoramas/*/*.jpg
+!outputs/panoramas/*/equirect.jpg

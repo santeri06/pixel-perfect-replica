@@ -1,0 +1,452 @@
+[
+  {
+    "scanPointId": "scan-00",
+    "position": [
+      -0.01515436451882124,
+      -0.0081004174426198,
+      0.866147518157959
+    ],
+    "sourceImages": [
+      "cloud_0_000.jpg",
+      "cloud_0_001.jpg",
+      "cloud_0_002.jpg",
+      "cloud_0_003.jpg",
+      "cloud_0_004.jpg",
+      "cloud_0_005.jpg"
+    ],
+    "cubeMap": [
+      "scan-00/front.jpg",
+      "scan-00/right.jpg",
+      "scan-00/back.jpg",
+      "scan-00/left.jpg",
+      "scan-00/up.jpg",
+      "scan-00/down.jpg"
+    ],
+    "equirectangular": "scan-00/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-01",
+    "position": [
+      -2.4674768447875977,
+      -0.12950456142425537,
+      1.4516607522964478
+    ],
+    "sourceImages": [
+      "cloud_0_006.jpg",
+      "cloud_0_007.jpg",
+      "cloud_0_008.jpg",
+      "cloud_0_009.jpg",
+      "cloud_0_010.jpg",
+      "cloud_0_011.jpg"
+    ],
+    "cubeMap": [
+      "scan-01/front.jpg",
+      "scan-01/right.jpg",
+      "scan-01/back.jpg",
+      "scan-01/left.jpg",
+      "scan-01/up.jpg",
+      "scan-01/down.jpg"
+    ],
+    "equirectangular": "scan-01/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-02",
+    "position": [
+      -3.430894613265991,
+      -0.10521866381168365,
+      1.4505071640014648
+    ],
+    "sourceImages": [
+      "cloud_0_012.jpg",
+      "cloud_0_013.jpg",
+      "cloud_0_014.jpg",
+      "cloud_0_015.jpg",
+      "cloud_0_016.jpg",
+      "cloud_0_017.jpg"
+    ],
+    "cubeMap": [
+      "scan-02/front.jpg",
+      "scan-02/right.jpg",
+      "scan-02/back.jpg",
+      "scan-02/left.jpg",
+      "scan-02/up.jpg",
+      "scan-02/down.jpg"
+    ],
+    "equirectangular": "scan-02/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-03",
+    "position": [
+      -3.383488655090332,
+      -1.7345173358917236,
+      1.4493367671966553
+    ],
+    "sourceImages": [
+      "cloud_0_018.jpg",
+      "cloud_0_019.jpg",
+      "cloud_0_020.jpg",
+      "cloud_0_021.jpg",
+      "cloud_0_022.jpg",
+      "cloud_0_023.jpg"
+    ],
+    "cubeMap": [
+      "scan-03/front.jpg",
+      "scan-03/right.jpg",
+      "scan-03/back.jpg",
+      "scan-03/left.jpg",
+      "scan-03/up.jpg",
+      "scan-03/down.jpg"
+    ],
+    "equirectangular": "scan-03/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-04",
+    "position": [
+      -3.3183436393737793,
+      -3.057102680206299,
+      1.4504239559173584
+    ],
+    "sourceImages": [
+      "cloud_0_024.jpg",
+      "cloud_0_025.jpg",
+      "cloud_0_026.jpg",
+      "cloud_0_027.jpg",
+      "cloud_0_028.jpg",
+      "cloud_0_029.jpg"
+    ],
+    "cubeMap": [
+      "scan-04/front.jpg",
+      "scan-04/right.jpg",
+      "scan-04/back.jpg",
+      "scan-04/left.jpg",
+      "scan-04/up.jpg",
+      "scan-04/down.jpg"
+    ],
+    "equirectangular": "scan-04/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-05",
+    "position": [
+      -3.30376935005188,
+      -4.119055271148682,
+      1.4477933645248413
+    ],
+    "sourceImages": [
+      "cloud_0_030.jpg",
+      "cloud_0_031.jpg",
+      "cloud_0_032.jpg",
+      "cloud_0_033.jpg",
+      "cloud_0_034.jpg",
+      "cloud_0_035.jpg"
+    ],
+    "cubeMap": [
+      "scan-05/front.jpg",
+      "scan-05/right.jpg",
+      "scan-05/back.jpg",
+      "scan-05/left.jpg",
+      "scan-05/up.jpg",
+      "scan-05/down.jpg"
+    ],
+    "equirectangular": "scan-05/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-06",
+    "position": [
+      -3.289620876312256,
+      -4.981632232666016,
+      1.4463651180267334
+    ],
+    "sourceImages": [
+      "cloud_0_036.jpg",
+      "cloud_0_037.jpg",
+      "cloud_0_038.jpg",
+      "cloud_0_039.jpg",
+      "cloud_0_040.jpg",
+      "cloud_0_041.jpg"
+    ],
+    "cubeMap": [
+      "scan-06/front.jpg",
+      "scan-06/right.jpg",
+      "scan-06/back.jpg",
+      "scan-06/left.jpg",
+      "scan-06/up.jpg",
+      "scan-06/down.jpg"
+    ],
+    "equirectangular": "scan-06/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-07",
+    "position": [
+      -3.3077878952026367,
+      -5.849166393280029,
+      1.4462476968765259
+    ],
+    "sourceImages": [
+      "cloud_0_042.jpg",
+      "cloud_0_043.jpg",
+      "cloud_0_044.jpg",
+      "cloud_0_045.jpg",
+      "cloud_0_046.jpg",
+      "cloud_0_047.jpg"
+    ],
+    "cubeMap": [
+      "scan-07/front.jpg",
+      "scan-07/right.jpg",
+      "scan-07/back.jpg",
+      "scan-07/left.jpg",
+      "scan-07/up.jpg",
+      "scan-07/down.jpg"
+    ],
+    "equirectangular": "scan-07/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-08",
+    "position": [
+      -3.2889339923858643,
+      -6.64322566986084,
+      1.4449949264526367
+    ],
+    "sourceImages": [
+      "cloud_0_048.jpg",
+      "cloud_0_049.jpg",
+      "cloud_0_050.jpg",
+      "cloud_0_051.jpg",
+      "cloud_0_052.jpg",
+      "cloud_0_053.jpg"
+    ],
+    "cubeMap": [
+      "scan-08/front.jpg",
+      "scan-08/right.jpg",
+      "scan-08/back.jpg",
+      "scan-08/left.jpg",
+      "scan-08/up.jpg",
+      "scan-08/down.jpg"
+    ],
+    "equirectangular": "scan-08/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-09",
+    "position": [
+      -5.031010150909424,
+      -6.5904693603515625,
+      1.4513964653015137
+    ],
+    "sourceImages": [
+      "cloud_0_054.jpg",
+      "cloud_0_055.jpg",
+      "cloud_0_056.jpg",
+      "cloud_0_057.jpg",
+      "cloud_0_058.jpg",
+      "cloud_0_059.jpg"
+    ],
+    "cubeMap": [
+      "scan-09/front.jpg",
+      "scan-09/right.jpg",
+      "scan-09/back.jpg",
+      "scan-09/left.jpg",
+      "scan-09/up.jpg",
+      "scan-09/down.jpg"
+    ],
+    "equirectangular": "scan-09/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-10",
+    "position": [
+      -5.041327953338623,
+      -5.561964988708496,
+      1.4429535865783691
+    ],
+    "sourceImages": [
+      "cloud_0_060.jpg",
+      "cloud_0_061.jpg",
+      "cloud_0_062.jpg",
+      "cloud_0_063.jpg",
+      "cloud_0_064.jpg",
+      "cloud_0_065.jpg"
+    ],
+    "cubeMap": [
+      "scan-10/front.jpg",
+      "scan-10/right.jpg",
+      "scan-10/back.jpg",
+      "scan-10/left.jpg",
+      "scan-10/up.jpg",
+      "scan-10/down.jpg"
+    ],
+    "equirectangular": "scan-10/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-11",
+    "position": [
+      -5.020389556884766,
+      -4.4829206466674805,
+      1.4427616596221924
+    ],
+    "sourceImages": [
+      "cloud_0_066.jpg",
+      "cloud_0_067.jpg",
+      "cloud_0_068.jpg",
+      "cloud_0_069.jpg",
+      "cloud_0_070.jpg",
+      "cloud_0_071.jpg"
+    ],
+    "cubeMap": [
+      "scan-11/front.jpg",
+      "scan-11/right.jpg",
+      "scan-11/back.jpg",
+      "scan-11/left.jpg",
+      "scan-11/up.jpg",
+      "scan-11/down.jpg"
+    ],
+    "equirectangular": "scan-11/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-12",
+    "position": [
+      -5.03441858291626,
+      -3.4823226928710938,
+      1.4400089979171753
+    ],
+    "sourceImages": [
+      "cloud_0_072.jpg",
+      "cloud_0_073.jpg",
+      "cloud_0_074.jpg",
+      "cloud_0_075.jpg",
+      "cloud_0_076.jpg",
+      "cloud_0_077.jpg"
+    ],
+    "cubeMap": [
+      "scan-12/front.jpg",
+      "scan-12/right.jpg",
+      "scan-12/back.jpg",
+      "scan-12/left.jpg",
+      "scan-12/up.jpg",
+      "scan-12/down.jpg"
+    ],
+    "equirectangular": "scan-12/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-13",
+    "position": [
+      -5.037770748138428,
+      -2.4686591625213623,
+      1.4405021667480469
+    ],
+    "sourceImages": [
+      "cloud_0_078.jpg",
+      "cloud_0_079.jpg",
+      "cloud_0_080.jpg",
+      "cloud_0_081.jpg",
+      "cloud_0_082.jpg",
+      "cloud_0_083.jpg"
+    ],
+    "cubeMap": [
+      "scan-13/front.jpg",
+      "scan-13/right.jpg",
+      "scan-13/back.jpg",
+      "scan-13/left.jpg",
+      "scan-13/up.jpg",
+      "scan-13/down.jpg"
+    ],
+    "equirectangular": "scan-13/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-14",
+    "position": [
+      -4.975086688995361,
+      -1.4700604677200317,
+      1.4400570392608643
+    ],
+    "sourceImages": [
+      "cloud_0_084.jpg",
+      "cloud_0_085.jpg",
+      "cloud_0_086.jpg",
+      "cloud_0_087.jpg",
+      "cloud_0_088.jpg",
+      "cloud_0_089.jpg"
+    ],
+    "cubeMap": [
+      "scan-14/front.jpg",
+      "scan-14/right.jpg",
+      "scan-14/back.jpg",
+      "scan-14/left.jpg",
+      "scan-14/up.jpg",
+      "scan-14/down.jpg"
+    ],
+    "equirectangular": "scan-14/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-15",
+    "position": [
+      -5.040219306945801,
+      -0.08921631425619125,
+      1.4432871341705322
+    ],
+    "sourceImages": [
+      "cloud_0_090.jpg",
+      "cloud_0_091.jpg",
+      "cloud_0_092.jpg",
+      "cloud_0_093.jpg",
+      "cloud_0_094.jpg",
+      "cloud_0_095.jpg"
+    ],
+    "cubeMap": [
+      "scan-15/front.jpg",
+      "scan-15/right.jpg",
+      "scan-15/back.jpg",
+      "scan-15/left.jpg",
+      "scan-15/up.jpg",
+      "scan-15/down.jpg"
+    ],
+    "equirectangular": "scan-15/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-16",
+    "position": [
+      -6.930593967437744,
+      -0.16813775897026062,
+      1.4389488697052002
+    ],
+    "sourceImages": [
+      "cloud_0_096.jpg",
+      "cloud_0_097.jpg",
+      "cloud_0_098.jpg",
+      "cloud_0_099.jpg",
+      "cloud_0_100.jpg",
+      "cloud_0_101.jpg"
+    ],
+    "cubeMap": [
+      "scan-16/front.jpg",
+      "scan-16/right.jpg",
+      "scan-16/back.jpg",
+      "scan-16/left.jpg",
+      "scan-16/up.jpg",
+      "scan-16/down.jpg"
+    ],
+    "equirectangular": "scan-16/equirect.jpg"
+  },
+  {
+    "scanPointId": "scan-17",
+    "position": [
+      -8.541842460632324,
+      -0.253525972366333,
+      1.450056791305542
+    ],
+    "sourceImages": [
+      "cloud_0_102.jpg",
+      "cloud_0_103.jpg",
+      "cloud_0_104.jpg",
+      "cloud_0_105.jpg",
+      "cloud_0_106.jpg",
+      "cloud_0_107.jpg"
+    ],
+    "cubeMap": [
+      "scan-17/front.jpg",
+      "scan-17/right.jpg",
+      "scan-17/back.jpg",
+      "scan-17/left.jpg",
+      "scan-17/up.jpg",
+      "scan-17/down.jpg"
+    ],
+    "equirectangular": "scan-17/equirect.jpg"
+  }
+]

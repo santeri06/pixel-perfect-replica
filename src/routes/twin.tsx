@@ -8,7 +8,9 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { PageHeader } from "@/components/AppShell";
 import { AssetSheet } from "@/components/AssetSheet";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useStore, needsReview } from "@/lib/store";
+import { scanPoints } from "@/lib/api";
 import type { Detection } from "@/data/detections";
 
 const PanoramaViewer = lazy(() => import("@/components/PanoramaViewer"));
@@ -26,11 +28,12 @@ export const Route = createFileRoute("/twin")({
 });
 
 function TwinPage() {
-  const { detections, panorama, setPanorama, loading } = useStore();
+  const { detections, panorama, setPanorama, scanPointId, setScanPoint, loading } = useStore();
   const [show, setShow] = useState(true);
   const [selected, setSelected] = useState<Detection | null>(null);
   const input = useRef<HTMLInputElement>(null);
-  const visible = detections.filter((d) => d.status !== "rejected");
+  const active = detections.filter((d) => d.status !== "rejected");
+  const visible = active.filter((d) => d.scanPointId === scanPointId);
   const review = visible.filter(needsReview).length;
   const auto = visible.length - review;
 
@@ -41,6 +44,16 @@ function TwinPage() {
         subtitle="Helsinki Substation 01 · Switchgear room B"
         actions={
           <div className="flex items-center gap-4">
+            <Select value={scanPointId} onValueChange={setScanPoint}>
+              <SelectTrigger className="w-52"><SelectValue placeholder="Scan point" /></SelectTrigger>
+              <SelectContent>
+                {scanPoints.map((s) => (
+                  <SelectItem key={s.id} value={s.id}>
+                    Scan point {s.id.replace("scan-", "")} · {active.filter((d) => d.scanPointId === s.id).length} tags
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <div className="flex items-center gap-2"><Switch id="show" checked={show} onCheckedChange={setShow} /><Label htmlFor="show">Show auto-tags</Label></div>
             <Button variant="outline" onClick={() => input.current?.click()}><Upload className="mr-2 h-4 w-4" /> Upload panorama</Button>
             <input ref={input} type="file" accept="image/*" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) setPanorama(URL.createObjectURL(f)); }} />

@@ -1,19 +1,24 @@
 import Fuse from "fuse.js";
 import { assetLibrary, type AssetType } from "@/data/assets";
-import { mockDetections, type Detection } from "@/data/detections";
+import { cvDetections, type Detection } from "@/data/detections";
 import library from "@/data/asset_library.json";
+import panoramas from "@/data/panoramas.json";
 
 /**
- * Fetch detections for a site.
- * TODO: replace with real endpoint:
- *   const res = await fetch("/api/detect", { method: "POST", body: JSON.stringify({ siteId }) });
- *   return res.json();
+ * Detections for a site: the output of the CV pipeline (cv/outputs/detections.json).
+ * For live data, fetch GET /api/detections from cv/api.py instead.
  */
 export async function getDetections(siteId: string): Promise<Detection[]> {
   void siteId;
   await new Promise((r) => setTimeout(r, 400));
-  return mockDetections.map((d) => ({ ...d }));
+  return cvDetections.map((d) => ({ ...d }));
 }
+
+/** Scan points of the site, each with its equirectangular panorama. */
+export const scanPoints = panoramas.map((p) => ({
+  id: p.scanPointId,
+  panorama: `/panoramas/${p.equirectangular}`,
+}));
 
 export async function getAssetLibrary(): Promise<AssetType[]> {
   return assetLibrary;

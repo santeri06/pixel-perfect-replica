@@ -51,14 +51,16 @@ export default function PanoramaViewer({ image, detections, onSelect }: Props) {
       await import("pannellum/build/pannellum.js");
       if (cancelled || !ref.current) return;
       const p = (window as unknown as { pannellum: { viewer: (el: HTMLElement, cfg: unknown) => Viewer } }).pannellum;
+      // start the view on the strongest tag of this panorama
+      const best = [...detRef.current].sort((a, b) => b.confidence - a.confidence)[0];
       viewer.current = p.viewer(ref.current, {
         type: "equirectangular",
         panorama: image,
         autoLoad: true,
         showControls: true,
         hfov: 100,
-        yaw: 10,
-        pitch: 5,
+        yaw: best?.yaw ?? 10,
+        pitch: best?.pitch ?? 5,
         hotSpots: [],
       });
       ids.current = [];

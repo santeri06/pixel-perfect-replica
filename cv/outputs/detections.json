@@ -1,0 +1,2432 @@
+[
+  {
+    "id": "d1",
+    "scanPointId": "scan-00",
+    "image": "cloud_0_001.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.355,
+    "bbox": [
+      267,
+      1831,
+      198,
+      132
+    ],
+    "pitch": 3.73,
+    "yaw": -129.15,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d2",
+    "scanPointId": "scan-00",
+    "image": "cloud_0_002.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.268,
+    "bbox": [
+      2034,
+      1816,
+      199,
+      215
+    ],
+    "pitch": 4.39,
+    "yaw": 2.84,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d3",
+    "scanPointId": "scan-01",
+    "image": "cloud_0_007.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.438,
+    "bbox": [
+      1674,
+      2363,
+      313,
+      239
+    ],
+    "pitch": -11.69,
+    "yaw": -85.74,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d4",
+    "scanPointId": "scan-01",
+    "image": "cloud_0_007.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.274,
+    "bbox": [
+      3891,
+      2894,
+      204,
+      231
+    ],
+    "pitch": -17.8,
+    "yaw": -36.21,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d5",
+    "scanPointId": "scan-02",
+    "image": "cloud_0_013.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.379,
+    "bbox": [
+      1710,
+      2361,
+      342,
+      249
+    ],
+    "pitch": -11.28,
+    "yaw": -72.31,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d6",
+    "scanPointId": "scan-03",
+    "image": "cloud_0_019.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.444,
+    "bbox": [
+      2391,
+      2411,
+      337,
+      269
+    ],
+    "pitch": -12.45,
+    "yaw": -68.4,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d7",
+    "scanPointId": "scan-03",
+    "image": "cloud_0_019.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.404,
+    "bbox": [
+      651,
+      1592,
+      269,
+      163
+    ],
+    "pitch": 8.72,
+    "yaw": -114.48,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d8",
+    "scanPointId": "scan-03",
+    "image": "cloud_0_019.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.34,
+    "bbox": [
+      1625,
+      1634,
+      232,
+      158
+    ],
+    "pitch": 9.57,
+    "yaw": -91.37,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d9",
+    "scanPointId": "scan-03",
+    "image": "cloud_0_021.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "Gkoioi",
+    "confidence": 0.438,
+    "bbox": [
+      2668,
+      269,
+      170,
+      121
+    ],
+    "pitch": 37.51,
+    "yaw": 117.04,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d10",
+    "scanPointId": "scan-03",
+    "image": "cloud_0_022.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.318,
+    "bbox": [
+      3741,
+      1572,
+      260,
+      200
+    ],
+    "pitch": 7.34,
+    "yaw": -131.12,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d11",
+    "scanPointId": "scan-03",
+    "image": "cloud_0_023.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.414,
+    "bbox": [
+      374,
+      3706,
+      835,
+      390
+    ],
+    "pitch": -43.56,
+    "yaw": 130.92,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d12",
+    "scanPointId": "scan-04",
+    "image": "cloud_0_025.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.465,
+    "bbox": [
+      385,
+      1560,
+      321,
+      186
+    ],
+    "pitch": 8.97,
+    "yaw": -106.88,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d13",
+    "scanPointId": "scan-04",
+    "image": "cloud_0_025.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.364,
+    "bbox": [
+      1456,
+      1652,
+      229,
+      160
+    ],
+    "pitch": 9.15,
+    "yaw": -83.72,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d14",
+    "scanPointId": "scan-04",
+    "image": "cloud_0_025.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.34,
+    "bbox": [
+      2248,
+      1712,
+      193,
+      140
+    ],
+    "pitch": 8.25,
+    "yaw": -62.3,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d15",
+    "scanPointId": "scan-05",
+    "image": "cloud_0_033.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.405,
+    "bbox": [
+      363,
+      1615,
+      232,
+      153
+    ],
+    "pitch": 7.76,
+    "yaw": -126.0,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d16",
+    "scanPointId": "scan-05",
+    "image": "cloud_0_034.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.281,
+    "bbox": [
+      2,
+      1390,
+      312,
+      601
+    ],
+    "pitch": 8.79,
+    "yaw": -41.08,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d17",
+    "scanPointId": "scan-06",
+    "image": "cloud_0_038.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.311,
+    "bbox": [
+      1215,
+      3374,
+      2045,
+      722
+    ],
+    "pitch": -40.5,
+    "yaw": -177.25,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d18",
+    "scanPointId": "scan-06",
+    "image": "cloud_0_039.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.439,
+    "bbox": [
+      3093,
+      1681,
+      237,
+      149
+    ],
+    "pitch": 8.32,
+    "yaw": -63.76,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d19",
+    "scanPointId": "scan-06",
+    "image": "cloud_0_040.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.332,
+    "bbox": [
+      3819,
+      1524,
+      277,
+      340
+    ],
+    "pitch": 7.6,
+    "yaw": 39.91,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d20",
+    "scanPointId": "scan-06",
+    "image": "cloud_0_040.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.324,
+    "bbox": [
+      3426,
+      1754,
+      230,
+      157
+    ],
+    "pitch": 5.41,
+    "yaw": 32.95,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d21",
+    "scanPointId": "scan-07",
+    "image": "cloud_0_043.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615 ABB STn Aad Fiur",
+    "confidence": 0.959,
+    "bbox": [
+      1978,
+      1758,
+      654,
+      644
+    ],
+    "pitch": -1.8,
+    "yaw": 97.52,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d22",
+    "scanPointId": "scan-07",
+    "image": "cloud_0_043.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615 Mai AbE DADT PiCeUR",
+    "confidence": 0.952,
+    "bbox": [
+      1793,
+      624,
+      982,
+      654
+    ],
+    "pitch": 27.1,
+    "yaw": 97.65,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d23",
+    "scanPointId": "scan-07",
+    "image": "cloud_0_045.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.463,
+    "bbox": [
+      2832,
+      1685,
+      220,
+      149
+    ],
+    "pitch": 8.59,
+    "yaw": -66.13,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d24",
+    "scanPointId": "scan-07",
+    "image": "cloud_0_045.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.289,
+    "bbox": [
+      1922,
+      1659,
+      217,
+      156
+    ],
+    "pitch": 9.38,
+    "yaw": -90.29,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d25",
+    "scanPointId": "scan-07",
+    "image": "cloud_0_046.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "cc",
+    "confidence": 0.352,
+    "bbox": [
+      3492,
+      1596,
+      380,
+      308
+    ],
+    "pitch": 7.06,
+    "yaw": 39.17,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d26",
+    "scanPointId": "scan-08",
+    "image": "cloud_0_049.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "A#",
+    "confidence": 0.446,
+    "bbox": [
+      1,
+      789,
+      260,
+      683
+    ],
+    "pitch": 18.55,
+    "yaw": 39.8,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d27",
+    "scanPointId": "scan-08",
+    "image": "cloud_0_049.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "4",
+    "confidence": 0.28,
+    "bbox": [
+      1,
+      1810,
+      254,
+      648
+    ],
+    "pitch": -1.31,
+    "yaw": 39.2,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d28",
+    "scanPointId": "scan-08",
+    "image": "cloud_0_052.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.429,
+    "bbox": [
+      3811,
+      1747,
+      285,
+      753
+    ],
+    "pitch": -0.99,
+    "yaw": 35.29,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d29",
+    "scanPointId": "scan-08",
+    "image": "cloud_0_052.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.336,
+    "bbox": [
+      0,
+      1653,
+      144,
+      179
+    ],
+    "pitch": 7.64,
+    "yaw": -51.63,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d30",
+    "scanPointId": "scan-08",
+    "image": "cloud_0_052.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.318,
+    "bbox": [
+      655,
+      1783,
+      147,
+      126
+    ],
+    "pitch": 6.32,
+    "yaw": -40.42,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d31",
+    "scanPointId": "scan-09",
+    "image": "cloud_0_055.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "015",
+    "confidence": 0.765,
+    "bbox": [
+      3716,
+      573,
+      380,
+      514
+    ],
+    "pitch": 22.64,
+    "yaw": -44.63,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d32",
+    "scanPointId": "scan-09",
+    "image": "cloud_0_056.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "ELCON",
+    "confidence": 0.298,
+    "bbox": [
+      2831,
+      1041,
+      1261,
+      1839
+    ],
+    "pitch": 1.8,
+    "yaw": 37.71,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d33",
+    "scanPointId": "scan-09",
+    "image": "cloud_0_057.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.438,
+    "bbox": [
+      1245,
+      2010,
+      177,
+      165
+    ],
+    "pitch": -0.69,
+    "yaw": 73.91,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d34",
+    "scanPointId": "scan-10",
+    "image": "cloud_0_061.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615 AB nt",
+    "confidence": 0.95,
+    "bbox": [
+      680,
+      514,
+      832,
+      533
+    ],
+    "pitch": 29.0,
+    "yaw": -113.67,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d35",
+    "scanPointId": "scan-11",
+    "image": "cloud_0_067.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "045 ABu",
+    "confidence": 0.477,
+    "bbox": [
+      618,
+      551,
+      828,
+      525
+    ],
+    "pitch": 28.03,
+    "yaw": -112.95,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d36",
+    "scanPointId": "scan-11",
+    "image": "cloud_0_067.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "G15",
+    "confidence": 0.792,
+    "bbox": [
+      3615,
+      595,
+      481,
+      485
+    ],
+    "pitch": 22.41,
+    "yaw": -45.82,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d37",
+    "scanPointId": "scan-11",
+    "image": "cloud_0_069.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.358,
+    "bbox": [
+      3124,
+      1781,
+      213,
+      144
+    ],
+    "pitch": 6.11,
+    "yaw": 122.6,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d38",
+    "scanPointId": "scan-12",
+    "image": "cloud_0_073.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615 AB# ELnI Fetid",
+    "confidence": 0.96,
+    "bbox": [
+      560,
+      517,
+      836,
+      536
+    ],
+    "pitch": 28.3,
+    "yaw": -113.94,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d39",
+    "scanPointId": "scan-12",
+    "image": "cloud_0_073.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615",
+    "confidence": 0.951,
+    "bbox": [
+      3609,
+      564,
+      487,
+      516
+    ],
+    "pitch": 22.48,
+    "yaw": -45.77,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d40",
+    "scanPointId": "scan-13",
+    "image": "cloud_0_079.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "ABB 615",
+    "confidence": 0.957,
+    "bbox": [
+      768,
+      559,
+      781,
+      549
+    ],
+    "pitch": 28.11,
+    "yaw": -114.71,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d41",
+    "scanPointId": "scan-13",
+    "image": "cloud_0_079.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "615",
+    "confidence": 0.895,
+    "bbox": [
+      3852,
+      452,
+      243,
+      616
+    ],
+    "pitch": 23.14,
+    "yaw": -48.69,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d42",
+    "scanPointId": "scan-14",
+    "image": "cloud_0_085.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "AbB 615",
+    "confidence": 0.954,
+    "bbox": [
+      877,
+      672,
+      714,
+      503
+    ],
+    "pitch": 26.23,
+    "yaw": -112.45,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d43",
+    "scanPointId": "scan-14",
+    "image": "cloud_0_085.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.372,
+    "bbox": [
+      3156,
+      2901,
+      940,
+      766
+    ],
+    "pitch": -27.14,
+    "yaw": -53.87,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d44",
+    "scanPointId": "scan-15",
+    "image": "cloud_0_091.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.462,
+    "bbox": [
+      2132,
+      2593,
+      496,
+      377
+    ],
+    "pitch": -20.69,
+    "yaw": -83.27,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  },
+  {
+    "id": "d45",
+    "scanPointId": "scan-17",
+    "image": "cloud_0_104.jpg",
+    "assetTypeId": "relay-615",
+    "ocrText": "",
+    "confidence": 0.354,
+    "bbox": [
+      1251,
+      3797,
+      1414,
+      299
+    ],
+    "pitch": -44.0,
+    "yaw": 0.94,
+    "documents": [
+      {
+        "id": "relay-man",
+        "title": "Product manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf"
+      },
+      {
+        "id": "relay-man-appl",
+        "title": "Application manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf"
+      },
+      {
+        "id": "relay-man-inst",
+        "title": "Installation manual",
+        "type": "manual",
+        "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf"
+      },
+      {
+        "id": "relay-wir",
+        "title": "Wiring diagram",
+        "type": "wiring",
+        "url": "/docs/wiring.pdf"
+      },
+      {
+        "id": "relay-set",
+        "title": "Settings file",
+        "type": "settings",
+        "url": "/docs/settings.pdf"
+      },
+      {
+        "id": "relay-mnt",
+        "title": "Maintenance report 2025",
+        "type": "maintenance",
+        "url": "/docs/maintenance.pdf"
+      }
+    ]
+  }
+]
