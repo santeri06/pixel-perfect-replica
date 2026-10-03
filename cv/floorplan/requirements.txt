@@ -1,0 +1,5 @@
+# Extra dependencies for cv/floorplan (install together with ../requirements.txt)
+pye57>=0.4
+numpy
+scipy>=1.11
+pillow>=10
