@@ -46,7 +46,7 @@ function ReviewPage() {
           <TableBody>
             {rows.length === 0 && <TableRow><TableCell colSpan={6} className="py-10 text-center text-muted-foreground">All caught up — nothing to review.</TableCell></TableRow>}
             {rows.map((d) => {
-              const m = matchAsset(d.label);
+              const m = d.label ? matchAsset(d.label) : null;
               return (
                 <TableRow key={d.id}>
                   <TableCell className="font-mono">
