@@ -1,6 +1,6 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { LayoutDashboard, Images, BrainCircuit, Box, ListChecks, Library, X, ArrowRight, BarChart3, Menu } from "lucide-react";
+import { LayoutDashboard, Images, BrainCircuit, Box, ListChecks, Library, X, ArrowRight, BarChart3, Menu, Map as MapIcon } from "lucide-react";
 import { useStore, needsReview } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -10,6 +10,7 @@ const nav = [
   { to: "/synthetic", label: "Synthetic Data", icon: Images },
   { to: "/training", label: "Training", icon: BrainCircuit },
   { to: "/twin", label: "Digital Twin", icon: Box },
+  { to: "/floorplan", label: "Floor plan", icon: MapIcon },
   { to: "/review", label: "Review Queue", icon: ListChecks },
   { to: "/assets", label: "Asset Library", icon: Library },
   { to: "/results", label: "Results", icon: BarChart3 },
