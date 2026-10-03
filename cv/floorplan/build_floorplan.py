@@ -91,7 +91,8 @@ def r3(v) -> float:
 
 
 def sha1_12(path: Path) -> str:
-    return hashlib.sha1(path.read_bytes()).hexdigest()[:12]
+    # normalise line endings so a Windows (CRLF) checkout gives the same hash as the repo (LF)
+    return hashlib.sha1(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()[:12]
 
 
 # ---------------------------------------------------------------- inputs
