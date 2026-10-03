@@ -1,0 +1,25 @@
+summary: 12 relays in this room · 7 auto-tagged · 5 need review · 1 overdue maintenancefrom 74 detections Example data
+  ok   markers 12 = relays 12
+  FAIL floor plan image loaded null
+devices:
+   Unregistered relay · 615 series, Seen from 1 scan point · 69%. Open details
+   Unregistered relay · 615 series, Seen from 1 scan point · 47%. Open details
+   Unregistered relay · 615 series, Seen from 1 scan point · 47%. Open details
+   Unregistered relay · 615 series, Seen from 1 scan point · 47%. Open details
+   Unregistered relay · 615 series, Seen from 9 scan points · 96%. Open details
+   SWG-B / Panel 05 · 615 series, Seen from 9 scan points · 95%. Open details
+   SWG-B / Panel 04 · REF615, Seen from 10 scan points · 96%. Open details
+   SWG-B / Panel 02 · RET615, Seen from 12 scan points · 95%, 1 open notice. Open details
+   Unregistered relay · 615 series, Seen from 1 scan point · 46%. Open details
+   SWG-B / Panel 03 · REM615, Seen from 11 scan points · 96%. Open details
+   SWG-B / Panel 01 · REF615, Seen from 8 scan points · 95%, Maintenance overdue. Open details
+   Unregistered relay · 615 series, Seen from 10 scan points · 96%. Open details
+  ok   Panel 01 (registered, overdue) is on the plan
+  ok   panel shows maintenance log + Open in digital twin
+  ok   label crop image rendered
+twin url: ?scan=scan-05&detection=d18&from=floorplan
+  ok   twin panel offers Back to floor plan
+  ok   back to floor plan
+  ok   Overdue filter highlights: SWG-B / Panel 01 · REF615, Seen from 8 scan points · 95%, Maintenance overdue. Open details
+page errors: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause chi
+RESULT: FAIL
