@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PageHeader, demoSteps } from "@/components/AppShell";
 import { useStore, needsReview } from "@/lib/store";
+import { MaintenanceSummary } from "@/components/MaintenanceSummary";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,6 +46,7 @@ function Dashboard() {
           </CardContent></Card>
         ))}
       </div>
+      <MaintenanceSummary />
 
       <Card className="mt-6">
         <CardHeader><CardTitle>Before / after: tagging one switchgear room</CardTitle></CardHeader>
