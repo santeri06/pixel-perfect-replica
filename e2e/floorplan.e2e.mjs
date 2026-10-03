@@ -26,7 +26,7 @@ try {
   const n = await page.locator(devSel).count();
   const N = Number(s0.match(/(\d+) relays in this room/)?.[1]);
   check(n === N, `markers ${n} = relays ${N}`);
-  const img = await page.$eval('img[src*="floorplan"]', (i) => ({ src: i.getAttribute("src"), w: i.naturalWidth })).catch(() => null);
+  const img = await page.$eval('svg image', async (i) => { const href = i.getAttribute('href'); const im = new Image(); im.src = href; await im.decode(); return { href, w: im.naturalWidth, h: im.naturalHeight }; }).catch((e) => null);
   check(!!img && img.w > 0, `floor plan image loaded ${JSON.stringify(img)}`);
   await page.screenshot({ path: "e2e-out/floorplan-overview.png" });
 
