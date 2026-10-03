@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { AUTO_TAG_CONFIDENCE, type Detection } from "@/data/detections";
 import { getDetections, scanPoints } from "@/lib/api";
+import { instances, scanPositions } from "@/data/registry";
+import { resolveInstance } from "@/lib/resolveInstance";
 
 interface Store {
   detections: Detection[];
@@ -31,7 +33,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    getDetections("site-helsinki-01").then((d) => {
+    getDetections("site-helsinki-01").then((raw) => {
+      // link every detection to a physical device of the register (type from image, device from position)
+      const d = raw.map((det) => {
+        const r = resolveInstance(det, instances, scanPositions);
+        return r.status === "linked" ? { ...det, instanceId: r.instance.id } : det;
+      });
       setDetections(d);
       setLoading(false);
       // open the scan point with the strongest detection

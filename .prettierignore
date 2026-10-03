@@ -6,3 +6,5 @@ pnpm-lock.yaml
 package-lock.json
 bun.lock
 routeTree.gen.ts
+src/data/registry.generated.json
+public/field/registry.json
