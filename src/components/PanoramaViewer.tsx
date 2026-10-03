@@ -59,6 +59,7 @@ export default function PanoramaViewer({ image, detections, onSelect }: Props) {
         hfov: 100,
         yaw: 10,
         pitch: 5,
+        hotSpots: [],
       });
       ids.current = [];
       sync();

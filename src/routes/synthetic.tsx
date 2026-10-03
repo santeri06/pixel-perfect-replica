@@ -129,8 +129,8 @@ function SyntheticPage() {
                   </div>
                   <div className="space-y-0.5 p-2 font-mono text-[10px] text-muted-foreground">
                     <div className="text-foreground">{v.name}</div>
-                    <div>rot {v.params.rotation}° · scale {v.params.scale} · skew {v.params.skewX}</div>
-                    <div>bri {v.params.brightness}% · con {v.params.contrast}% · occ {v.params.occlusions}</div>
+                    <div>rot {v.params["rotation"]}° · scale {v.params["scale"]} · skew {v.params["skewX"]}</div>
+                    <div>bri {v.params["brightness"]}% · con {v.params["contrast"]}% · occ {v.params["occlusions"]}</div>
                   </div>
                 </Card>
               ))}

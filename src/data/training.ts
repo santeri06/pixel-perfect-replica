@@ -17,7 +17,7 @@ export const trainingCurve = Array.from({ length: 30 }, (_, i) => {
 
 // box in % of image (x, y, w, h)
 export const examplePredictions = [
-  { id: "p1", label: "Protection relay 615", ocr: "REF615", confidence: 0.94, box: [50.5, 30, 5.5, 8] },
-  { id: "p2", label: "Air circuit breaker", ocr: "EMAX2 E2.2", confidence: 0.88, box: [51, 51, 5.8, 13] },
-  { id: "p3", label: "Protection relay 615", ocr: "RE?615", confidence: 0.63, box: [1.5, 29, 6, 8] },
+  { id: "p1", label: "Protection relay 615", ocr: "REF615", confidence: 0.94, box: [50.5, 30, 5.5, 8] as [number, number, number, number] },
+  { id: "p2", label: "Air circuit breaker", ocr: "EMAX2 E2.2", confidence: 0.88, box: [51, 51, 5.8, 13] as [number, number, number, number] },
+  { id: "p3", label: "Protection relay 615", ocr: "RE?615", confidence: 0.63, box: [1.5, 29, 6, 8] as [number, number, number, number] },
 ];
