@@ -1,0 +1,4 @@
+- [ ] Mobile navigation and shared spacing
+- [ ] Mobile dashboard, results, review, assets, synthetic and training layouts
+- [ ] Mobile digital twin controls, pins and detail sheet
+- [ ] Verify at 375 px, 430 px and 1440 px
