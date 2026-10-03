@@ -40,9 +40,3 @@ export const cvDetections: Detection[] = (raw as CvDetection[]).map((d) => ({
   position: d.scanPointId ? `Scan point ${d.scanPointId.replace("scan-", "")}` : "",
   ...(d.scanPointId ? { scanPointId: d.scanPointId } : {}),
 }));
-
-export const maintenanceHistory = [
-  { date: "2026-06-12", title: "Annual inspection", note: "Thermal scan OK, firmware updated to 5.1." },
-  { date: "2025-11-03", title: "Trip test", note: "Secondary injection test passed." },
-  { date: "2024-09-21", title: "Installation", note: "Commissioned by field service team." },
-];
