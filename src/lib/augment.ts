@@ -137,7 +137,7 @@ export async function generateVariants(img: HTMLImageElement, s: AugmentSettings
       const d = ctx.getImageData(0, 0, SIZE, SIZE);
       for (let i = 0; i < d.data.length; i += 4) {
         const g = (Math.random() + Math.random() + Math.random() - 1.5) * s.noise;
-        d.data[i] += g; d.data[i + 1] += g; d.data[i + 2] += g;
+        d.data[i] = d.data[i]! + g; d.data[i + 1] = d.data[i + 1]! + g; d.data[i + 2] = d.data[i + 2]! + g;
       }
       ctx.putImageData(d, 0, 0);
     }
@@ -158,7 +158,7 @@ export async function downloadZip(variants: Variant[], className: string) {
   const { default: JSZip } = await import("jszip");
   const zip = new JSZip();
   const imgs = zip.folder("images")!;
-  variants.forEach((v) => imgs.file(v.name, v.dataUrl.split(",")[1], { base64: true }));
+  variants.forEach((v) => imgs.file(v.name, v.dataUrl.split(",")[1]!, { base64: true }));
   zip.file(
     "labels.json",
     JSON.stringify(

@@ -58,13 +58,13 @@ function SyntheticPage() {
   const range = (label: string, k: "brightness" | "contrast" | "scale", min: number, max: number, step: number, unit = "") => (
     <div className="space-y-2">
       <div className="flex justify-between text-sm"><Label>{label}</Label><span className="text-muted-foreground">{s[k][0]}{unit} – {s[k][1]}{unit}</span></div>
-      <Slider min={min} max={max} step={step} value={s[k]} onValueChange={(v) => set(k, [v[0], v[1]] as [number, number])} />
+      <Slider min={min} max={max} step={step} value={s[k]} onValueChange={(v) => set(k, [v[0]!, v[1]!] as [number, number])} />
     </div>
   );
   const single = (label: string, k: "rotation" | "skew" | "noise" | "blur" | "occlusion" | "wear", min: number, max: number, step: number, unit = "") => (
     <div className="space-y-2">
       <div className="flex justify-between text-sm"><Label>{label}</Label><span className="text-muted-foreground">{s[k]}{unit}</span></div>
-      <Slider min={min} max={max} step={step} value={[s[k]]} onValueChange={(v) => set(k, v[0])} />
+      <Slider min={min} max={max} step={step} value={[s[k]]} onValueChange={(v) => set(k, v[0]!)} />
     </div>
   );
 

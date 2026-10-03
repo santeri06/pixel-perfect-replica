@@ -54,7 +54,7 @@ function TrainingPage() {
         {examplePredictions.map((p) => (
           <Card key={p.id} className="overflow-hidden">
             <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-              <div className="absolute inset-0" style={{ backgroundImage: "url(/panorama-switchgear.jpg)", backgroundSize: `${100 / (p.box[2] / 100) / 4}% auto`, backgroundPosition: `${(p.box[0] / (100 - p.box[2] * 4)) * 100}% ${p.box[1]}%` }} />
+              <div className="absolute inset-0" style={{ backgroundImage: "url(/panorama-switchgear.jpg)", backgroundSize: `${100 / (p.box[2]! / 100) / 4}% auto`, backgroundPosition: `${(p.box[0]! / (100 - p.box[2]! * 4)) * 100}% ${p.box[1]!}%` }} />
               <div className="absolute left-[37.5%] top-[30%] h-[40%] w-[25%] border-2 border-primary">
                 <span className="absolute -top-6 left-0 whitespace-nowrap rounded bg-primary px-1.5 py-0.5 text-[10px] font-semibold text-primary-foreground">{p.label} {Math.round(p.confidence * 100)}%</span>
               </div>

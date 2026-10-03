@@ -66,10 +66,10 @@ export function AppShell({ children }: { children: ReactNode }) {
           <p className="mt-1 text-sm">{step.text}</p>
           <div className="mt-4 flex justify-end gap-2">
             {demoStep! > 0 && (
-              <Button variant="outline" onClick={() => { setDemoStep(demoStep! - 1); navigate({ to: demoSteps[demoStep! - 1].to }); }}>Back</Button>
+              <Button variant="outline" onClick={() => { setDemoStep(demoStep! - 1); navigate({ to: demoSteps[demoStep! - 1]!.to }); }}>Back</Button>
             )}
             {demoStep! < demoSteps.length - 1 ? (
-              <Button onClick={() => { setDemoStep(demoStep! + 1); navigate({ to: demoSteps[demoStep! + 1].to }); }}>
+              <Button onClick={() => { setDemoStep(demoStep! + 1); navigate({ to: demoSteps[demoStep! + 1]!.to }); }}>
                 Next <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             ) : (

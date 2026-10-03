@@ -30,7 +30,7 @@ function ReviewPage() {
   const saveEdit = () => {
     if (!edit) return;
     const m = matchAsset(edit.text);
-    update(edit.id, { label: edit.text, assetTypeId: m?.asset.id ?? undefined, confidence: 1, status: "confirmed" });
+    update(edit.id, { label: edit.text, ...(m ? { assetTypeId: m.asset.id } : {}), confidence: 1, status: "confirmed" });
     toast.success(m ? `Matched “${edit.text}” → ${m.asset.name}` : "Tag updated");
     setEdit(null);
   };

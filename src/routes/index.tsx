@@ -23,7 +23,7 @@ function Dashboard() {
   const review = detections.filter(needsReview).length;
   const tagged = detections.filter((d) => d.status !== "rejected").length - review;
 
-  const startDemo = () => { setDemoStep(0); navigate({ to: demoSteps[0].to }); };
+  const startDemo = () => { setDemoStep(0); navigate({ to: demoSteps[0]!.to }); };
 
   return (
     <>
