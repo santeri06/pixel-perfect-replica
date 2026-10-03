@@ -11,3 +11,4 @@
 
 - Mock data lives in src/data and all data access goes through src/lib/api.ts, so a real detection API can replace the mocks in one place.
 - Shared detection/demo state lives in src/lib/store.tsx (React context) so the Review Queue and Digital Twin stay in sync.
+- Keep mobile navigation in AppShell and mobile-only data presentations beside their desktop views; this preserves existing desktop workflows while giving narrow screens usable controls.

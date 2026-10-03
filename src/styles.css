@@ -121,6 +121,7 @@
   animation: veo-focus 0.9s ease-out 3;
 }
 @media (max-width: 767px) {
+  .text-xs, .text-\[10px\] { font-size: 14px; }
   .pnlm-hotspot-base.veo-pin,
   .pnlm-hotspot-base.veo-pin.veo-focus { width: 44px; height: 44px; }
   .pnlm-zoom-controls { width: 44px; height: 88px; }
