@@ -358,11 +358,16 @@ export default function FloorPlan3D({
     controls.minAzimuthAngle = -AZIMUTH_LIMIT;
     controls.maxAzimuthAngle = AZIMUTH_LIMIT;
     controls.target.set(0, 0.8, 0);
-    const fitDistance = () => {
+    /** Distance that frames the room; the footprint is rotated by the view azimuth first. */
+    const fitDistance = (azimuth = AZIMUTH_DEFAULT) => {
       const aspect = camera.aspect || 1;
       const vfov = (FOV * Math.PI) / 180;
       const hfov = 2 * Math.atan(Math.tan(vfov / 2) * aspect);
-      return Math.max(d / 2 / Math.tan(vfov / 2), w / 2 / Math.tan(hfov / 2)) * 0.98 + 0.5;
+      const c = Math.abs(Math.cos(azimuth));
+      const sn = Math.abs(Math.sin(azimuth));
+      const wr = w * c + d * sn;
+      const dr = d * c + w * sn * 0.6; // the tilt foreshortens depth
+      return Math.max(dr / 2 / Math.tan(vfov / 2), wr / 2 / Math.tan(hfov / 2)) * 0.9 + 0.5;
     };
     const place = (polar: number, azimuth: number, dist: number) => {
       const t = controls.target;
