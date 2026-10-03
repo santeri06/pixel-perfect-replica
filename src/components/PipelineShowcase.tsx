@@ -34,9 +34,9 @@ export function SyntheticShowcase() {
 export function TrainingShowcase() {
   return (
     <div className="mb-8 grid min-w-0 gap-4 lg:grid-cols-2">
-      <Card className="lg:col-span-2">
+      <Card className="min-w-0 overflow-hidden lg:col-span-2">
         <CardHeader><CardTitle className="text-base">Training curves</CardTitle></CardHeader>
-        <CardContent className="overflow-x-auto"><DemoImage src="/demo/training_curves.png" alt="Training curves" className="max-md:min-w-[500px]" /></CardContent>
+        <CardContent className="min-w-0 overflow-x-auto"><DemoImage src="/demo/training_curves.png" alt="Training curves" className="max-md:min-w-[500px]" /></CardContent>
       </Card>
       <Card>
         <CardHeader><CardTitle className="text-base">Example predictions</CardTitle></CardHeader>
