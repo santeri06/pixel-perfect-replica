@@ -1,36 +1,85 @@
 # TEMPORARY - verifies feat/maintenance-log builds; this branch is deleted after the run.
+# Results are written as annotations (readable through the API) and compared with main.
 name: build-check
 on:
   push:
     branches: [ci/build-check]
 jobs:
-  build:
+  bun:
+    strategy:
+      fail-fast: false
+      matrix:
+        ref: [ci/build-check, main]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.ref }}
       - uses: oven-sh/setup-bun@v2
-      - name: Install (bun, frozen lockfile)
-        run: bun install --frozen-lockfile
-      - name: Build
-        run: bun run build
-      - name: Test (vitest)
-        run: bun run test
-      - name: Typecheck (informational)
-        run: npx tsc --noEmit -p tsconfig.json
+      - name: report helper
+        run: |
+          cat > /tmp/report.sh <<'EOS'
+          #!/usr/bin/env bash
+          # usage: report.sh <notice|error> <title> <logfile> [lines]
+          msg=$(tail -n "${4:-40}" "$3" | sed -e 's/%/%25/g' -e 's/\r//g' | sed ':a;N;$!ba;s/\n/%0A/g')
+          echo "::$1 title=$2::${msg}"
+          EOS
+          chmod +x /tmp/report.sh
+      - name: bun install
+        run: bun install --frozen-lockfile > install.log 2>&1 || { /tmp/report.sh error "bun install [${{ matrix.ref }}]" install.log; exit 1; }
+      - name: bun run build
+        run: |
+          if bun run build > build.log 2>&1; then /tmp/report.sh notice "bun run build OK [${{ matrix.ref }}]" build.log 6
+          else /tmp/report.sh error "bun run build FAILED [${{ matrix.ref }}]" build.log 60; exit 1; fi
+      - name: bun run test
+        run: |
+          if bun run test > test.log 2>&1; then /tmp/report.sh notice "bun run test OK [${{ matrix.ref }}]" test.log 12
+          else /tmp/report.sh error "bun run test FAILED [${{ matrix.ref }}]" test.log 80; exit 1; fi
+      - name: typecheck (informational)
         continue-on-error: true
-      - name: Lint (informational)
-        run: bun run lint
+        run: |
+          npx tsc --noEmit -p tsconfig.json > tsc.log 2>&1; code=$?
+          { grep -E "error TS" tsc.log | sed -E 's/\(.*//' | sort | uniq -c | sort -rn; echo "exit $code, $(grep -c 'error TS' tsc.log) errors"; } > tsc-files.log
+          /tmp/report.sh notice "tsc [${{ matrix.ref }}]" tsc-files.log 40
+          grep -E "error TS" tsc.log | grep -E "aintenance|registry|resolveInstance|AssetSheet|store\.tsx|routes/index|test/" > tsc-mine.log || echo "none" > tsc-mine.log
+          /tmp/report.sh notice "tsc errors in maintenance-related files [${{ matrix.ref }}]" tsc-mine.log 40
+      - name: lint (informational)
         continue-on-error: true
+        run: |
+          bun run lint > lint.log 2>&1; code=$?
+          { grep -E "^/" lint.log | sed "s#$PWD/##"; tail -n 2 lint.log; echo "exit $code"; } > lint-files.log
+          /tmp/report.sh notice "lint [${{ matrix.ref }}]" lint-files.log 45
+
   npm:
+    strategy:
+      fail-fast: false
+      matrix:
+        ref: [ci/build-check, main]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: report helper
+        run: |
+          cat > /tmp/report.sh <<'EOS'
+          #!/usr/bin/env bash
+          msg=$(tail -n "${4:-40}" "$3" | sed -e 's/%/%25/g' -e 's/\r//g' | sed ':a;N;$!ba;s/\n/%0A/g')
+          echo "::$1 title=$2::${msg}"
+          EOS
+          chmod +x /tmp/report.sh
       - name: npm install
-        run: npm install --no-audit --no-fund
+        run: |
+          if npm install --no-audit --no-fund > install.log 2>&1; then /tmp/report.sh notice "npm install OK [${{ matrix.ref }}]" install.log 4
+          else /tmp/report.sh error "npm install FAILED [${{ matrix.ref }}]" install.log 45; exit 1; fi
       - name: npm run build
-        run: npm run build
+        run: |
+          if npm run build > build.log 2>&1; then /tmp/report.sh notice "npm run build OK [${{ matrix.ref }}]" build.log 6
+          else /tmp/report.sh error "npm run build FAILED [${{ matrix.ref }}]" build.log 60; exit 1; fi
       - name: npm test
-        run: npm test
+        run: |
+          if npm test > test.log 2>&1; then /tmp/report.sh notice "npm test OK [${{ matrix.ref }}]" test.log 12
+          else /tmp/report.sh error "npm test FAILED [${{ matrix.ref }}]" test.log 80; exit 1; fi
