@@ -16,7 +16,7 @@ reference photo ─► generate_synthetic.py ─► train.py (YOLOv8n) ─► in
 | `data/backgrounds/` | background images (procedural textures are generated if empty) | no |
 | `data/raw/` | raw scan exports (`.e57`) | no |
 | `data/test_scans/` | Matterport images (real target domain) + `poses.json` | no |
-| `outputs/panoramas/` | web-sized panoramas per scan point (~27 MB) | yes |
+| `outputs/panoramas/` | web-sized panoramas per scan point (~27 MB); the frontend copy is in `public/panoramas/` | no |
 | `data/synthetic/` | generated YOLO dataset | no |
 | `data/asset_library.json` | mock asset types, identifiers, linked documents | yes |
 | `models/`, `runs/` | weights and training runs | no |

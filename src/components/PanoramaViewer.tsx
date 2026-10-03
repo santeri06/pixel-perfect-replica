@@ -11,6 +11,7 @@ interface Props {
 type Viewer = {
   addHotSpot: (h: unknown) => void;
   removeHotSpot: (id: string) => void;
+  on: (event: string, cb: () => void) => void;
   destroy: () => void;
 };
 
@@ -18,6 +19,7 @@ export default function PanoramaViewer({ image, detections, onSelect }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const viewer = useRef<Viewer | null>(null);
   const ids = useRef<string[]>([]);
+  const loaded = useRef(false);
   const selectRef = useRef(onSelect);
   selectRef.current = onSelect;
   const detRef = useRef(detections);
@@ -25,7 +27,7 @@ export default function PanoramaViewer({ image, detections, onSelect }: Props) {
 
   const sync = () => {
     const v = viewer.current;
-    if (!v) return;
+    if (!v || !loaded.current) return;
     ids.current.forEach((id) => v.removeHotSpot(id));
     ids.current = [];
     detRef.current.forEach((d) => {
@@ -64,10 +66,15 @@ export default function PanoramaViewer({ image, detections, onSelect }: Props) {
         hotSpots: [],
       });
       ids.current = [];
-      sync();
+      // hot spots added before the scene has loaded are rendered twice by Pannellum
+      viewer.current.on("load", () => {
+        loaded.current = true;
+        sync();
+      });
     })();
     return () => {
       cancelled = true;
+      loaded.current = false;
       viewer.current?.destroy();
       viewer.current = null;
     };

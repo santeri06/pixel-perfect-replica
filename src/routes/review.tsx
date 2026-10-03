@@ -37,7 +37,7 @@ function ReviewPage() {
 
   return (
     <>
-      <PageHeader title="Review Queue" subtitle="Detections below 80% confidence. Approved tags are confirmed in the Digital Twin." />
+      <PageHeader title="Review Queue" subtitle="Detections below 75% confidence. Approved tags are confirmed in the Digital Twin." />
       <Card className="p-0">
         <Table>
           <TableHeader>

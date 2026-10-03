@@ -57,4 +57,4 @@ export function useStore() {
 }
 
 export const confidenceLevel = (c: number) => (c >= 0.8 ? "high" : c >= 0.5 ? "mid" : "low");
-export const needsReview = (d: Detection) => d.status === "auto" && d.confidence < 0.8;
+export const needsReview = (d: Detection) => d.status === "review";

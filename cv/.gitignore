@@ -15,6 +15,5 @@ outputs/uploads/
 *.onnx
 *.pth
 
-# Panoramas: only equirect.jpg + index.json are committed
-outputs/panoramas/*/*.jpg
-!outputs/panoramas/*/equirect.jpg
+# Panoramas are generated; the frontend copy lives in public/panoramas
+outputs/panoramas/

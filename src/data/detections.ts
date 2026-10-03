@@ -7,7 +7,7 @@ export interface Detection {
   confidence: number;
   pitch: number;
   yaw: number;
-  status: "auto" | "confirmed" | "rejected";
+  status: "auto" | "review" | "confirmed" | "rejected";
   position: string;
   instanceId?: string;
   scanPointId?: string;
@@ -26,6 +26,9 @@ interface CvDetection {
   yaw: number | null;
 }
 
+/** Detections at or above this confidence are tagged automatically; the rest go to the review queue. */
+export const AUTO_TAG_CONFIDENCE = 0.75;
+
 export const cvDetections: Detection[] = (raw as CvDetection[]).map((d) => ({
   id: d.id,
   assetTypeId: d.assetTypeId ?? "relay-615",
@@ -33,7 +36,7 @@ export const cvDetections: Detection[] = (raw as CvDetection[]).map((d) => ({
   confidence: d.confidence,
   pitch: d.pitch ?? 0,
   yaw: d.yaw ?? 0,
-  status: "auto",
+  status: d.confidence >= AUTO_TAG_CONFIDENCE ? "auto" : "review",
   position: d.scanPointId ? `Scan point ${d.scanPointId.replace("scan-", "")}` : "",
   ...(d.scanPointId ? { scanPointId: d.scanPointId } : {}),
 }));
