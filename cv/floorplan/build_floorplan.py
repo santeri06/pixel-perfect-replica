@@ -440,14 +440,30 @@ def reprojection_check(sid: str, pts, rgb, origin, dets_here: list[dict], out_pn
 
 
 # ---------------------------------------------------------------- A4
-def find_floor(z: np.ndarray) -> float:
+def near_scan_points(xy: np.ndarray, scan_xy: np.ndarray, radius: float) -> np.ndarray:
+    """Mask of points within `radius` (xy) of any scan point: the scanned room, not what was seen
+    far away through doors and windows (those points stretched the first run to 56 x 109 m)."""
+    d, _ = cKDTree(scan_xy).query(xy, k=1, distance_upper_bound=radius)
+    return np.isfinite(d)
+
+
+def find_floor(z: np.ndarray, cam_z: np.ndarray | None = None) -> float:
+    """Floor = densest horizontal level 0.8-2.2 m below the median camera (the scanner stands on it).
+    Falls back to the lowest dense peak when the camera heights are unknown."""
     lo, hi = np.percentile(z, 0.1), np.percentile(z, 99.9)
     bins = np.arange(lo - 0.02, hi + 0.02, 0.01)
     h, e = np.histogram(z, bins)
     hs = np.convolve(h, np.ones(3) / 3, mode="same")
     thr = 0.25 * hs.max()
     peaks = [i for i in range(1, len(hs) - 1) if hs[i] >= thr and hs[i] >= hs[i - 1] and hs[i] >= hs[i + 1]]
-    z0 = (e[peaks[0]] + e[peaks[0] + 1]) / 2
+    pick = peaks[0]
+    if cam_z is not None and len(cam_z):
+        top = float(np.median(cam_z))
+        mids = (e[:-1] + e[1:]) / 2
+        cand = [i for i in range(1, len(hs) - 1) if 0.8 <= top - mids[i] <= 2.2 and hs[i] >= hs[i - 1] and hs[i] >= hs[i + 1]]
+        if cand:
+            pick = max(cand, key=lambda i: hs[i])
+    z0 = (e[pick] + e[pick + 1]) / 2
     near = z[np.abs(z - z0) <= 0.03]
     return float(np.median(near))
 
@@ -692,6 +708,8 @@ def main() -> int:
     ap.add_argument("--min-support", type=int, default=8)
     ap.add_argument("--eps", type=float, default=0.15)
     ap.add_argument("--obstacle-min-points", type=int, default=3)
+    ap.add_argument("--roi-radius", type=float, default=4.0,
+                    help="floor plan covers points within this xy distance (m) of a scan point")
     ap.add_argument("--headers-only", action="store_true", help="stage 0: print scan headers + pairing and stop")
     ap.add_argument("--report-dir", type=Path, default=HERE, help="where report.json and check*.png go")
     ap.add_argument("--pano-dir", type=Path, default=None, help="equirect.jpg folders for A3 (selftest only)")
@@ -772,15 +790,17 @@ def main() -> int:
         log("A3 FAILED: the point cloud does not line up with the panoramas. Fix geom.py (see report.json) - stopping.")
         return finish(3)
 
-    # ---- A4 floor + bounds
-    floor_z = find_floor(coarse[:, 2])
+    # ---- A4 floor + bounds (only the scanned room: points near the scan points)
+    S = np.array([[p[0], p[1]] for p in scan_pos.values()])
+    cam_z = np.array([p[2] for p in scan_pos.values()])
+    room = coarse[near_scan_points(coarse[:, :2], S, args.roi_radius)]
+    floor_z = find_floor(room[near_scan_points(room[:, :2], S, 1.5), 2], cam_z)
     cam_h = {k: r3(v[2] - floor_z) for k, v in scan_pos.items()}
     report["A4_floor"] = {"floorZ": r3(floor_z), "cameraHeightAboveFloor": cam_h,
                           "cameraHeightOutside1to1_8": [k for k, h in cam_h.items() if not 1.0 <= h <= 1.8]}
     log(f"  floor z = {floor_z:.3f}; camera heights outside 1.0-1.8 m: {report['A4_floor']['cameraHeightOutside1to1_8']}")
-    fl = coarse[np.abs(coarse[:, 2] - floor_z) <= 0.05]
+    fl = room[np.abs(room[:, 2] - floor_z) <= 0.05]
     lo, hi = np.percentile(fl[:, :2], 0.5, axis=0), np.percentile(fl[:, :2], 99.5, axis=0)
-    S = np.array([[p[0], p[1]] for p in scan_pos.values()])
     lo, hi = np.minimum(lo, S.min(0)), np.maximum(hi, S.max(0))
 
     # ---- A5 rays
@@ -860,10 +880,23 @@ def main() -> int:
     D = np.array([[d["x"], d["y"]] for d in devices]) if devices else S[:1]
     lo, hi = np.minimum(lo, D.min(0)) - 0.3, np.maximum(hi, D.max(0)) + 0.3
     bounds = {"xMin": r3(lo[0]), "xMax": r3(hi[0]), "yMin": r3(lo[1]), "yMax": r3(hi[1])}
-    inside = coarse[(coarse[:, 0] >= lo[0]) & (coarse[:, 0] <= hi[0]) & (coarse[:, 1] >= lo[1]) & (coarse[:, 1] <= hi[1])]
+    inside = room[(room[:, 0] >= lo[0]) & (room[:, 0] <= hi[0]) & (room[:, 1] >= lo[1]) & (room[:, 1] <= hi[1])]
     floor_m, obst_m, mpp, height, layer_info = floor_plan_layers(inside, floor_z, bounds, args.voxel, args.obstacle_min_points, args.width)
     spx = [geom.world_to_px(p[0], p[1], bounds, mpp) for p in scan_pos.values()]
-    blocked = [k for k, (x, y) in zip(scan_pos, spx) if obst_m[min(int(y), height - 1), min(int(x), args.width - 1)]]
+    # a scan point is blocked only if most of a 0.25 m disc around it is obstacle: the scanner's own
+    # tripod, seen from the neighbouring scans, marks a few pixels right at every scan position
+    r_px = max(1, int(round(0.25 / mpp)))
+    yy, xx = np.mgrid[-r_px:r_px + 1, -r_px:r_px + 1]
+    disc = (xx * xx + yy * yy) <= r_px * r_px
+
+    def is_blocked(x: float, y: float) -> bool:
+        cy, cx = int(y), int(x)
+        y0, y1, x0, x1 = cy - r_px, cy + r_px + 1, cx - r_px, cx + r_px + 1
+        if y0 < 0 or x0 < 0 or y1 > height or x1 > args.width:
+            return bool(obst_m[min(max(cy, 0), height - 1), min(max(cx, 0), args.width - 1)])
+        return float(obst_m[y0:y1, x0:x1][disc].mean()) > 0.5
+
+    blocked = [k for k, (x, y) in zip(scan_pos, spx) if is_blocked(x, y)]
     walk_ok = len(blocked) / len(scan_pos) < 0.05
     report["A4_floor"].update({"bounds": bounds, "metersPerPixel": round(mpp, 6), "sizePx": [args.width, height],
                                "layers": layer_info, "scanPointsOnObstacle": blocked})

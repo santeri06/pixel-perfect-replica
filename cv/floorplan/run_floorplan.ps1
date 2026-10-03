@@ -16,6 +16,9 @@ git pull --ff-only; Check "git pull"
 Write-Host "HEAD: $(git log --oneline -1)   main: $(git log --oneline -1 origin/main)"
 if (-not (Test-Path $e57)) { throw "Not found: $e57 (run setup_floorplan.ps1 first)" }
 if (-not (git check-ignore cv/data/raw/cloud_0.e57)) { throw "cloud_0.e57 is NOT git-ignored - stopping" }
+# commits need an author; set a repo-local one only if git has none (does not touch global config)
+if (-not (git config user.email)) { git config user.email "autotag-floorplan@users.noreply.github.com" }
+if (-not (git config user.name)) { git config user.name "autotag-floorplan" }
 
 Step "Python venv"
 Set-Location "$root\cv\floorplan"
