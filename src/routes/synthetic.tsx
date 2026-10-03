@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { PageHeader } from "@/components/AppShell";
+import { SyntheticShowcase } from "@/components/PipelineShowcase";
 import { generateVariants, downloadZip, loadImage, type AugmentSettings, type Variant } from "@/lib/augment";
 
 export const Route = createFileRoute("/synthetic")({
@@ -70,13 +71,17 @@ function SyntheticPage() {
 
   return (
     <>
-      <PageHeader
-        title="Synthetic Data Generator"
-        subtitle="Turn one reference photo into a labelled training dataset — runs fully in your browser."
-        actions={variants.length > 0 && (
+      <PageHeader title="Synthetic Data" subtitle="One reference image becomes a labelled training dataset." />
+      <SyntheticShowcase />
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h2 className="text-lg font-semibold text-secondary-foreground">Try it yourself</h2>
+          <p className="text-sm text-muted-foreground">Runs fully in your browser.</p>
+        </div>
+        {variants.length > 0 && (
           <Button onClick={() => downloadZip(variants, fileName)}><Download className="mr-2 h-4 w-4" /> Download ZIP ({variants.length} + labels.json)</Button>
         )}
-      />
+      </div>
       <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
         <div className="space-y-6">
           <Card>

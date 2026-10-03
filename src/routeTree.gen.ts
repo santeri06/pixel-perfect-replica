@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssetsRouteImport } from './routes/assets'
+import { Route as ResultsRouteImport } from './routes/results'
 import { Route as ReviewRouteImport } from './routes/review'
 import { Route as SyntheticRouteImport } from './routes/synthetic'
 import { Route as TrainingRouteImport } from './routes/training'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AssetsRoute = AssetsRouteImport.update({
   id: '/assets',
   path: '/assets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultsRoute = ResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReviewRoute = ReviewRouteImport.update({
@@ -50,6 +56,7 @@ const TwinRoute = TwinRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assets': typeof AssetsRoute
+  '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/synthetic': typeof SyntheticRoute
   '/training': typeof TrainingRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assets': typeof AssetsRoute
+  '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/synthetic': typeof SyntheticRoute
   '/training': typeof TrainingRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assets': typeof AssetsRoute
+  '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/synthetic': typeof SyntheticRoute
   '/training': typeof TrainingRoute
@@ -74,13 +83,28 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assets' | '/review' | '/synthetic' | '/training' | '/twin'
+  fullPaths:
+    | '/'
+    | '/assets'
+    | '/results'
+    | '/review'
+    | '/synthetic'
+    | '/training'
+    | '/twin'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assets' | '/review' | '/synthetic' | '/training' | '/twin'
+  to:
+    | '/'
+    | '/assets'
+    | '/results'
+    | '/review'
+    | '/synthetic'
+    | '/training'
+    | '/twin'
   id:
     | '__root__'
     | '/'
     | '/assets'
+    | '/results'
     | '/review'
     | '/synthetic'
     | '/training'
@@ -90,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssetsRoute: typeof AssetsRoute
+  ResultsRoute: typeof ResultsRoute
   ReviewRoute: typeof ReviewRoute
   SyntheticRoute: typeof SyntheticRoute
   TrainingRoute: typeof TrainingRoute
@@ -110,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/assets'
       fullPath: '/assets'
       preLoaderRoute: typeof AssetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/results': {
+      id: '/results'
+      path: '/results'
+      fullPath: '/results'
+      preLoaderRoute: typeof ResultsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/review': {
@@ -146,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssetsRoute: AssetsRoute,
+  ResultsRoute: ResultsRoute,
   ReviewRoute: ReviewRoute,
   SyntheticRoute: SyntheticRoute,
   TrainingRoute: TrainingRoute,
