@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ClientOnly } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
-import { Upload } from "lucide-react";
+import { Upload, List } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -38,6 +38,7 @@ export const Route = createFileRoute("/twin")({
 function TwinPage() {
   const { detections, panorama, setPanorama, scanPointId, setScanPoint, loading } = useStore();
   const [show, setShow] = useState(true);
+  const [showLegend, setShowLegend] = useState(false);
   const [selected, setSelected] = useState<Detection | null>(null);
   const [focus, setFocus] = useState<{ id: string; yaw: number; pitch: number; key: number } | null>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -69,9 +70,9 @@ function TwinPage() {
         title="Digital Twin"
         subtitle="Helsinki Substation 01 · Switchgear room B"
         actions={
-          <div className="flex items-center gap-4">
+          <div className="flex w-full flex-wrap items-center gap-2 md:w-auto md:gap-4">
             <Select value={scanPointId} onValueChange={setScanPoint}>
-              <SelectTrigger className="w-52"><SelectValue placeholder="Scan point" /></SelectTrigger>
+              <SelectTrigger className="h-11 w-full min-[430px]:w-52 md:h-9"><SelectValue placeholder="Scan point" /></SelectTrigger>
               <SelectContent>
                 {scanPoints.map((s) => (
                   <SelectItem key={s.id} value={s.id}>
@@ -80,19 +81,22 @@ function TwinPage() {
                 ))}
               </SelectContent>
             </Select>
-            <div className="flex items-center gap-2"><Switch id="show" checked={show} onCheckedChange={setShow} /><Label htmlFor="show">Show auto-tags</Label></div>
-            <Button variant="outline" onClick={() => input.current?.click()}><Upload className="mr-2 h-4 w-4" /> Upload panorama</Button>
+            <div className="flex min-h-11 items-center gap-2"><Switch id="show" checked={show} onCheckedChange={setShow} /><Label htmlFor="show">Show auto-tags</Label></div>
+            <Button variant="outline" className="min-h-11 md:min-h-0" onClick={() => input.current?.click()}><Upload className="mr-2 h-4 w-4" /> Upload panorama</Button>
             <input ref={input} type="file" accept="image/*" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) setPanorama(URL.createObjectURL(f)); }} />
           </div>
         }
       />
-      <div className="mb-4 flex flex-wrap items-center gap-4 text-sm">
-        <span className="rounded-md bg-card px-3 py-2 shadow-sm">
+      <div className="mb-4 flex flex-wrap items-center gap-2 text-sm md:gap-4">
+        <span className="w-full rounded-md bg-card px-3 py-2 shadow-sm md:w-auto">
           {loading ? "Running detection…" : <><b className="text-secondary-foreground">{auto}</b> assets tagged automatically, <b className="text-secondary-foreground">{review}</b> need review</>}
         </span>
-        <Legend cls="bg-success" label="Auto-tagged (≥ 75%)" /><Legend cls="bg-warning" label="Needs review (< 75%)" /><Legend cls="bg-primary" label="Confirmed" />
+        <Button variant="outline" className="min-h-11 md:hidden" aria-expanded={showLegend} onClick={() => setShowLegend((value) => !value)}><List className="mr-2 h-4 w-4" /> Legend</Button>
+        <div className={`${showLegend ? "flex" : "hidden"} w-full flex-wrap gap-3 md:flex md:w-auto md:gap-4`}>
+          <Legend cls="bg-success" label="Auto-tagged (≥ 75%)" /><Legend cls="bg-warning" label="Needs review (< 75%)" /><Legend cls="bg-primary" label="Confirmed" />
+        </div>
       </div>
-      <Card className="h-[calc(100vh-220px)] min-h-[480px] overflow-hidden p-0">
+      <Card className="h-[60dvh] min-h-[420px] w-full overflow-hidden p-0 md:h-[calc(100vh-220px)] md:min-h-[480px]">
         <ClientOnly fallback={<div className="h-full animate-pulse bg-muted" />}>
           <Suspense fallback={<div className="h-full animate-pulse bg-muted" />}>
             <PanoramaViewer image={panorama} detections={show ? visible : []} onSelect={setSelected} focus={focus} />

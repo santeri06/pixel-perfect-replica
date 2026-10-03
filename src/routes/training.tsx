@@ -28,14 +28,15 @@ function TrainingPage() {
     <>
       <PageHeader title="Training" subtitle="Label detector + OCR check, trained on synthetic data only." />
       <TrainingShowcase />
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 max-[359px]:grid-cols-1 md:grid-cols-4">
         {stats.map((s) => (
           <Card key={s.label}><CardContent className="p-5"><div className="text-xs text-muted-foreground">{s.label}</div><div className="mt-1 text-2xl font-semibold text-secondary-foreground">{s.value}</div></CardContent></Card>
         ))}
       </div>
       <Card className="mt-6">
         <CardHeader><CardTitle className="text-base">Loss & accuracy</CardTitle></CardHeader>
-        <CardContent className="h-80">
+        <CardContent className="h-80 min-w-0 overflow-x-auto">
+          <div className="h-full min-w-[500px] md:min-w-0">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={trainingCurve}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
@@ -49,6 +50,7 @@ function TrainingPage() {
               <Line yAxisId="r" dataKey="accuracy" name="Accuracy" stroke="var(--chart-2)" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
+          </div>
         </CardContent>
       </Card>
       <h2 className="mb-3 mt-8 text-lg font-semibold text-secondary-foreground">Example predictions</h2>
