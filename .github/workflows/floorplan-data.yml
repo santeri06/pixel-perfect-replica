@@ -1,0 +1,51 @@
+# TEMPORARY - verifies feat/floorplan with the real data; branch ci/floorplan-data is deleted afterwards.
+name: floorplan-data
+on:
+  push:
+    branches: [ci/floorplan-data]
+permissions:
+  contents: write
+jobs:
+  verify:
+    if: "!contains(github.event.head_commit.message, 'e2e results')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: report helper
+        run: |
+          cat > /tmp/report.sh <<'EOS'
+          #!/usr/bin/env bash
+          msg=$(tail -n "${4:-40}" "$3" | sed -e 's/\x1b\[[0-9;]*m//g' -e 's/%/%25/g' -e 's/\r//g' | sed ':a;N;$!ba;s/\n/%0A/g')
+          echo "::$1 title=$2::${msg}"
+          EOS
+          chmod +x /tmp/report.sh
+      - run: bun install --frozen-lockfile > install.log 2>&1 || { /tmp/report.sh error install install.log; exit 1; }
+      - name: npm run build
+        run: npm run build > build.log 2>&1 && /tmp/report.sh notice "npm run build OK" build.log 2 || { /tmp/report.sh error "build FAILED" build.log 60; exit 1; }
+      - name: npm test
+        run: |
+          set +e; npm test > test.log 2>&1; c=$?
+          grep -E "✓|✗|×|FAIL|skipped|Test Files|Tests |AssertionError|Error" test.log | tail -n 30 > t.log
+          /tmp/report.sh notice "npm test (exit $c)" t.log 30; exit $c
+      - name: tsc
+        run: |
+          set +e; npx tsc --noEmit -p tsconfig.json > tsc.log 2>&1; c=$?; echo "exit $c, $(grep -c 'error TS' tsc.log) errors" >> tsc.log
+          /tmp/report.sh notice tsc tsc.log 15; exit $c
+      - name: playwright
+        run: |
+          mkdir -p /tmp/pw && cd /tmp/pw && npm init -y >/dev/null && npm i --no-audit --no-fund playwright@1.56.1 >/dev/null
+          npx playwright install --with-deps chromium > /tmp/pw/i.log 2>&1 || { /tmp/report.sh error pw /tmp/pw/i.log 20; exit 1; }
+      - name: e2e
+        run: |
+          nohup npx vite dev --port 4173 --strictPort > server.log 2>&1 &
+          for i in $(seq 1 120); do curl -sf http://localhost:4173/ >/dev/null && break; sleep 1; done
+          curl -s http://localhost:4173/floorplan >/dev/null; curl -s http://localhost:4173/twin >/dev/null
+          set +e
+          PW=/tmp/pw/node_modules/playwright/index.mjs node e2e/floorplan.e2e.mjs > e2e.log 2>&1; c=$?
+          /tmp/report.sh notice "floorplan e2e (exit $c)" e2e.log 45
+          git config user.name ci && git config user.email ci@users.noreply.github.com
+          git add -f e2e-out && git commit -qm "TEMP: e2e results" && git push -q origin HEAD:ci/floorplan-data
+          exit $c
