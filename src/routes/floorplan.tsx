@@ -1,5 +1,5 @@
 import { ClientOnly, createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { lazy, Suspense, useEffect, useMemo, useState, type CSSProperties } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { MapPin } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -74,12 +74,16 @@ function FloorPlanPage() {
   }, [detections, file.entries]);
   const sum = summarize(devices);
   const { device: wanted } = Route.useSearch();
+  // select once when the relay is found (register links need the detections to be loaded first)
+  const applied = useRef<string | null>(null);
   useEffect(() => {
-    if (!wanted) return;
+    if (!wanted || applied.current === wanted) return;
     const hit = devices.find((d) => d.device.id === wanted || d.instance?.id === wanted);
-    if (hit) setSelected(hit.device.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wanted, devices.length]);
+    if (hit) {
+      applied.current = wanted;
+      setSelected(hit.device.id);
+    }
+  }, [wanted, devices]);
   // list: registered relays by location, then unregistered ones (auto-tagged before review)
   const listed = [...devices].sort((a, b) =>
     a.instance && b.instance
