@@ -34,6 +34,13 @@ jobs:
           set +e; npm test > test.log 2>&1; c=$?
           grep -E "✓|✗|×|FAIL|Test Files|Tests |Error" test.log | tail -n 30 > t.log
           /tmp/report.sh notice "npm test (exit $c)" t.log 30; exit $c
+      - name: pdf links
+        run: |
+          set +e
+          for u in $(grep -o 'https://library.e.abb.com[^"]*' src/data/asset_library.json); do
+            echo "$(curl -sL -o /tmp/d.pdf -w '%{http_code} %{content_type}' "$u") $(head -c 5 /tmp/d.pdf | tr -dc 'A-Za-z%-') $(basename $u)" >> links.log
+          done
+          /tmp/report.sh notice "pdf links" links.log 20
       - name: playwright
         run: |
           mkdir -p /tmp/pw && cd /tmp/pw && npm init -y >/dev/null && npm i --no-audit --no-fund playwright@1.56.1 >/dev/null
@@ -44,8 +51,8 @@ jobs:
           for i in $(seq 1 120); do curl -sf http://localhost:4173/ >/dev/null && break; sleep 1; done
           curl -s http://localhost:4173/floorplan >/dev/null
           set +e
-          PW=/tmp/pw/node_modules/playwright/index.mjs node e2e/fp3d.e2e.mjs > e2e.log 2>&1; c=$?
-          /tmp/report.sh notice "3d e2e (exit $c)" e2e.log 40
+          PW=/tmp/pw/node_modules/playwright/index.mjs node e2e/final.e2e.mjs > e2e.log 2>&1; c=$?
+          /tmp/report.sh notice "final e2e (exit $c)" e2e.log 60
           git config user.name ci && git config user.email ci@users.noreply.github.com
           git add -f e2e-out && git commit -qm "TEMP: e2e results" && git push -q origin HEAD:ci/floorplan3d
           exit $c
