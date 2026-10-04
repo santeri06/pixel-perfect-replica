@@ -9,6 +9,7 @@ import argparse
 import json
 import random
 import shutil
+from pathlib import Path
 
 import albumentations as A
 import cv2
@@ -19,6 +20,7 @@ from common import (BACKGROUNDS_DIR, CLASSES, OUTPUTS_DIR, REFERENCE_DIR, REGION
 
 MIN_LABEL_PX = 5      # label boxes smaller than this (shorter side) are dropped
 MIN_DEVICE_VISIBLE = 0.6
+OPTS = {"max_angle": 0.0, "negatives": []}   # set from the command line in main()
 
 
 # ----------------------------------------------------------------------------
@@ -136,14 +138,14 @@ def make_background(size: int, rng: random.Random) -> np.ndarray:
     return img
 
 
-def ensure_backgrounds(n: int, rng: random.Random) -> list[np.ndarray]:
-    BACKGROUNDS_DIR.mkdir(parents=True, exist_ok=True)
-    paths = list_images(BACKGROUNDS_DIR)
+def ensure_backgrounds(n: int, rng: random.Random, folder: Path = BACKGROUNDS_DIR) -> list[np.ndarray]:
+    folder.mkdir(parents=True, exist_ok=True)
+    paths = list_images(folder)
     if not paths:
         print(f"  backgrounds folder is empty -> generating {n} procedural textures")
         for i in range(n):
-            imwrite(BACKGROUNDS_DIR / f"gen_{i:03d}.jpg", make_background(768, rng), 88)
-        paths = list_images(BACKGROUNDS_DIR)
+            imwrite(folder / f"gen_{i:03d}.jpg", make_background(768, rng), 88)
+        paths = list_images(folder)
     bgs = [b for b in (imread(p) for p in paths[:400]) if b is not None]
     print(f"  {len(bgs)} background image(s)")
     return bgs
@@ -204,14 +206,30 @@ def wear_label(crop: np.ndarray, box, rng: random.Random) -> None:
             cv2.circle(roi, c, rng.randint(1, max(2, h // 5)), [rng.randint(20, 90)] * 3, -1)
 
 
+def view_from_side(w: int, h: int, rng: random.Random, max_angle: float) -> np.float32:
+    """Corners of the w x h front seen from the side: turned up to max_angle about the vertical axis."""
+    yaw = np.radians(rng.uniform(-max_angle, max_angle))
+    pitch = np.radians(rng.gauss(0, 8))
+    ry = np.array([[np.cos(yaw), 0, np.sin(yaw)], [0, 1, 0], [-np.sin(yaw), 0, np.cos(yaw)]])
+    rx = np.array([[1, 0, 0], [0, np.cos(pitch), -np.sin(pitch)], [0, np.sin(pitch), np.cos(pitch)]])
+    corners = np.array([[-w / 2, -h / 2, 0], [w / 2, -h / 2, 0], [w / 2, h / 2, 0], [-w / 2, h / 2, 0]]) @ (rx @ ry).T
+    dist = w * rng.uniform(1.5, 5.0)           # close = strong perspective, far = nearly parallel
+    return np.float32(corners[:, :2] * (dist / (dist + corners[:, 2:3])))
+
+
 def random_homography(w: int, h: int, size: int, rng: random.Random) -> np.ndarray:
     """Scale + rotation + perspective + translation, mapping the crop into the canvas."""
     target_h = size * rng.uniform(0.07, 0.6)   # small objects matter: scans show devices far away
-    s = target_h / h
-    ow, oh = w * s, h * s
     src = np.float32([[0, 0], [w, 0], [w, h], [0, h]])
-    dst = np.float32([[0, 0], [ow, 0], [ow, oh], [0, oh]])
-    jitter = rng.uniform(0, 0.14)              # perspective
+    if OPTS["max_angle"] and rng.random() < 0.75:
+        dst = view_from_side(w, h, rng, OPTS["max_angle"])
+        dst *= target_h / (dst[:, 1].max() - dst[:, 1].min())
+        ow, oh = dst[:, 0].max() - dst[:, 0].min(), target_h
+    else:
+        s = target_h / h
+        ow, oh = w * s, h * s
+        dst = np.float32([[0, 0], [ow, 0], [ow, oh], [0, oh]])
+    jitter = rng.uniform(0, 0.14 if not OPTS["max_angle"] else 0.05)   # perspective
     dst += np.float32([[rng.uniform(-jitter, jitter) * ow, rng.uniform(-jitter, jitter) * oh]
                        for _ in range(4)])
     ang = np.deg2rad(rng.gauss(0, 5))          # rotation
@@ -250,6 +268,19 @@ def iou(a, b) -> float:
 def compose_sample(refs, bgs, size: int, rng: random.Random):
     """Return (image, [(class_id, x1, y1, x2, y2)])."""
     canvas = sample_background(bgs, size, rng)
+    # hard negatives: real objects the detector used to confuse with the device, pasted unlabelled
+    for _ in range(rng.choice([0, 1, 1, 2, 3]) if OPTS["negatives"] else 0):
+        neg = rng.choice(OPTS["negatives"])
+        nh = int(size * rng.uniform(0.06, 0.4))
+        nw = int(np.clip(nh * neg.shape[1] / neg.shape[0] * rng.uniform(0.7, 1.4), 8, size - 1))
+        nh = min(nh, size - 1)
+        patch = cv2.resize(neg, (nw, nh), interpolation=cv2.INTER_AREA)
+        x, y = rng.randint(0, size - nw), rng.randint(0, size - nh)
+        m = np.zeros((nh, nw), np.float32)
+        b = max(1, min(nh, nw) // 8)
+        m[b:-b, b:-b] = 1
+        m = cv2.GaussianBlur(m, (0, 0), b / 2)[..., None]
+        canvas[y:y + nh, x:x + nw] = (patch * m + canvas[y:y + nh, x:x + nw] * (1 - m)).astype(np.uint8)
     boxes = []
     n_obj = rng.choices([0, 1, 2, 3], weights=[0.08, 0.62, 0.22, 0.08])[0]
     placed = []
@@ -341,20 +372,32 @@ def draw_boxes(img: np.ndarray, boxes) -> np.ndarray:
 
 
 def main() -> None:
+    global SYNTHETIC_DIR
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument("--n", type=int, default=3000, help="number of images (default 3000)")
     ap.add_argument("--imgsz", type=int, default=640)
     ap.add_argument("--val", type=float, default=0.15, help="validation fraction")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--mark", action="store_true", help="open the click tool to mark device/label boxes")
+    ap.add_argument("--out", default=str(SYNTHETIC_DIR), help="dataset folder")
+    ap.add_argument("--backgrounds", default=str(BACKGROUNDS_DIR), help="folder with background images")
+    ap.add_argument("--negatives", help="folder with hard-negative crops pasted as unlabelled distractors")
+    ap.add_argument("--max-angle", type=float, default=0,
+                    help="also show the device from the side, turned up to this many degrees (e.g. 75)")
+    ap.add_argument("--preview", default=str(OUTPUTS_DIR / "preview_grid.png"), help="preview grid image")
     args = ap.parse_args()
+    SYNTHETIC_DIR = Path(args.out)
 
     rng = random.Random(args.seed)
     np.random.seed(args.seed)
 
     print("Loading references...")
     refs = get_references(args.mark)
-    bgs = ensure_backgrounds(80, rng)
+    bgs = ensure_backgrounds(80, rng, Path(args.backgrounds))
+    OPTS["max_angle"] = args.max_angle
+    if args.negatives:
+        OPTS["negatives"] = [n for n in (imread(p) for p in list_images(Path(args.negatives))) if n is not None]
+        print(f"  {len(OPTS['negatives'])} hard-negative crop(s)")
 
     if SYNTHETIC_DIR.exists():
         shutil.rmtree(SYNTHETIC_DIR)
@@ -384,11 +427,11 @@ def main() -> None:
     while len(preview) < 16:
         preview.append(np.zeros((256, 256, 3), np.uint8))
     grid = np.vstack([np.hstack(preview[r * 4:r * 4 + 4]) for r in range(4)])
-    imwrite(OUTPUTS_DIR / "preview_grid.png", grid)
+    imwrite(Path(args.preview), grid)
 
     print(f"Done. device boxes: {counts[0]}, label boxes: {counts[1]}")
     print(f"Dataset: {SYNTHETIC_DIR}")
-    print(f"Preview: {OUTPUTS_DIR / 'preview_grid.png'}")
+    print(f"Preview: {args.preview}")
 
 
 if __name__ == "__main__":

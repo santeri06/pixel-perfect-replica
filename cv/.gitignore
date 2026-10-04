@@ -18,3 +18,10 @@ outputs/uploads/
 # Panoramas are generated; the frontend copy lives in public/panoramas
 outputs/panoramas/
 outputs/views/
+
+# Retraining experiment (v2)
+data/synthetic_v2*/
+data/backgrounds_v2/
+data/negatives_v2/
+outputs_v2/annotated/
+outputs_v2/views/

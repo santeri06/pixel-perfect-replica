@@ -18,15 +18,13 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from common import (ANNOTATED_DIR, DETECTIONS_FILE, OUTPUTS_DIR, RUNS_DIR, TEST_SCANS_DIR, imread, imwrite,
-                    list_images)
+from common import BEST_WEIGHTS, OUTPUTS_DIR, RUNS_DIR, TEST_SCANS_DIR, imread, imwrite, list_images
 from geometry import load_poses
 from pipeline import VERIFY_ACCEPT, VERIFY_REVIEW, AutoTagPipeline
 
-VIEWS_DIR = OUTPUTS_DIR / "views"  # clean copies of the views that contain a detection
 
-
-def run_scans(pipe: AutoTagPipeline, poses: dict, only: list[str] | None) -> list[dict]:
+def run_scans(pipe: AutoTagPipeline, poses: dict, only: list[str] | None, annotated_dir: Path,
+              views_dir: Path) -> list[dict]:
     scans: dict[str, list[str]] = {}
     for name, info in poses.items():
         scans.setdefault(info["scanPointId"], []).append(name)
@@ -37,8 +35,8 @@ def run_scans(pipe: AutoTagPipeline, poses: dict, only: list[str] | None) -> lis
         sources = [(poses[n], imread(TEST_SCANS_DIR / n)) for n in names]
         dets, views = pipe.detect_scan(sources, scan_id, id_prefix=scan_id)
         for name, (clean, annotated) in views.items():
-            imwrite(VIEWS_DIR / name, clean, 90)
-            imwrite(ANNOTATED_DIR / name, annotated, 88)
+            imwrite(views_dir / name, clean, 90)  # clean copies of the views that contain a detection
+            imwrite(annotated_dir / name, annotated, 88)
         all_dets.extend(dets)
         print(f"  {scan_id}: {len(dets)} detection(s)  [{time.time() - t0:.0f}s]", flush=True)
         for d in dets:
@@ -46,7 +44,7 @@ def run_scans(pipe: AutoTagPipeline, poses: dict, only: list[str] | None) -> lis
     return all_dets
 
 
-def run_plain(pipe: AutoTagPipeline, source: Path, poses: dict) -> list[dict]:
+def run_plain(pipe: AutoTagPipeline, source: Path, poses: dict, annotated_dir: Path) -> list[dict]:
     all_dets = []
     for path in list_images(source):
         img = imread(path)
@@ -54,14 +52,14 @@ def run_plain(pipe: AutoTagPipeline, source: Path, poses: dict) -> list[dict]:
             print(f"  ! could not read {path.name}")
             continue
         dets, annotated = pipe.detect(img, path.name, id_prefix=path.stem, pose=poses.get(path.name))
-        imwrite(ANNOTATED_DIR / f"{path.stem}.jpg", annotated, 88)
+        imwrite(annotated_dir / f"{path.stem}.jpg", annotated, 88)
         all_dets.extend(dets)
         print(f"  {path.name}: {len(dets)} detection(s)")
     return all_dets
 
 
-def write_log_sheet(pipe: AutoTagPipeline) -> None:
-    """runs/candidates_N.jpg: every merged candidate with its scores (green kept, orange review, red rejected)."""
+def write_log_sheet(pipe: AutoTagPipeline, stem: Path) -> None:
+    """<stem>_N.jpg + <stem>.json: every merged candidate with its scores (green kept, orange review, red rejected)."""
     tiles = []
     for c in pipe.log:
         t = cv2.resize(c["crop"], (160, 160))
@@ -78,9 +76,9 @@ def write_log_sheet(pipe: AutoTagPipeline) -> None:
         t = tiles[part:part + cols * rows]
         while len(t) % cols:
             t.append(np.zeros((160, 160, 3), np.uint8))
-        imwrite(RUNS_DIR / f"candidates_{part // (cols * rows)}.jpg",
+        imwrite(stem.with_name(f"{stem.name}_{part // (cols * rows)}.jpg"),
                 np.vstack([np.hstack(t[i:i + cols]) for i in range(0, len(t), cols)]), 85)
-    (RUNS_DIR / "candidates.json").write_text(
+    stem.with_suffix(".json").write_text(
         json.dumps([{k: v for k, v in c.items() if k != "crop"} for c in pipe.log]))
 
 
@@ -91,26 +89,33 @@ def main() -> None:
     ap.add_argument("--imgsz", type=int, default=1280)
     ap.add_argument("--scans", nargs="*", help="scan point ids to process (default: all)")
     ap.add_argument("--plain", action="store_true", help="process every image on its own")
+    ap.add_argument("--weights", default=str(BEST_WEIGHTS), help="detector weights")
+    ap.add_argument("--out", default=str(OUTPUTS_DIR), help="output folder (detections.json, annotated/, views/)")
     args = ap.parse_args()
+    out = Path(args.out)
+    detections_file, annotated_dir, views_dir = out / "detections.json", out / "annotated", out / "views"
 
     poses = load_poses()
     plain = args.plain or not poses or Path(args.source) != TEST_SCANS_DIR
     if plain and not list_images(Path(args.source)):
         raise SystemExit(f"No images in {args.source}.")
 
-    for folder in (ANNOTATED_DIR, VIEWS_DIR):
+    for folder in (annotated_dir, views_dir):
         shutil.rmtree(folder, ignore_errors=True)
-    pipe = AutoTagPipeline(conf=args.conf, imgsz=args.imgsz)
-    all_dets = run_plain(pipe, Path(args.source), poses) if plain else run_scans(pipe, poses, args.scans)
+    pipe = AutoTagPipeline(weights=Path(args.weights), conf=args.conf, imgsz=args.imgsz)
+    if plain:
+        all_dets = run_plain(pipe, Path(args.source), poses, annotated_dir)
+    else:
+        all_dets = run_scans(pipe, poses, args.scans, annotated_dir, views_dir)
 
     for i, d in enumerate(all_dets, start=1):
         d["id"] = f"d{i}"
-    DETECTIONS_FILE.parent.mkdir(exist_ok=True)
-    DETECTIONS_FILE.write_text(json.dumps(all_dets, indent=2), encoding="utf-8")
+    out.mkdir(parents=True, exist_ok=True)
+    detections_file.write_text(json.dumps(all_dets, indent=2), encoding="utf-8")
     if pipe.log:
-        write_log_sheet(pipe)
-    print(f"\n{len(all_dets)} detection(s) -> {DETECTIONS_FILE}")
-    print(f"Annotated images -> {ANNOTATED_DIR}")
+        write_log_sheet(pipe, RUNS_DIR / f"candidates_{out.name}")
+    print(f"\n{len(all_dets)} detection(s) -> {detections_file}")
+    print(f"Annotated images -> {annotated_dir}")
 
 
 if __name__ == "__main__":
