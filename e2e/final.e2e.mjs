@@ -40,7 +40,7 @@ for (const [name, vp] of [["desktop", { width: 1440, height: 900 }], ["mobile", 
     await page.screenshot({ path: "e2e-out/final-show-on-floorplan.png" });
     for (const id of ["DEMO-REL-01", "DEMO-REL-02", "DEMO-REL-03", "DEMO-REL-04", "DEMO-REL-05"]) {
       await page.goto(`${BASE}/floorplan?device=${id}`, { waitUntil: "networkidle" });
-      const dlg = await page.waitForSelector('[role="dialog"]', { timeout: 8000 }).catch(() => null);
+      const dlg = await page.waitForSelector('[role="dialog"]', { timeout: 20000 }).catch(() => null);
       if (!dlg) { console.log(`  --   ${id}: not on the floor plan (unit test covers its docs)`); continue; }
       await page.waitForTimeout(500);
       const docs = await page.$$eval('[role="dialog"] a[href*="library.e.abb.com"]', (as) => as.map((a) => a.textContent.trim()));
