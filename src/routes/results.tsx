@@ -64,11 +64,15 @@ function ResultsPage() {
               <div className={`mb-3 text-xs font-semibold uppercase ${col === "autotag" ? "text-primary" : "text-muted-foreground"}`}>{col === "manual" ? "Manual tagging" : "AutoTag"}</div>
               <dl className="space-y-2">
                 {r.beforeAfter.map((b) => (
-                  <div key={b.metric} className="flex justify-between gap-3 text-sm"><dt className="min-w-0">{b.metric}</dt><dd className="shrink-0 font-semibold text-secondary-foreground">{b[col]}</dd></div>
+                  <div key={b.metric} className="flex flex-col gap-1 text-sm">
+                    <div className="flex justify-between gap-3"><dt className="min-w-0">{b.metric}</dt><dd className="shrink-0 text-right font-semibold text-secondary-foreground">{b[col]}</dd></div>
+                    {b[`${col}Note`] && <div className="text-xs text-muted-foreground">{b[`${col}Note`]}</div>}
+                  </div>
                 ))}
               </dl>
             </div>
           ))}
+          <p className="text-sm text-muted-foreground">{r.beforeAfterNote}</p>
         </CardContent>
       </Card>
 
