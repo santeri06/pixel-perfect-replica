@@ -1,6 +1,6 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { LayoutDashboard, Images, BrainCircuit, Box, ListChecks, Library, X, ArrowRight, BarChart3, Menu, Map as MapIcon } from "lucide-react";
+import { LayoutDashboard, Images, BrainCircuit, Box, ListChecks, Library, X, ArrowRight, BarChart3, Menu, Map as MapIcon, Smartphone, ExternalLink } from "lucide-react";
 import { useStore, needsReview } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -48,6 +48,20 @@ export function AppShell({ children }: { children: ReactNode }) {
       )}
     </Link>
   ));
+  // the Field App is a static page (public/field/index.html); the full file name works on every host
+  const fieldApp = (closeOnClick: boolean) => (
+    <a
+      href="/field/index.html"
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={closeOnClick ? () => setMenuOpen(false) : undefined}
+      className="flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent"
+    >
+      <Smartphone className="h-4 w-4 shrink-0" />
+      <span className="flex-1">Field App</span>
+      <ExternalLink className="h-3.5 w-3.5 opacity-60" />
+    </a>
+  );
 
   return (
     <div className="min-h-screen md:flex">
@@ -59,8 +73,8 @@ export function AppShell({ children }: { children: ReactNode }) {
             <div className="text-xs opacity-70">AutoTag</div>
           </div>
         </div>
-        <nav className="flex flex-1 flex-col gap-1 px-3">{navigation(false)}</nav>
-        <div className="px-5 py-4 text-xs opacity-60">Site: Helsinki Substation 01</div>
+        <nav className="flex flex-1 flex-col gap-1 px-3">{navigation(false)}{fieldApp(false)}</nav>
+        <div className="px-5 py-4 text-xs opacity-60">Site: Demo site</div>
       </aside>
       <div className="sticky top-0 z-40 grid h-14 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-sidebar-border bg-sidebar px-4 text-sidebar-foreground md:hidden">
         <div className="flex min-w-0 items-center gap-2.5">
@@ -72,8 +86,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
         <SheetContent side="left" className="w-[min(320px,85vw)] bg-sidebar p-0 text-sidebar-foreground md:hidden">
           <SheetHeader className="px-5 py-6 text-left"><SheetTitle className="text-sidebar-accent-foreground">VEO360 AutoTag</SheetTitle></SheetHeader>
-          <nav className="flex flex-col gap-1 px-3">{navigation(true)}</nav>
-          <div className="px-5 py-4 text-sm opacity-70">Site: Helsinki Substation 01</div>
+          <nav className="flex flex-col gap-1 px-3">{navigation(true)}{fieldApp(true)}</nav>
+          <div className="px-5 py-4 text-sm opacity-70">Site: Demo site</div>
         </SheetContent>
       </Sheet>
       <main className="min-w-0 w-full flex-1 px-4 py-5 md:w-auto md:p-8">{children}</main>

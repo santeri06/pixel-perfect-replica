@@ -70,7 +70,7 @@ function TwinPage() {
     <>
       <PageHeader
         title="Digital Twin"
-        subtitle="Helsinki Substation 01 · Switchgear room B"
+        subtitle="Demo site · Switchgear room B"
         actions={
           <div className="flex w-full flex-wrap items-center gap-2 md:w-auto md:gap-4">
             <Select value={scanPointId} onValueChange={setScanPoint}>
