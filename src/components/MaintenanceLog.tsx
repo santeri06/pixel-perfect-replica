@@ -18,27 +18,23 @@ const VARIANT_DOC = /^(RE[A-Z]615)\b/;
 /**
  * REF615, RET615 and REM615 have their own product guide and application manual; the front panel
  * only shows "615", so the variant must come from the device register, never from the image.
+ * The list is never empty: without a variant-specific manual the 615 series family documents
+ * (installation manual + REF615 product guide) are shown with a short note.
  */
 export function docsForVariant(
   docs: Doc[],
   variant: string | undefined,
-): { docs: Doc[]; warning: string | null } {
+): { docs: Doc[]; warning: string | null; heading: string | null } {
   const specific = docs.filter((d) => VARIANT_DOC.test(d.title));
-  if (specific.length === 0) return { docs, warning: null };
+  if (specific.length === 0) return { docs, warning: null, heading: null };
   const common = docs.filter((d) => !VARIANT_DOC.test(d.title));
-  if (!variant || variant === "unknown") {
-    return {
-      docs,
-      warning: "Variant unknown - check the rating plate before using a variant-specific manual.",
-    };
-  }
-  const own = specific.filter((d) => d.title.startsWith(variant));
-  const others = [...new Set(specific.map((d) => d.title.match(VARIANT_DOC)?.[1]))].join(", ");
+  const own = variant && variant !== "unknown" ? specific.filter((d) => d.title.startsWith(`${variant} `)) : [];
+  if (own.length) return { docs: [...own, ...common], warning: null, heading: null };
+  const family = [...common, ...specific.filter((d) => /^REF615 Product guide/i.test(d.title))];
   return {
-    docs: [...own, ...common],
-    warning: own.length
-      ? null
-      : `No ${variant} product guide or application manual in the library yet. Do not use the ${others} documents for this device.`,
+    docs: family.length ? family : docs,
+    warning: "Variant-specific manual not linked yet",
+    heading: "615 series family documentation",
   };
 }
 

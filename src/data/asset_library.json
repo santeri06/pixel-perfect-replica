@@ -7,6 +7,10 @@
       "manufacturerDocs": [
         { "title": "REF615 Product guide", "url": "https://library.e.abb.com/public/94eba3ec6dde4261af4a510d76916e6d/REF615_pg_756379_ENu.pdf" },
         { "title": "REF615 Application manual", "url": "https://library.e.abb.com/public/f49c47babe06a298c1257b2f0054c256/REF615_appl_756378_ENk.pdf" },
+        { "title": "RET615 Product guide", "url": "https://library.e.abb.com/public/d9ebcb2a66ae4ffaba1111ec71dedbcf/RET615_pg_756891_ENm.pdf" },
+        { "title": "RET615 Application manual", "url": "https://library.e.abb.com/public/670d15dd7ab35c3fc1257b130056a5cf/RET615_appl_756886_ENa.pdf" },
+        { "title": "REM615 Product guide", "url": "https://library.e.abb.com/public/1c25dca66d00a2e1c1257b130056cb06/REM615_pg_756890_ENe.pdf" },
+        { "title": "REM615 Application manual", "url": "https://library.e.abb.com/public/0621a297d12e05c9c1257b2f0054c277/REM615_appl_756885_ENe.pdf" },
         { "title": "615 series Installation manual", "url": "https://library.e.abb.com/public/71f77e79135977bbc1257b130056cac1/RE_615_inst_756375_ENg.pdf" }
       ]
     },

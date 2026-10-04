@@ -164,16 +164,13 @@ export function AssetSheet({
 
           <section className="space-y-3 rounded-lg border p-4">
             <h3 className="text-base font-semibold text-secondary-foreground">Manufacturer documentation</h3>
-            {docs.warning && (
-              <p className="flex items-start gap-2 rounded-md bg-warning/10 p-2 text-xs text-secondary-foreground">
-                <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-warning" /> {docs.warning}
-              </p>
-            )}
+            {docs.heading && <div className="text-xs font-medium uppercase text-muted-foreground">{docs.heading}</div>}
             {docs.docs.length ? (
               <div className="divide-y rounded-md border">{docs.docs.map(docLink)}</div>
             ) : (
               <p className="text-sm text-muted-foreground">No documents.</p>
             )}
+            {docs.warning && <p className="text-xs text-muted-foreground">{docs.warning}</p>}
           </section>
 
           <div className="flex flex-wrap gap-2">

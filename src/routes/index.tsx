@@ -1,10 +1,13 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { PlayCircle, Clock, Zap, Tag, AlertTriangle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PlayCircle, MapPin, Zap, Tag, AlertTriangle } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PageHeader, demoSteps } from "@/components/AppShell";
 import { useStore, needsReview } from "@/lib/store";
 import { MaintenanceSummary } from "@/components/MaintenanceSummary";
+import { MaintenanceDue } from "@/components/MaintenanceDue";
+import { floorPlan } from "@/lib/floorplan";
+import { trainingStats } from "@/data/training";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,7 +34,7 @@ function Dashboard() {
   return (
     <>
       <PageHeader
-        title="Helsinki Substation 01"
+        title="Demo site"
         subtitle="Automatic product & label recognition for the Matterport digital twin"
         actions={<Button size="lg" className="w-full md:w-auto" onClick={startDemo}><PlayCircle className="mr-2 h-5 w-5" /> Start demo</Button>}
       />
@@ -39,8 +42,8 @@ function Dashboard() {
         {[
           { icon: Tag, label: "Auto-tagged assets", value: tagged },
           { icon: AlertTriangle, label: "Need review", value: review },
-          { icon: Zap, label: "Detection mAP", value: "0.91" },
-          { icon: Clock, label: "Time saved / site", value: "7.6 h" },
+          { icon: MapPin, label: "Devices located", value: floorPlan ? floorPlan.devices.length : "–" },
+          { icon: Zap, label: "Detection mAP (synthetic val.)", value: trainingStats.map.toFixed(3) },
         ].map((s) => (
           <Card key={s.label}><CardContent className="flex min-w-0 flex-col gap-2 p-3 min-[430px]:flex-row min-[430px]:items-center md:gap-4 md:p-5">
             <div className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-accent text-accent-foreground"><s.icon className="h-5 w-5" /></div>
@@ -50,23 +53,7 @@ function Dashboard() {
       </div>
       <MaintenanceSummary />
 
-      <Card className="mt-6">
-        <CardHeader><CardTitle>Before / after: tagging one switchgear room</CardTitle></CardHeader>
-        <CardContent className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-lg border p-5">
-            <div className="text-xs font-semibold uppercase text-muted-foreground">Manual tagging</div>
-            <div className="mt-2 text-4xl font-bold text-secondary-foreground">8 h</div>
-            <div className="mt-3 h-3 w-full rounded-full bg-destructive/80" />
-            <p className="mt-3 text-sm">Technician walks the scan, reads each nameplate, searches the document archive and places tags by hand.</p>
-          </div>
-          <div className="rounded-lg border-2 border-primary p-5">
-            <div className="text-xs font-semibold uppercase text-primary">VEO360 AutoTag</div>
-            <div className="mt-2 text-4xl font-bold text-secondary-foreground">24 min</div>
-            <div className="mt-3 h-3 w-[5%] rounded-full bg-primary" />
-            <p className="mt-3 text-sm">Detection + OCR places tags automatically and links documentation. Humans only review low-confidence tags.</p>
-          </div>
-        </CardContent>
-      </Card>
+      <MaintenanceDue />
 
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         {demoSteps.map((s) => (

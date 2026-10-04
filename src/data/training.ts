@@ -1,17 +1,20 @@
+// measured values of the training run (YOLO detector, synthetic data only)
 export const trainingStats = {
-  datasetSize: 12480,
-  epochs: 60,
-  map: 0.912,
-  ocrAccuracy: 0.947,
+  datasetSize: 3000, // ~3000 synthetic images
+  epochs: 8,
+  map: 0.995, // mAP@0.5 on synthetic validation data (not on real scans)
+  mapNote: "on synthetic validation data",
+  // OCR accuracy was not measured, so it is not shown
 };
 
-export const trainingCurve = Array.from({ length: 30 }, (_, i) => {
-  const e = (i + 1) * 2;
+// shape of the curve only (the per-epoch log is not in the app): 8 epochs like the real run
+export const trainingCurve = Array.from({ length: trainingStats.epochs }, (_, i) => {
+  const e = i + 1;
   return {
     epoch: e,
-    loss: +(2.4 * Math.exp(-e / 14) + 0.12 + ((i * 7) % 5) * 0.01).toFixed(3),
-    valLoss: +(2.5 * Math.exp(-e / 15) + 0.18 + ((i * 3) % 4) * 0.012).toFixed(3),
-    accuracy: +(0.95 - 0.6 * Math.exp(-e / 12) - ((i * 5) % 3) * 0.004).toFixed(3),
+    loss: +(2.4 * Math.exp(-e / 2) + 0.12).toFixed(3),
+    valLoss: +(2.5 * Math.exp(-e / 2.2) + 0.16).toFixed(3),
+    accuracy: +(0.995 - 0.6 * Math.exp(-e / 1.6)).toFixed(3),
   };
 });
 
