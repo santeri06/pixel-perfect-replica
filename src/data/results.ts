@@ -14,11 +14,12 @@ export const results = {
   reviewCorrect: 7,
   trainingData: "Synthetic only – generated from reference images",
   beforeAfter: [
-    { metric: "Time per site", manual: "TBD", autotag: "TBD" },
-    { metric: "Time per tag", manual: "TBD", autotag: "TBD" },
-    { metric: "Tags requiring human work", manual: "TBD", autotag: "TBD" },
-    { metric: "Documents linked", manual: "TBD", autotag: "TBD" },
+    { metric: "Time per site", manual: "About 2 days", manualNote: "VEO estimate", autotag: "~47 min", autotagNote: "18 scan points, laptop CPU (no GPU)" },
+    { metric: "Time per tag", manual: "Not measured", autotag: "Not measured" },
+    { metric: "Tags requiring human work", manual: "All of them", autotag: "12 of 74 detections (review queue)" },
+    { metric: "Documents linked", manual: "Manually, one by one", autotag: "Automatically for every tagged relay" },
   ],
+  beforeAfterNote: "Manual figure from VEO's team; AutoTag time measured on this site's scan.",
   nextSteps: [
     "Site-specific backgrounds in synthetic data",
     "Merging the same device across scan points",
